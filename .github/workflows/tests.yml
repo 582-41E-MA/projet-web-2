@@ -1,0 +1,12 @@
+name: tests
+run-name: Nos tests sont en train de se faire
+on: [push, pull_request]
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: php-actions/composer@v6
+        with:
+          configuration: test/phpunit.xml
+      - run: php --test

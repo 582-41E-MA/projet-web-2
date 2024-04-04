@@ -16,12 +16,12 @@ Web transactionnel (commerce électronique).
 
 ## Rôles :
 
-Responsable Git : Fernanda
-Responsable de la planification : Mei
-Responsable du design : Xuying
-Responsable de l'intégration côté client : Guillermo
-Responsable de l'intégration côté serveur : Fernanda
-Responsable de la base de données : Guillermo
+- Responsable Git : Fernanda
+- Responsable de la planification : Mei
+- Responsable du design : Xuying
+- Responsable de l'intégration côté client : Guillermo
+- Responsable de l'intégration côté serveur : Fernanda
+- Responsable de la base de données : Guillermo
 
 ## Technologies Utilisées :
 
