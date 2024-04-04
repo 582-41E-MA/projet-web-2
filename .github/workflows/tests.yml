@@ -1,12 +1,11 @@
-name: tests
-run-name: Nos tests sont en train de se faire
-on: [push, pull_request]
+name: test
+run-name: Testing
+on: [push]
 jobs:
-  phpunit:
+  testing-laravel:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: php-actions/composer@v6
-        with:
-          configuration: test/phpunit.xml
-      - run: php --test
+      - uses: shivammathur/setup-php@v2
+      - run: composer install
+      - run: php artisan test
