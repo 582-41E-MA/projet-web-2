@@ -1,0 +1,85 @@
+/* 4.1 - typographies */
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-SemiBold.ttf");
+    font-weight: 600;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("/assets/fonts/Roboto_Slab/RobotoSlab-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-family: var(--police-titre);
+    font-size: var(--text-xxl);
+    color: var(--coul-texte-fonce);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family: var(--police-titre);
+    font-size: var(--text-xl);
+    color: var(--coul-texte-fonce);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family: var(--police-titre);
+    font-size: var(--text-xl);
+    color: var(--coul-texte-fonce);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: var(--police-titre);
+    font-size: var(--text-lg);
+    color: var(--coul-texte-fonce);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-family: var(--police-titre);
+    font-size: var(--text-md);
+    color: var(--coul-texte-fonce);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h5 {
+    font-family: var(--police-titre);
+    font-size: var(--text-sm);
+    color: var(--coul-texte-fonce);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: var(--police-titre);
+    font-size: var(--text-xs);
+    color: var(--coul-texte-fonce);
+    font-weight: normal;
+    text-transform: uppercase;
+}
