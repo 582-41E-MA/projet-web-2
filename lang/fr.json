@@ -1,4 +1,17 @@
+
 {
+    "Registration" : "Inscription",
+    "Submit":"Soumettre",
+    "Name":"Nom",
+    "Post code":"Code postal",
+    "Telephone":"Téléphone",
+    "Email":"Courriel",
+    "Date of birth":"Date de naissance",
+    "Password": "Mot de passe",
+    "Confirm password": "Confirmez mot de passe",
+    "dd-mm-yyyy": "jj-mm-aaaa",
+    "City": "Ville",
+    "Choose one": "Choississez",
     "Employee" : "Employé",
     "Client" : "Client",
     "Car" : "Voiture",
