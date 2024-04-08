@@ -1,8 +1,8 @@
 :root {
     /* la largeur */
-    --width-mobile: 375px;
-    --width-tablette: 768px;
-    --width-ecran: 1024px;
+    --width-mobile: 428px;
+    --width-tablette: 834px;
+    --width-ecran: 1280px;
 
     /* l'espacement */
     --espace-quart: 0.25rem;
@@ -17,6 +17,8 @@
     --espace-6: 6rem;
     --espace-7: 7rem;
     --espace-8: 8rem;
+    --espace-9: 9rem;
+    --espace-10: 10rem;
 
     /* Les couleurs */
     --coul-primaire: #cb0606;
@@ -24,18 +26,20 @@
     --coul-tertiaire: #999999;
     --coul-quatrieme: #e0e0e0;
     --coul-accent: #ffd900;
-    --coul-texte-fonce: #3d3d3d;
+
+    --coul-fond-claire: #ffffff;
+    --coul-fond-fonce: #d9d9d9;
+
+    --coul-texte-default: #3d3d3d;
+    --coul-texte-fonce: #000000;
     --coul-texte-claire: #ffffff;
 
-    /* Les polices et typographies */
-    --police-titre: "Palanquin", serif;
-    --police-texte: "Palanquin", serif;
-    --police-button: "Palanquin", serif;
-
-    --text-xs: 0.75rem;
-    --text-sm: 0.8125rem;
-    --text-md: 1.125rem;
-    --text-lg: 1.5rem;
-    --text-xl: 1.9375rem;
-    --text-xxl: 2.215rem;
+    /* Les tailles de police */
+    --texte-xxs: 1rem;
+    --texte-xs: 1.25rem;
+    --texte-sm: 1.5rem;
+    --texte-md: 1.625rem;
+    --texte-lg: 2rem;
+    --texte-xl: 2.25rem;
+    --texte-xxl: 3rem;
 }
