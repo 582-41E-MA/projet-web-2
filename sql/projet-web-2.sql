@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2024 at 04:39 PM
+-- Generation Time: Apr 08, 2024 at 04:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -212,16 +212,37 @@ CREATE TABLE `carrosseries` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `commandes`
+--
+
+CREATE TABLE `commandes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `voiture_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `utilisateur_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `payment_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `statut_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `taxe_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `expedition_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `quantite` int(11) DEFAULT NULL,
+  `prix` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `commande_taxes`
 --
 
 CREATE TABLE `commande_taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `commande_id` bigint(20) UNSIGNED NOT NULL,
-  `tax_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` bigint(20) NOT NULL,
+  `commande_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `tax_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -623,12 +644,24 @@ ALTER TABLE `carrosseries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `commandes`
+--
+ALTER TABLE `commandes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_voiture` (`voiture_id`),
+  ADD KEY `fk_utilisateur` (`utilisateur_id`),
+  ADD KEY `fk_payment` (`payment_id`),
+  ADD KEY `fk_statut` (`statut_id`),
+  ADD KEY `fk_taxe` (`taxe_id`),
+  ADD KEY `fk_expedition` (`expedition_id`);
+
+--
 -- Indexes for table `commande_taxes`
 --
 ALTER TABLE `commande_taxes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `commande_taxes_commande_id_foreign` (`commande_id`),
-  ADD KEY `commande_taxes_tax_id_foreign` (`tax_id`);
+  ADD KEY `commande_id` (`commande_id`),
+  ADD KEY `tax_id` (`tax_id`);
 
 --
 -- Indexes for table `expeditions`
@@ -810,10 +843,16 @@ ALTER TABLE `carrosseries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `commandes`
+--
+ALTER TABLE `commandes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `commande_taxes`
 --
 ALTER TABLE `commande_taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `expeditions`
@@ -940,11 +979,22 @@ ALTER TABLE `voitures`
 --
 
 --
+-- Constraints for table `commandes`
+--
+ALTER TABLE `commandes`
+  ADD CONSTRAINT `fk_expedition` FOREIGN KEY (`expedition_id`) REFERENCES `expeditions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_payment` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_statut` FOREIGN KEY (`statut_id`) REFERENCES `statuts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_taxe` FOREIGN KEY (`taxe_id`) REFERENCES `taxes` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_utilisateur` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_voiture` FOREIGN KEY (`voiture_id`) REFERENCES `voitures` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `commande_taxes`
 --
 ALTER TABLE `commande_taxes`
-  ADD CONSTRAINT `commande_taxes_commande_id_foreign` FOREIGN KEY (`commande_id`) REFERENCES `commandes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `commande_taxes_tax_id_foreign` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `commande_taxes_ibfk_1` FOREIGN KEY (`commande_id`) REFERENCES `commandes` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `commande_taxes_ibfk_2` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `modeles`
