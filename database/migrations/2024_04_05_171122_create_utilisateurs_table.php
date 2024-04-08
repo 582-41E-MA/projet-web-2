@@ -22,8 +22,6 @@ return new class extends Migration
             $table->unsignedBigInteger('privilege_id');
             $table->unsignedBigInteger('ville_id');
             $table->foreign('privilege_id')->references('id')->on('privileges')->onDelete('cascade');
-            $table->foreign('pays_id')->references('id')->on('pays')->onDelete('cascade');
-            $table->foreign('provence_id')->references('id')->on('provences')->onDelete('cascade');
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade');
         });
     }
