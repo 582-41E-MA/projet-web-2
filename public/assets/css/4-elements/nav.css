@@ -1,0 +1,15 @@
+nav {
+    align-items: center;
+    display: flex;
+    font-family: "Palanquin";
+    font-size: var(--texte-md);
+    height: 100%;
+    padding: 0 var(--espace-2) 0 var(--espace-2);
+}
+
+
+@media screen and (max-width: 428px) {
+    nav {
+        padding: 0;
+    }
+}
