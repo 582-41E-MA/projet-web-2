@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('commande_taxes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('commande_id');
-            $table->unsignedBigInteger('tax_id');
+            $table->unsignedBigInteger('fed_tax_id');
+            $table->unsignedBigInteger('prov_tax_id');
             $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade');
-            $table->foreign('tax_id')->references('id')->on('taxes')->onDelete('cascade');
+            $table->foreign('fed_tax_id')->references('id')->on('federal_taxes')->onDelete('cascade');
+            $table->foreign('prov_tax_id')->references('id')->on('provincial_taxes')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->json('nom');
             $table->unsignedBigInteger('provence_id');
             $table->foreign('provence_id')->references('id')->on('provences')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -13,16 +13,23 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('nom');
+            $table->date('date_de_naissance');
+            $table->string('code_postal');
+            $table->string('telephone');
+            $table->string('courriel')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('mot_de_passe');
             $table->rememberToken();
+            $table->unsignedBigInteger('privilege_id');
+            $table->unsignedBigInteger('ville_id');
+            $table->foreign('privilege_id')->references('id')->on('privileges')->onDelete('cascade');
+            $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->string('courriel')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('carburants', function (Blueprint $table) {
             $table->id();
             $table->json('nom');
+            $table->timestamps();
         });
     }
 

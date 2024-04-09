@@ -32,7 +32,8 @@ return new class extends Migration
             $table->foreign('traction_id')->references('id')->on('tractions')->onDelete('cascade');
             $table->foreign('carburant_id')->references('id')->on('carburants')->onDelete('cascade');
             $table->foreign('carrosserie_id')->references('id')->on('carrosseries')->onDelete('cascade');
-            $table->foreign('proprietaire')->references('id')->on('utilisateurs')->onDelete('cascade');
+            $table->foreign('proprietaire')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
