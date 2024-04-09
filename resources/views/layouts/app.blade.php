@@ -12,6 +12,7 @@
 
 </head>
 <body>
+<<<<<<< HEAD
     @php $locale = session()->get('locale') @endphp
 
     @if(Auth::user()) 
@@ -78,6 +79,32 @@
         </div>
     </header>
 
+=======
+<header>
+    <div class="div-header">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <div class="div-nav">
+                <img src="{{asset('assets/img/svg/logo.svg')}}" alt="">
+                <div class="div-list-nav">
+                    <nav>
+                        <ul>
+                            <li><a href="" class="active">List of cars</a></li>
+                            <li><a href="">About us</a></li>
+                            <li><a href="">Sales Policies</a></li>
+                        </ul>
+                    </nav>
+                </div>           
+            </div>
+            <div class="div-lang">
+                <button class="btn btn-primaire">FR</button>
+                <div class="div-lien">
+                    <a href="">Sign in</a>
+                </div>
+            </div>
+        </div>
+    </header>
+>>>>>>> 8ae6abf (Ajouter header)
     @yield('content')
 
 </body>
