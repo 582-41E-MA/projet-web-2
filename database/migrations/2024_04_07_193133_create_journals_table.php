@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('page_visite');
             $table->timestamp('date_visite')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

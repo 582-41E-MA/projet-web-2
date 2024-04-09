@@ -16,7 +16,7 @@ return new class extends Migration
             $table->json('nom');
             $table->unsignedBigInteger('pays_id');
             $table->foreign('pays_id')->references('id')->on('pays')->onDelete('cascade');
-            
+            $table->timestamps();
         });
     }
 

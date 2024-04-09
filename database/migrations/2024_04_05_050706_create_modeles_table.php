@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nom');
             $table->unsignedBigInteger('marque_id');
             $table->foreign('marque_id')->references('id')->on('marques')->onDelete('cascade');
-            
+            $table->timestamps(); 
         });
     }
 
