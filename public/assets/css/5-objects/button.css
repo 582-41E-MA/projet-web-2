@@ -1,0 +1,56 @@
+.btn {
+    font-family: "Roboto";
+    font-size: var(--texte-sm);
+    font-weight: 500;
+    pointer-events: auto;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    padding: var(--espace-quart) var(--espace-3quarts);
+}
+
+.btn-primaire {
+    background-color: var(--coul-primaire);
+    border: 1px solid var(--coul-primaire);
+    color: var(--coul-texte-claire);
+}
+
+.btn-primaire:hover {
+    background-color: var(--coul-quatrieme);
+    border: 1px solid var(--coul-primaire);
+    color: var(--coul-primaire);
+    box-shadow: inset 0px 2px 3px var(--coul-tertiaire);
+}
+
+.btn-secondaire {
+    background-color: var(--coul-accent);
+    border: 1px solid var(--coul-accent);
+    color: var(--coul-texte-default);
+}
+
+.btn-secondaire:hover {
+    background-color: var(--coul-quatrieme);
+    border: 1px solid var(--coul-accent);
+    color: var(--coul-texte-default);
+    box-shadow: inset 0px 2px 3px var(--coul-tertiaire);
+}
+
+.btn-tertiaire {
+    background-color: var(--coul-tertiaire);
+    border: 1px solid var(--coul-tertiaire);
+    color: var(--coul-texte-claire);
+    border-radius: 0.625rem;
+}
+
+.btn-tertiaire:hover {
+    background-color: var(--coul-quatrieme);
+    border: 1px solid var(--coul-secondaire);
+    color: var(--coul-texte-default);
+    box-shadow: inset 0px 2px 3px var(--coul-tertiaire);
+}
+
+.btn-quatrieme {
+    background-color: var(--coul-fond-claire);
+    border: 1px solid var(--coul-primaire);
+    color: var(--coul-primaire);
+    border-radius: 0;
+}

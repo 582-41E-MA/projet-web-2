@@ -1,0 +1,45 @@
+:root {
+    /* la largeur */
+    --width-mobile: 428px;
+    --width-tablette: 834px;
+    --width-ecran: 1280px;
+
+    /* l'espacement */
+    --espace-quart: 0.25rem;
+    --espace-3quarts: 0.75rem;
+    --espace-half: 0.5rem;
+    --espace-1: 1rem;
+    --espace-1half: 1.5rem;
+    --espace-2: 2rem;
+    --espace-3: 3rem;
+    --espace-4: 4rem;
+    --espace-5: 5rem;
+    --espace-6: 6rem;
+    --espace-7: 7rem;
+    --espace-8: 8rem;
+    --espace-9: 9rem;
+    --espace-10: 10rem;
+
+    /* Les couleurs */
+    --coul-primaire: #cb0606;
+    --coul-secondaire: #3d3d3d;
+    --coul-tertiaire: #999999;
+    --coul-quatrieme: #e0e0e0;
+    --coul-accent: #ffd900;
+
+    --coul-fond-claire: #ffffff;
+    --coul-fond-fonce: #d9d9d9;
+
+    --coul-texte-default: #3d3d3d;
+    --coul-texte-fonce: #000000;
+    --coul-texte-claire: #ffffff;
+
+    /* Les tailles de police */
+    --texte-xxs: 1rem;
+    --texte-xs: 1.25rem;
+    --texte-sm: 1.5rem;
+    --texte-md: 1.625rem;
+    --texte-lg: 2rem;
+    --texte-xl: 2.25rem;
+    --texte-xxl: 3rem;
+}

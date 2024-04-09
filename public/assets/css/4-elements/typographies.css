@@ -1,0 +1,78 @@
+/* 4.1 - typographies */
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-SemiBold.ttf");
+    font-weight: 600;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Palanquin Dark";
+    src: url("/assets/fonts/Palanquin_Dark/PalanquinDark-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Palanquin Dark";
+    src: url("/assets/fonts/Palanquin_Dark/PalanquinDark-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("/assets/fonts/Roboto_Slab/RobotoSlab-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+@font-face {
+    font-family: "Roboto Slab";
+    src: url("/assets/fonts/Roboto_Slab/RobotoSlab-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/assets/fonts/Roboto/Roboto-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/assets/fonts/Roboto/Roboto-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "Roboto";
+    font-size: var(--texte-xxl);
+    color: var(--coul-texte-default);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: "Palanquin";
+    font-size: var(--texte-xxs);
+    color: var(--coul-texte-fonce);
+    font-weight: normal;
+}
