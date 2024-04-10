@@ -111,9 +111,6 @@
                                 ' ', 
                                 modeles.nom
                             ) LIKE '%$propriete%')");
-
-  
-        
 	}
 
 

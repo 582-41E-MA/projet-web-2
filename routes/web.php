@@ -3,10 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-
 use App\Http\Controllers\VoitureController;
-
-
 use App\Http\Controllers\SetLocaleController;
 
 Route::get('/', function () {
@@ -22,7 +19,9 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
-
+Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
+Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
+Route::get('/parametres', [VoitureController::class, 'parametres'])->name('voiture.parametres');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

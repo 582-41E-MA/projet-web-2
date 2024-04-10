@@ -39,7 +39,10 @@
                                 <!-- ajouter l'autres routes -->
                                 <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
                                     <ul class="sous-list-nav">
-                                       </ul>
+                                        <li><a href="">@lang('Cars list')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="{{ route('voiture.create') }}">@lang('Add car')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.parametres') ? 'active' : '' }}" href="{{ route('voiture.parametres') }}">@lang('Car parameters')</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </nav>

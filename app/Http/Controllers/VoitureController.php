@@ -125,39 +125,37 @@ class VoitureController extends Controller
             'carrosserie_id' => 'required|exists:carrosseries,id',
             'proprietaire' => 'required',
             'date_arrive' => 'required|date|before_or_equal:today',
-            'photo_principale' => 'required',
-            'photo_secundaire' => 'required',
-            'prix_paye' => 'required',
-            'prix_vente' => 'required',
+            'photo_principale' => 'required|image',
+            'photo_secundaire' => 'required|array|size:3',
+            'photo_secundaire.*' => 'required|image',
+            'prix_paye' => 'required|numeric|decimal:0,2',
+            'prix_vente' => 'required|numeric|decimal:0,2',
             'disponible' => 'required',
         ]);
         
+        // Création nouvelle voiture
         $voiture = new Voiture;
         $voiture->fill($request->all());
         $voiture->save();
 
+        // Création photo principale
         $photo = new Photo();
-        //$file = $request->photo_principale;
         $file = $request->file('photo_principale');
         $filename = time() . "." . $file->getClientOriginalExtension();
-        $request->photo_principale->move('assets', $filename);
+        $request->photo_principale->move('assets/img/voitures', $filename);
 
         $photo->nom = $filename;
         $photo->principal = 1;
         $photo->voiture_id = $voiture->id;
         $photo->save();
-
+        
+        // Création photos secundaires
         $filesSecundaires = $request->file('photo_secundaire');
 
         foreach ($filesSecundaires as $i => $fileSecundaire) {
             $fileSecundaireName = time() . "_$i." . $fileSecundaire->getClientOriginalExtension();
-            $fileSecundaire->move("assets/img/voitures", $fileSecundaireName);
+            $fileSecundaire->move('assets/img/voitures', $fileSecundaireName);
 
-            // $photo = Photo::create([
-            //     'nom' => $fileSecundaireName,
-            //     'principal' => 0,
-            //     'voiture_id' => 1
-            // ]);
             $photo = new Photo();
             $photo->nom = $fileSecundaireName;
             $photo->principal = 0;

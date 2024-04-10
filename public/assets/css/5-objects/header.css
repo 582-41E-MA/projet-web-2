@@ -54,6 +54,14 @@
                     }
                 }
 
+                li:hover {
+                    background-color: var(--coul-primaire);
+
+                    a {
+                        color: var(--coul-texte-claire);
+                    }
+                }
+
                 .sous-list-nav {
                     display: none;
                 }
@@ -68,6 +76,22 @@
                         position: absolute;
                         top: 70px;
                         width: 20rem;
+
+                        li {
+                            background-color: var(--coul-fond-claire);
+
+                            a {
+                                color: var(--coul-primaire);
+                            }
+                        }
+
+                        li:hover {
+                            background-color: var(--coul-primaire);
+
+                            a {
+                                color: var(--coul-texte-claire);
+                            }
+                        }
                     }
                 }
             }

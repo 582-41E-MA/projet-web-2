@@ -35,7 +35,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer" data-js-component="Modele" >
                 <div class="control-input">
                     <label for="modele_id" class="label">@lang('Model')</label>
@@ -49,7 +48,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="annee_id" class="label">@lang('Year')</label>
@@ -66,7 +64,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="transmission_id" class="label">@lang('Transmission')</label>
@@ -87,7 +84,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="traction_id" class="label">@lang('Traction')</label>
@@ -108,7 +104,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="carburant_id" class="label">@lang('Fuel')</label>
@@ -129,7 +124,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="carrosserie_id" class="label">@lang('Body type')</label>
@@ -150,7 +144,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="date_arrive" class="label">@lang('Arrival date')</label>
@@ -162,11 +155,10 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="prix_paye" class="label">@lang('Price paid')</label>
-                    <input type="number" name="prix_paye" class="input" id="prix_paye" data-js-input="prix_paye" value="{{ old('prix_paye') }}">
+                    <input type="text" name="prix_paye" class="input" id="prix_paye" data-js-input="prix_paye" value="{{ old('prix_paye') }}">
                 </div>
                 <div class="control-erreur">
                 @if($errors->has('prix_paye'))
@@ -174,11 +166,10 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer" data-js-component="Prix">
                 <div class="control-input">
                     <label for="prix_vente" class="label">@lang('Selling price')</label>
-                    <input type="number" name="prix_vente" class="input" id="prix_vente" data-js-input="prix_vente">
+                    <input type="text" name="prix_vente" class="input" id="prix_vente" data-js-input="prix_vente">
                 </div>
                 <div class="control-erreur">
                 @if($errors->has('prix_vente'))
@@ -186,7 +177,6 @@
                 @endif
                 </div>
             </div>
-    
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="proprietaire" class="label">@lang('Owner')</label>
@@ -198,7 +188,6 @@
                 @endif
                 </div>
             </div>
-            
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label for="photo_principale" class="label">@lang('Main photo')</label>
@@ -206,23 +195,26 @@
                 </div>
                 <div class="control-erreur">
                     @if($errors->has('photo_principale'))
-                    {{ $errors->first('photo_principale')}}
+                        {{ $errors->first('photo_principale')}}
                     @endif
                 </div>
             </div>
-            
             <div class="form-inputContainer">
                 <div class="control-input">
-                    <label for="photo_secundaire" class="label">@lang('Secondary photo(s)')</label>
+                    <label for="photo_secundaire" class="label">@lang('Secondary photos - 3 photos')</label>
                     <input type="file" name="photo_secundaire[]" class="input" id="photo_secundaire" multiple>
                 </div>
                 <div class="control-erreur">
-                    @if($errors->has('photo_secundaire'))
+                @if($errors->has('photo_secundaire'))
                     {{ $errors->first('photo_secundaire')}}
+                @endif
+                @foreach($errors->all() as $error)
+                    @if(strpos($error, 'photo_secundaire') !== false)
+                        {{ $error }}
                     @endif
+                @endforeach
                 </div>
             </div>
-    
             <!-- mudar as infos desse campo -->
             <div class="form-inputContainer">
                 <div class="control-input">
@@ -230,7 +222,6 @@
                     <input type="hidden" name="disponible" class="input" id="disponible" value="1">
                 </div>
             </div>
-
             <div class="form-btnContainer">
                 <button type="submit" class="btn btn-tertiaire">@lang('Add')</button>
             </div>
