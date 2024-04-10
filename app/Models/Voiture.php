@@ -10,7 +10,6 @@ class Voiture extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
         /**
      * The attributes that are mass assignable.
      *
@@ -34,17 +33,11 @@ class Voiture extends Model
     ];
 
 
-=======
-    protected $fillable = [
-        'id', 'marque_id', 'modele_id', 'annee_id', 'transmission_id', 'traction_id', 'carburant_id', 'carrosserie_id', 'proprietaire', 'date_arrive', 'prix_paye', 'prix_vente', 'disponible'
-    ];
-
->>>>>>> ec10da0 (Ajouter une voiture)
     public function marque() {
         return $this->belongsTo(Marque::class);
     }
 
-<<<<<<< HEAD
+
 
     public function modele(){
 
@@ -52,8 +45,6 @@ class Voiture extends Model
 
     }
 
-=======
->>>>>>> ec10da0 (Ajouter une voiture)
     public function annee() {
         return $this->belongsTo(Annee::class);
     }
@@ -73,10 +64,5 @@ class Voiture extends Model
     public function carrosserie() {
         return $this->belongsTo(Carrosserie::class);
     }
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> ec10da0 (Ajouter une voiture)
 }

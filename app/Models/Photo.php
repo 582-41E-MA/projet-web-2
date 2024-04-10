@@ -9,7 +9,6 @@ class Photo extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
     /**
      * The attributes that are mass assignable.
      *
@@ -20,9 +19,5 @@ class Photo extends Model
         'nom',
         'principal',
         'voiture_id',
-=======
-    protected $fillable = [
-        'id', 'nom', 'principal', 'voiture_id'
->>>>>>> ec10da0 (Ajouter une voiture)
     ];
 }
