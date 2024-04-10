@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2024 at 05:37 PM
+-- Generation Time: Apr 10, 2024 at 08:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -202,16 +202,6 @@ CREATE TABLE `carburants` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `carburants`
---
-
-INSERT INTO `carburants` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\":\"Gas\",\"fr\":\"Essence\"}', NULL, NULL),
-(2, '{\"en\":\"Diesel\",\"fr\":\"Diesel\"}', NULL, NULL),
-(3, '{\"en\":\"Hybrid\",\"fr\":\"Hybride\"}', NULL, NULL),
-(4, '{\"en\":\"Electric\",\"fr\":\"Électrique\"}', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -224,20 +214,6 @@ CREATE TABLE `carrosseries` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `carrosseries`
---
-
-INSERT INTO `carrosseries` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\":\"Sedan\",\"fr\":\"Berline\"}', NULL, NULL),
-(2, '{\"en\":\"Coupe\",\"fr\":\"Coupé\"}', NULL, NULL),
-(3, '{\"en\":\"Hatchback\",\"fr\":\"Compacte\"}', NULL, NULL),
-(4, '{\"en\":\"SUV\",\"fr\":\"VUS\"}', NULL, NULL),
-(5, '{\"en\":\"Pickup\",\"fr\":\"Camionnette\"}', NULL, NULL),
-(6, '{\"en\":\"Convertible\",\"fr\":\"Cabriolet\"}', NULL, NULL),
-(7, '{\"en\":\"Minivan\",\"fr\":\"Monospace\"}', NULL, NULL),
-(8, '{\"en\":\"Crossover\",\"fr\":\"Crossover\"}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,14 +260,6 @@ CREATE TABLE `expeditions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `expeditions`
---
-
-INSERT INTO `expeditions` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\": \"Local Delivery with Fixed Price\", \"fr\": \"Livraison locale avec un prix fixe\"}', NULL, NULL),
-(2, '{\"en\": \"Customer Pickup\", \"fr\": \"Ramassage du client\"}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -373,22 +341,6 @@ CREATE TABLE `marques` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `marques`
---
-
-INSERT INTO `marques` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, 'Ford', NULL, NULL),
-(2, 'Chevrolet', NULL, NULL),
-(3, 'Toyota', NULL, NULL),
-(4, 'Honda', NULL, NULL),
-(5, 'Ram', NULL, NULL),
-(6, 'GMC', NULL, NULL),
-(7, 'Volkswagen', NULL, NULL),
-(8, 'Hyundai', NULL, NULL),
-(9, 'Nissan', NULL, NULL),
-(10, 'Jeep', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -412,15 +364,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2024_04_05_042755_create_provences_table', 1),
 (5, '2024_04_05_043016_create_villes_table', 1),
 (6, '2024_04_05_043233_create_privileges_table', 1),
-(7, '2024_04_05_043234_create_users_table', 1),
-(8, '2024_04_05_045628_create_marques_table', 1),
-(9, '2024_04_05_045821_create_annees_table', 1),
-(10, '2024_04_05_050706_create_modeles_table', 1),
-(11, '2024_04_05_051546_create_transmissions_table', 1),
-(12, '2024_04_05_052419_create_tractions_table', 1),
-(13, '2024_04_05_052518_create_carburants_table', 1),
-(14, '2024_04_05_052633_create_carrosseries_table', 1),
-(15, '2024_04_05_154158_create_statuts_table', 1),
+(7, '2024_04_05_045628_create_marques_table', 1),
+(8, '2024_04_05_045821_create_annees_table', 1),
+(9, '2024_04_05_050706_create_modeles_table', 1),
+(10, '2024_04_05_051546_create_transmissions_table', 1),
+(11, '2024_04_05_052419_create_tractions_table', 1),
+(12, '2024_04_05_052518_create_carburants_table', 1),
+(13, '2024_04_05_052633_create_carrosseries_table', 1),
+(14, '2024_04_05_154158_create_statuts_table', 1),
+(15, '2024_04_05_154645_create_users_table', 1),
 (16, '2024_04_05_154646_create_voitures_table', 1),
 (17, '2024_04_05_155626_create_payments_table', 1),
 (18, '2024_04_05_160613_create_expeditions_table', 1),
@@ -443,112 +395,6 @@ CREATE TABLE `modeles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `modeles`
---
-
-INSERT INTO `modeles` (`id`, `nom`, `marque_id`, `created_at`, `updated_at`) VALUES
-(1, 'F-150', 1, NULL, NULL),
-(2, 'Mustang', 1, NULL, NULL),
-(3, 'Explorer', 1, NULL, NULL),
-(4, 'Escape', 1, NULL, NULL),
-(5, 'Focus', 1, NULL, NULL),
-(6, 'Fusion', 1, NULL, NULL),
-(7, 'Ranger', 1, NULL, NULL),
-(8, 'Edge', 1, NULL, NULL),
-(9, 'Expedition', 1, NULL, NULL),
-(10, 'Bronco', 1, NULL, NULL),
-(11, 'Silverado', 2, NULL, NULL),
-(12, 'Camaro', 2, NULL, NULL),
-(13, 'Equinox', 2, NULL, NULL),
-(14, 'Tahoe', 2, NULL, NULL),
-(15, 'Malibu', 2, NULL, NULL),
-(16, 'Traverse', 2, NULL, NULL),
-(17, 'Colorado', 2, NULL, NULL),
-(18, 'Suburban', 2, NULL, NULL),
-(19, 'Impala', 2, NULL, NULL),
-(20, 'Trailblazer', 2, NULL, NULL),
-(21, 'Corolla', 3, NULL, NULL),
-(22, 'Camry', 3, NULL, NULL),
-(23, 'RAV4', 3, NULL, NULL),
-(24, 'Tacoma', 3, NULL, NULL),
-(25, 'Highlander', 3, NULL, NULL),
-(26, 'Prius', 3, NULL, NULL),
-(27, '4Runner', 3, NULL, NULL),
-(28, 'Tundra', 3, NULL, NULL),
-(29, 'Sienna', 3, NULL, NULL),
-(30, 'Avalon', 3, NULL, NULL),
-(31, 'Civic', 4, NULL, NULL),
-(32, 'Accord', 4, NULL, NULL),
-(33, 'CR-V', 4, NULL, NULL),
-(34, 'Pilot', 4, NULL, NULL),
-(35, 'Odyssey', 4, NULL, NULL),
-(36, 'HR-V', 4, NULL, NULL),
-(37, 'Fit', 4, NULL, NULL),
-(38, 'Ridgeline', 4, NULL, NULL),
-(39, 'Passport', 4, NULL, NULL),
-(40, 'Insight', 4, NULL, NULL),
-(41, '1500', 5, NULL, NULL),
-(42, '2500', 5, NULL, NULL),
-(43, '3500', 5, NULL, NULL),
-(44, 'ProMaster', 5, NULL, NULL),
-(45, 'ProMaster City', 5, NULL, NULL),
-(46, 'Rebel', 5, NULL, NULL),
-(47, 'Power Wagon', 5, NULL, NULL),
-(48, 'Chassis Cab', 5, NULL, NULL),
-(49, 'Tradesman', 5, NULL, NULL),
-(50, 'Laramie', 5, NULL, NULL),
-(51, 'Sierra', 6, NULL, NULL),
-(52, 'Acadia', 6, NULL, NULL),
-(53, 'Terrain', 6, NULL, NULL),
-(54, 'Yukon', 6, NULL, NULL),
-(55, 'Canyon', 6, NULL, NULL),
-(56, 'Savana', 6, NULL, NULL),
-(57, 'Envoy', 6, NULL, NULL),
-(58, 'Jimmy', 6, NULL, NULL),
-(59, 'Syclone', 6, NULL, NULL),
-(60, 'TopKick', 6, NULL, NULL),
-(61, 'Jetta', 7, NULL, NULL),
-(62, 'Golf', 7, NULL, NULL),
-(63, 'Passat', 7, NULL, NULL),
-(64, 'Tiguan', 7, NULL, NULL),
-(65, 'Atlas', 7, NULL, NULL),
-(66, 'Arteon', 7, NULL, NULL),
-(67, 'Touareg', 7, NULL, NULL),
-(68, 'ID.4', 7, NULL, NULL),
-(69, 'Beetle', 7, NULL, NULL),
-(70, 'CC', 7, NULL, NULL),
-(71, 'Elantra', 8, NULL, NULL),
-(72, 'Sonata', 8, NULL, NULL),
-(73, 'Tucson', 8, NULL, NULL),
-(74, 'Santa Fe', 8, NULL, NULL),
-(75, 'Accent', 8, NULL, NULL),
-(76, 'Palisade', 8, NULL, NULL),
-(77, 'Kona', 8, NULL, NULL),
-(78, 'Venue', 8, NULL, NULL),
-(79, 'Veloster', 8, NULL, NULL),
-(80, 'IONIQ', 8, NULL, NULL),
-(81, 'Altima', 9, NULL, NULL),
-(82, 'Rogue', 9, NULL, NULL),
-(83, 'Sentra', 9, NULL, NULL),
-(84, 'Frontier', 9, NULL, NULL),
-(85, 'Pathfinder', 9, NULL, NULL),
-(86, 'Murano', 9, NULL, NULL),
-(87, 'Maxima', 9, NULL, NULL),
-(88, 'Titan', 9, NULL, NULL),
-(89, 'Versa', 9, NULL, NULL),
-(90, 'Armada', 9, NULL, NULL),
-(91, 'Wrangler', 10, NULL, NULL),
-(92, 'Grand Cherokee', 10, NULL, NULL),
-(93, 'Cherokee', 10, NULL, NULL),
-(94, 'Compass', 10, NULL, NULL),
-(95, 'Renegade', 10, NULL, NULL),
-(96, 'Gladiator', 10, NULL, NULL),
-(97, 'Patriot', 10, NULL, NULL),
-(98, 'Commander', 10, NULL, NULL),
-(99, 'Liberty', 10, NULL, NULL),
-(100, 'Wagoneer', 10, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -575,16 +421,6 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\": \"Cash\", \"fr\": \"Argent comptant\"}', NULL, NULL),
-(2, '{\"en\": \"Credit Card\", \"fr\": \"Carte de crédit\"}', NULL, NULL),
-(3, '{\"en\": \"Debit Card\", \"fr\": \"Carte de débit\"}', NULL, NULL),
-(4, '{\"en\": \"Bank Transfer\", \"fr\": \"Virement bancaire\"}', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -597,14 +433,6 @@ CREATE TABLE `pays` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `pays`
---
-
-INSERT INTO `pays` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\": \"Canada\", \"fr\": \"Canada\"}', NULL, NULL),
-(2, '{\"en\": \"United States\", \"fr\": \"États-Unis\"}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -634,15 +462,6 @@ CREATE TABLE `privileges` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `privileges`
---
-
-INSERT INTO `privileges` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, 'client', NULL, NULL),
-(2, 'employé', NULL, NULL),
-(3, 'administrateur', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -656,75 +475,6 @@ CREATE TABLE `provences` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `provences`
---
-
-INSERT INTO `provences` (`id`, `nom`, `pays_id`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\": \"Alberta\", \"fr\": \"Alberta\"}', 1, NULL, NULL),
-(2, '{\"en\": \"British Columbia\", \"fr\": \"Colombie-Britannique\"}', 1, NULL, NULL),
-(3, '{\"en\": \"Manitoba\", \"fr\": \"Manitoba\"}', 1, NULL, NULL),
-(4, '{\"en\": \"New Brunswick\", \"fr\": \"Nouveau-Brunswick\"}', 1, NULL, NULL),
-(5, '{\"en\": \"Newfoundland and Labrador\", \"fr\": \"Terre-Neuve-et-Labrador\"}', 1, NULL, NULL),
-(6, '{\"en\": \"Nova Scotia\", \"fr\": \"Nouvelle-Écosse\"}', 1, NULL, NULL),
-(7, '{\"en\": \"Ontario\", \"fr\": \"Ontario\"}', 1, NULL, NULL),
-(8, '{\"en\": \"Prince Edward Island\", \"fr\": \"Île-du-Prince-Édouard\"}', 1, NULL, NULL),
-(9, '{\"en\": \"Quebec\", \"fr\": \"Québec\"}', 1, NULL, NULL),
-(10, '{\"en\": \"Saskatchewan\", \"fr\": \"Saskatchewan\"}', 1, NULL, NULL),
-(11, '{\"en\": \"Northwest Territories\", \"fr\": \"Territoires du Nord-Ouest\"}', 1, NULL, NULL),
-(12, '{\"en\": \"Nunavut\", \"fr\": \"Nunavut\"}', 1, NULL, NULL),
-(13, '{\"en\": \"Yukon\", \"fr\": \"Yukon\"}', 1, NULL, NULL),
-(14, '{\"en\": \"Alabama\", \"fr\": \"Alabama\"}', 2, NULL, NULL),
-(15, '{\"en\": \"Alaska\", \"fr\": \"Alaska\"}', 2, NULL, NULL),
-(16, '{\"en\": \"Arizona\", \"fr\": \"Arizona\"}', 2, NULL, NULL),
-(17, '{\"en\": \"Arkansas\", \"fr\": \"Arkansas\"}', 2, NULL, NULL),
-(18, '{\"en\": \"California\", \"fr\": \"Californie\"}', 2, NULL, NULL),
-(19, '{\"en\": \"Colorado\", \"fr\": \"Colorado\"}', 2, NULL, NULL),
-(20, '{\"en\": \"Connecticut\", \"fr\": \"Connecticut\"}', 2, NULL, NULL),
-(21, '{\"en\": \"Delaware\", \"fr\": \"Delaware\"}', 2, NULL, NULL),
-(22, '{\"en\": \"Florida\", \"fr\": \"Floride\"}', 2, NULL, NULL),
-(23, '{\"en\": \"Georgia\", \"fr\": \"Géorgie\"}', 2, NULL, NULL),
-(24, '{\"en\": \"Hawaii\", \"fr\": \"Hawaï\"}', 2, NULL, NULL),
-(25, '{\"en\": \"Idaho\", \"fr\": \"Idaho\"}', 2, NULL, NULL),
-(26, '{\"en\": \"Illinois\", \"fr\": \"Illinois\"}', 2, NULL, NULL),
-(27, '{\"en\": \"Indiana\", \"fr\": \"Indiana\"}', 2, NULL, NULL),
-(28, '{\"en\": \"Iowa\", \"fr\": \"Iowa\"}', 2, NULL, NULL),
-(29, '{\"en\": \"Kansas\", \"fr\": \"Kansas\"}', 2, NULL, NULL),
-(30, '{\"en\": \"Kentucky\", \"fr\": \"Kentucky\"}', 2, NULL, NULL),
-(31, '{\"en\": \"Louisiana\", \"fr\": \"Louisiane\"}', 2, NULL, NULL),
-(32, '{\"en\": \"Maine\", \"fr\": \"Maine\"}', 2, NULL, NULL),
-(33, '{\"en\": \"Maryland\", \"fr\": \"Maryland\"}', 2, NULL, NULL),
-(34, '{\"en\": \"Massachusetts\", \"fr\": \"Massachusetts\"}', 2, NULL, NULL),
-(35, '{\"en\": \"Michigan\", \"fr\": \"Michigan\"}', 2, NULL, NULL),
-(36, '{\"en\": \"Minnesota\", \"fr\": \"Minnesota\"}', 2, NULL, NULL),
-(37, '{\"en\": \"Mississippi\", \"fr\": \"Mississippi\"}', 2, NULL, NULL),
-(38, '{\"en\": \"Missouri\", \"fr\": \"Missouri\"}', 2, NULL, NULL),
-(39, '{\"en\": \"Montana\", \"fr\": \"Montana\"}', 2, NULL, NULL),
-(40, '{\"en\": \"Nebraska\", \"fr\": \"Nebraska\"}', 2, NULL, NULL),
-(41, '{\"en\": \"Nevada\", \"fr\": \"Nevada\"}', 2, NULL, NULL),
-(42, '{\"en\": \"New Hampshire\", \"fr\": \"New Hampshire\"}', 2, NULL, NULL),
-(43, '{\"en\": \"New Jersey\", \"fr\": \"New Jersey\"}', 2, NULL, NULL),
-(44, '{\"en\": \"New Mexico\", \"fr\": \"Nouveau-Mexique\"}', 2, NULL, NULL),
-(45, '{\"en\": \"New York\", \"fr\": \"New York\"}', 2, NULL, NULL),
-(46, '{\"en\": \"North Carolina\", \"fr\": \"Caroline du Nord\"}', 2, NULL, NULL),
-(47, '{\"en\": \"North Dakota\", \"fr\": \"Dakota du Nord\"}', 2, NULL, NULL),
-(48, '{\"en\": \"Ohio\", \"fr\": \"Ohio\"}', 2, NULL, NULL),
-(49, '{\"en\": \"Oklahoma\", \"fr\": \"Oklahoma\"}', 2, NULL, NULL),
-(50, '{\"en\": \"Oregon\", \"fr\": \"Oregon\"}', 2, NULL, NULL),
-(51, '{\"en\": \"Pennsylvania\", \"fr\": \"Pennsylvanie\"}', 2, NULL, NULL),
-(52, '{\"en\": \"Rhode Island\", \"fr\": \"Rhode Island\"}', 2, NULL, NULL),
-(53, '{\"en\": \"South Carolina\", \"fr\": \"Caroline du Sud\"}', 2, NULL, NULL),
-(54, '{\"en\": \"South Dakota\", \"fr\": \"Dakota du Sud\"}', 2, NULL, NULL),
-(55, '{\"en\": \"Tennessee\", \"fr\": \"Tennessee\"}', 2, NULL, NULL),
-(56, '{\"en\": \"Texas\", \"fr\": \"Texas\"}', 2, NULL, NULL),
-(57, '{\"en\": \"Utah\", \"fr\": \"Utah\"}', 2, NULL, NULL),
-(58, '{\"en\": \"Vermont\", \"fr\": \"Vermont\"}', 2, NULL, NULL),
-(59, '{\"en\": \"Virginia\", \"fr\": \"Virginie\"}', 2, NULL, NULL),
-(60, '{\"en\": \"Washington\", \"fr\": \"Washington\"}', 2, NULL, NULL),
-(61, '{\"en\": \"West Virginia\", \"fr\": \"Virginie-Occidentale\"}', 2, NULL, NULL),
-(62, '{\"en\": \"Wisconsin\", \"fr\": \"Wisconsin\"}', 2, NULL, NULL),
-(63, '{\"en\": \"Wyoming\", \"fr\": \"Wyoming\"}', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -754,15 +504,6 @@ CREATE TABLE `statuts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `statuts`
---
-
-INSERT INTO `statuts` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\": \"Pending\", \"fr\": \"En attente\"}', NULL, NULL),
-(2, '{\"en\": \"Reserved\", \"fr\": \"Réservé\"}', NULL, NULL),
-(3, '{\"en\": \"Invoiced\", \"fr\": \"Facturé\"}', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -778,29 +519,6 @@ CREATE TABLE `taxes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `taxes`
---
-
-INSERT INTO `taxes` (`id`, `nom`, `valeur`, `provence_id`, `created_at`, `updated_at`) VALUES
-(1, 'GST/HST', 5.000, 1, NULL, NULL),
-(2, 'GST/HST', 5.000, 2, NULL, NULL),
-(3, 'PST/RST/QST', 7.000, 2, NULL, NULL),
-(4, 'GST/HST', 5.000, 3, NULL, NULL),
-(5, 'PST/RST/QST', 7.000, 3, NULL, NULL),
-(6, 'GST/HST', 15.000, 4, NULL, NULL),
-(7, 'GST/HST', 15.000, 5, NULL, NULL),
-(8, 'GST/HST', 15.000, 6, NULL, NULL),
-(9, 'GST/HST', 13.000, 7, NULL, NULL),
-(10, 'GST/HST', 15.000, 8, NULL, NULL),
-(11, 'GST/HST', 5.000, 9, NULL, NULL),
-(12, 'PST/RST/QST', 9.975, 9, NULL, NULL),
-(13, 'GST/HST', 5.000, 10, NULL, NULL),
-(14, 'PST/RST/QST', 6.000, 10, NULL, NULL),
-(15, 'GST/HST', 5.000, 11, NULL, NULL),
-(16, 'GST/HST', 5.000, 12, NULL, NULL),
-(17, 'GST/HST', 5.000, 13, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -814,16 +532,6 @@ CREATE TABLE `tractions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `tractions`
---
-
-INSERT INTO `tractions` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\":\"Front-wheel drive\",\"fr\":\"Traction avant\"}', NULL, NULL),
-(2, '{\"en\":\"Rear-wheel drive\",\"fr\":\"Propulsion arrière\"}', NULL, NULL),
-(3, '{\"en\":\"All-wheel drive\",\"fr\":\"Traction intégrale\"}', NULL, NULL),
-(4, '{\"en\":\"Four-wheel drive\",\"fr\":\"Quatre roues motrices\"}', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -836,14 +544,6 @@ CREATE TABLE `transmissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `transmissions`
---
-
-INSERT INTO `transmissions` (`id`, `nom`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\":\"Manual\",\"fr\":\"Manuelle\"}', NULL, NULL),
-(2, '{\"en\":\"Automatic\",\"fr\":\"Automatique\"}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -859,7 +559,7 @@ CREATE TABLE `users` (
   `telephone` varchar(191) NOT NULL,
   `courriel` varchar(191) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `mot_de_passe` varchar(191) NOT NULL,
+  `password` varchar(191) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `privilege_id` bigint(20) UNSIGNED NOT NULL,
   `ville_id` bigint(20) UNSIGNED NOT NULL,
@@ -880,120 +580,6 @@ CREATE TABLE `villes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `villes`
---
-
-INSERT INTO `villes` (`id`, `nom`, `provence_id`, `created_at`, `updated_at`) VALUES
-(1, '{\"en\": \"Calgary\", \"fr\": \"Calgary\"}', 1, NULL, NULL),
-(2, '{\"en\": \"Edmonton\", \"fr\": \"Edmonton\"}', 1, NULL, NULL),
-(3, '{\"en\": \"Red Deer\", \"fr\": \"Red Deer\"}', 1, NULL, NULL),
-(4, '{\"en\": \"Lethbridge\", \"fr\": \"Lethbridge\"}', 1, NULL, NULL),
-(5, '{\"en\": \"Medicine Hat\", \"fr\": \"Medicine Hat\"}', 1, NULL, NULL),
-(6, '{\"en\": \"Airdrie\", \"fr\": \"Airdrie\"}', 1, NULL, NULL),
-(7, '{\"en\": \"St. Albert\", \"fr\": \"St. Albert\"}', 1, NULL, NULL),
-(8, '{\"en\": \"Grande Prairie\", \"fr\": \"Grande Prairie\"}', 1, NULL, NULL),
-(9, '{\"en\": \"Fort McMurray\", \"fr\": \"Fort McMurray\"}', 1, NULL, NULL),
-(10, '{\"en\": \"Chestermere\", \"fr\": \"Chestermere\"}', 1, NULL, NULL),
-(11, '{\"en\": \"Vancouver\", \"fr\": \"Vancouver\"}', 2, NULL, NULL),
-(12, '{\"en\": \"Surrey\", \"fr\": \"Surrey\"}', 2, NULL, NULL),
-(13, '{\"en\": \"Burnaby\", \"fr\": \"Burnaby\"}', 2, NULL, NULL),
-(14, '{\"en\": \"Richmond\", \"fr\": \"Richmond\"}', 2, NULL, NULL),
-(15, '{\"en\": \"Kelowna\", \"fr\": \"Kelowna\"}', 2, NULL, NULL),
-(16, '{\"en\": \"Victoria\", \"fr\": \"Victoria\"}', 2, NULL, NULL),
-(17, '{\"en\": \"Abbotsford\", \"fr\": \"Abbotsford\"}', 2, NULL, NULL),
-(18, '{\"en\": \"Nanaimo\", \"fr\": \"Nanaimo\"}', 2, NULL, NULL),
-(19, '{\"en\": \"Kamloops\", \"fr\": \"Kamloops\"}', 2, NULL, NULL),
-(20, '{\"en\": \"Langley\", \"fr\": \"Langley\"}', 2, NULL, NULL),
-(21, '{\"en\": \"Winnipeg\", \"fr\": \"Winnipeg\"}', 3, NULL, NULL),
-(22, '{\"en\": \"Brandon\", \"fr\": \"Brandon\"}', 3, NULL, NULL),
-(23, '{\"en\": \"Steinbach\", \"fr\": \"Steinbach\"}', 3, NULL, NULL),
-(24, '{\"en\": \"Portage la Prairie\", \"fr\": \"Portage la Prairie\"}', 3, NULL, NULL),
-(25, '{\"en\": \"Thompson\", \"fr\": \"Thompson\"}', 3, NULL, NULL),
-(26, '{\"en\": \"Selkirk\", \"fr\": \"Selkirk\"}', 3, NULL, NULL),
-(27, '{\"en\": \"Dauphin\", \"fr\": \"Dauphin\"}', 3, NULL, NULL),
-(28, '{\"en\": \"Morden\", \"fr\": \"Morden\"}', 3, NULL, NULL),
-(29, '{\"en\": \"The Pas\", \"fr\": \"The Pas\"}', 3, NULL, NULL),
-(30, '{\"en\": \"Flin Flon\", \"fr\": \"Flin Flon\"}', 3, NULL, NULL),
-(31, '{\"en\": \"Saint John\", \"fr\": \"Saint John\"}', 4, NULL, NULL),
-(32, '{\"en\": \"Moncton\", \"fr\": \"Moncton\"}', 4, NULL, NULL),
-(33, '{\"en\": \"Fredericton\", \"fr\": \"Fredericton\"}', 4, NULL, NULL),
-(34, '{\"en\": \"Dieppe\", \"fr\": \"Dieppe\"}', 4, NULL, NULL),
-(35, '{\"en\": \"Miramichi\", \"fr\": \"Miramichi\"}', 4, NULL, NULL),
-(36, '{\"en\": \"Edmundston\", \"fr\": \"Edmundston\"}', 4, NULL, NULL),
-(37, '{\"en\": \"Bathurst\", \"fr\": \"Bathurst\"}', 4, NULL, NULL),
-(38, '{\"en\": \"Campbellton\", \"fr\": \"Campbellton\"}', 4, NULL, NULL),
-(39, '{\"en\": \"Oromocto\", \"fr\": \"Oromocto\"}', 4, NULL, NULL),
-(40, '{\"en\": \"Grand Falls\", \"fr\": \"Grand Falls\"}', 4, NULL, NULL),
-(41, '{\"en\": \"St. John\'s\", \"fr\": \"St. John\'s\"}', 5, NULL, NULL),
-(42, '{\"en\": \"Mount Pearl\", \"fr\": \"Mount Pearl\"}', 5, NULL, NULL),
-(43, '{\"en\": \"Corner Brook\", \"fr\": \"Corner Brook\"}', 5, NULL, NULL),
-(44, '{\"en\": \"Grand Falls-Windsor\", \"fr\": \"Grand Falls-Windsor\"}', 5, NULL, NULL),
-(45, '{\"en\": \"Labrador City\", \"fr\": \"Labrador City\"}', 5, NULL, NULL),
-(46, '{\"en\": \"Halifax\", \"fr\": \"Halifax\"}', 6, NULL, NULL),
-(47, '{\"en\": \"Dartmouth\", \"fr\": \"Dartmouth\"}', 6, NULL, NULL),
-(48, '{\"en\": \"Sydney\", \"fr\": \"Sydney\"}', 6, NULL, NULL),
-(49, '{\"en\": \"Truro\", \"fr\": \"Truro\"}', 6, NULL, NULL),
-(50, '{\"en\": \"New Glasgow\", \"fr\": \"New Glasgow\"}', 6, NULL, NULL),
-(51, '{\"en\": \"Bridgewater\", \"fr\": \"Bridgewater\"}', 6, NULL, NULL),
-(52, '{\"en\": \"Kentville\", \"fr\": \"Kentville\"}', 6, NULL, NULL),
-(53, '{\"en\": \"Amherst\", \"fr\": \"Amherst\"}', 6, NULL, NULL),
-(54, '{\"en\": \"Yarmouth\", \"fr\": \"Yarmouth\"}', 6, NULL, NULL),
-(55, '{\"en\": \"Antigonish\", \"fr\": \"Antigonish\"}', 6, NULL, NULL),
-(56, '{\"en\": \"Toronto\", \"fr\": \"Toronto\"}', 7, NULL, NULL),
-(57, '{\"en\": \"Ottawa\", \"fr\": \"Ottawa\"}', 7, NULL, NULL),
-(58, '{\"en\": \"Mississauga\", \"fr\": \"Mississauga\"}', 7, NULL, NULL),
-(59, '{\"en\": \"Brampton\", \"fr\": \"Brampton\"}', 7, NULL, NULL),
-(60, '{\"en\": \"Hamilton\", \"fr\": \"Hamilton\"}', 7, NULL, NULL),
-(61, '{\"en\": \"London\", \"fr\": \"London\"}', 7, NULL, NULL),
-(62, '{\"en\": \"Markham\", \"fr\": \"Markham\"}', 7, NULL, NULL),
-(63, '{\"en\": \"Vaughan\", \"fr\": \"Vaughan\"}', 7, NULL, NULL),
-(64, '{\"en\": \"Kitchener\", \"fr\": \"Kitchener\"}', 7, NULL, NULL),
-(65, '{\"en\": \"Windsor\", \"fr\": \"Windsor\"}', 7, NULL, NULL),
-(66, '{\"en\": \"Charlottetown\", \"fr\": \"Charlottetown\"}', 8, NULL, NULL),
-(67, '{\"en\": \"Summerside\", \"fr\": \"Summerside\"}', 8, NULL, NULL),
-(68, '{\"en\": \"Stratford\", \"fr\": \"Stratford\"}', 8, NULL, NULL),
-(69, '{\"en\": \"Cornwall\", \"fr\": \"Cornwall\"}', 8, NULL, NULL),
-(70, '{\"en\": \"Montague\", \"fr\": \"Montague\"}', 8, NULL, NULL),
-(71, '{\"en\": \"Kensington\", \"fr\": \"Kensington\"}', 8, NULL, NULL),
-(72, '{\"en\": \"Souris\", \"fr\": \"Souris\"}', 8, NULL, NULL),
-(73, '{\"en\": \"Alberton\", \"fr\": \"Alberton\"}', 8, NULL, NULL),
-(74, '{\"en\": \"Tignish\", \"fr\": \"Tignish\"}', 8, NULL, NULL),
-(75, '{\"en\": \"Georgetown\", \"fr\": \"Georgetown\"}', 8, NULL, NULL),
-(76, '{\"en\": \"Montreal\", \"fr\": \"Montréal\"}', 9, NULL, NULL),
-(77, '{\"en\": \"Quebec City\", \"fr\": \"Ville de Québec\"}', 9, NULL, NULL),
-(78, '{\"en\": \"Laval\", \"fr\": \"Laval\"}', 9, NULL, NULL),
-(79, '{\"en\": \"Gatineau\", \"fr\": \"Gatineau\"}', 9, NULL, NULL),
-(80, '{\"en\": \"Longueuil\", \"fr\": \"Longueuil\"}', 9, NULL, NULL),
-(81, '{\"en\": \"Sherbrooke\", \"fr\": \"Sherbrooke\"}', 9, NULL, NULL),
-(82, '{\"en\": \"Saguenay\", \"fr\": \"Saguenay\"}', 9, NULL, NULL),
-(83, '{\"en\": \"Levis\", \"fr\": \"Lévis\"}', 9, NULL, NULL),
-(84, '{\"en\": \"Trois-Rivières\", \"fr\": \"Trois-Rivières\"}', 9, NULL, NULL),
-(85, '{\"en\": \"Terrebonne\", \"fr\": \"Terrebonne\"}', 9, NULL, NULL),
-(86, '{\"en\": \"Saint-Jean-sur-Richelieu\", \"fr\": \"Saint-Jean-sur-Richelieu\"}', 9, NULL, NULL),
-(87, '{\"en\": \"Repentigny\", \"fr\": \"Repentigny\"}', 9, NULL, NULL),
-(88, '{\"en\": \"Brossard\", \"fr\": \"Brossard\"}', 9, NULL, NULL),
-(89, '{\"en\": \"Drummondville\", \"fr\": \"Drummondville\"}', 9, NULL, NULL),
-(90, '{\"en\": \"Saint-Jérôme\", \"fr\": \"Saint-Jérôme\"}', 9, NULL, NULL),
-(91, '{\"en\": \"Granby\", \"fr\": \"Granby\"}', 9, NULL, NULL),
-(92, '{\"en\": \"Shawinigan\", \"fr\": \"Shawinigan\"}', 9, NULL, NULL),
-(93, '{\"en\": \"Saint-Hyacinthe\", \"fr\": \"Saint-Hyacinthe\"}', 9, NULL, NULL),
-(94, '{\"en\": \"Beloeil\", \"fr\": \"Beloeil\"}', 9, NULL, NULL),
-(95, '{\"en\": \"Châteauguay\", \"fr\": \"Châteauguay\"}', 9, NULL, NULL),
-(96, '{\"en\": \"Saskatoon\", \"fr\": \"Saskatoon\"}', 10, NULL, NULL),
-(97, '{\"en\": \"Regina\", \"fr\": \"Regina\"}', 10, NULL, NULL),
-(98, '{\"en\": \"Prince Albert\", \"fr\": \"Prince Albert\"}', 10, NULL, NULL),
-(99, '{\"en\": \"Moose Jaw\", \"fr\": \"Moose Jaw\"}', 10, NULL, NULL),
-(100, '{\"en\": \"Yorkton\", \"fr\": \"Yorkton\"}', 10, NULL, NULL),
-(101, '{\"en\": \"Swift Current\", \"fr\": \"Swift Current\"}', 10, NULL, NULL),
-(102, '{\"en\": \"North Battleford\", \"fr\": \"North Battleford\"}', 10, NULL, NULL),
-(103, '{\"en\": \"Estevan\", \"fr\": \"Estevan\"}', 10, NULL, NULL),
-(104, '{\"en\": \"Weyburn\", \"fr\": \"Weyburn\"}', 10, NULL, NULL),
-(105, '{\"en\": \"Lloydminster\", \"fr\": \"Lloydminster\"}', 10, NULL, NULL),
-(106, '{\"en\": \"Yellowknife\", \"fr\": \"Yellowknife\"}', 11, NULL, NULL),
-(107, '{\"en\": \"Iqaluit\", \"fr\": \"Iqaluit\"}', 12, NULL, NULL),
-(108, '{\"en\": \"Whitehorse\", \"fr\": \"Whitehorse\"}', 13, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1237,13 +823,13 @@ ALTER TABLE `annees`
 -- AUTO_INCREMENT for table `carburants`
 --
 ALTER TABLE `carburants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `carrosseries`
 --
 ALTER TABLE `carrosseries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `commandes`
@@ -1255,7 +841,7 @@ ALTER TABLE `commandes`
 -- AUTO_INCREMENT for table `expeditions`
 --
 ALTER TABLE `expeditions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1279,7 +865,7 @@ ALTER TABLE `journals`
 -- AUTO_INCREMENT for table `marques`
 --
 ALTER TABLE `marques`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1291,19 +877,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `modeles`
 --
 ALTER TABLE `modeles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pays`
 --
 ALTER TABLE `pays`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `photos`
@@ -1315,37 +901,37 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `privileges`
 --
 ALTER TABLE `privileges`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provences`
 --
 ALTER TABLE `provences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `statuts`
 --
 ALTER TABLE `statuts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `taxes`
 --
 ALTER TABLE `taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tractions`
 --
 ALTER TABLE `tractions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transmissions`
 --
 ALTER TABLE `transmissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1357,7 +943,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `villes`
 --
 ALTER TABLE `villes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `voitures`

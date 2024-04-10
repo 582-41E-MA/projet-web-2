@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('courriel')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('mot_de_passe');
+            $table->string('password');
             $table->rememberToken();
             $table->unsignedBigInteger('privilege_id');
             $table->unsignedBigInteger('ville_id');
@@ -27,7 +27,6 @@ return new class extends Migration
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade');
             $table->timestamps();
         });
-
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('courriel')->primary();
             $table->string('token');
