@@ -1,0 +1,60 @@
+.container_accueil {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-catalogue {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    flex-basis: 80%;
+    margin: 45px;
+   
+}
+
+.filtres-catalogue{
+    flex-basis: 20%;
+
+}
+
+.item-catalogue{
+    display: flex;
+    border: 1px solid var(--coul-primaire);
+    margin-top: var(--espace-1);
+    
+}
+
+.car-image {
+    flex-basis: 25%;
+    border: 5px solid var(--coul-primaire);
+    margin-right: var(--espace-1);
+}
+
+.car-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-basis: 75%;
+    margin-top: var(--espace-1);
+    text-align:justify;
+}
+
+.car-detail {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--espace-1);
+}
+
+.car-prix {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--espace-1);
+}
+
+h2 {
+    font-family: "Roboto";
+    font-size: var(--texte-xl);
+    color: var(--coul-texte-default);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
