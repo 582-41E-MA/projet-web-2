@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
 {
     /**
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $villes = Ville::all();
+        $villes = Ville::villes();
+
         return view('user.create', ['villes'=>$villes]);
     }
 
@@ -36,10 +38,10 @@ class UserController extends Controller
             'nom' => 'required|min:2|max:191',
             'date_de_naissance' => 'required|date',
             'code_postal' => 'required|size:6',
-            'telephone' => 'required|min:9|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
             'courriel' => 'required|email|unique:users',
-            'mot_de_passe' => 'required|confirmed|min:2|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
-            'mot_de_passe_confirmation' => 'required',
+            'password' => 'required|confirmed|min:2|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
+            'password_confirmation' => 'required',
             'ville_id' => 'required|exists:villes,id',
         ]);
 
@@ -50,7 +52,7 @@ class UserController extends Controller
         $user->code_postal = $request->code_postal;
         $user->telephone = $request->telephone;
         $user->courriel = $request->courriel;
-        $user->mot_de_passe = Hash::make($request->mot_de_passe);
+        $user->password = Hash::make($request->password);
         $user->privilege_id = 3;
         $user->ville_id = $request->ville_id;
         $user->timestamps = false;

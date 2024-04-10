@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +21,7 @@ class User extends Model
         'code_postal',
         'telephone',
         'courriel',
-        'mot_de_passe',
+        'password',
         'privilege_id',
         'ville_id',
     ];
@@ -32,7 +32,7 @@ class User extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'mot_de_passe',
+        'password',
         'remember_token',
     ];
 
@@ -45,7 +45,7 @@ class User extends Model
     {
         return [
             'email_verified_at' => 'datetime',
-            'mot_de_passe' => 'hashed',
+            'password' => 'hashed',
         ];
     }
 }

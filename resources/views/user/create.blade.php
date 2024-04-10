@@ -46,11 +46,11 @@
                     <select class="input input-placeholder" name="ville_id" id="ville">
                         <option value="">@lang('Choose one')</option>
                         @foreach($villes as $ville)
-                        <option value="{{$ville->id}}" 
-                            @if($ville->id == old('ville_id'))
+                        <option value="{{$ville['id']}}" 
+                            @if($ville['id'] == old('ville_id'))
                             selected
                             @endif 
-                        >{{$ville->nom}}
+                        >{{$ville['nom']}}
                         </option>
                         @endforeach
                     </select>
@@ -85,19 +85,19 @@
             </div>
             <div class="form-inputContainer">
                 <div class="control-input">
-                    <label class="label" for="mot_de_passe" >@lang('Password')*</label>
-                    <input class="input" type="password" id="mot_de_passe" name="mot_de_passe">
+                    <label class="label" for="password" >@lang('Password')*</label>
+                    <input class="input" type="password" id="password" name="password">
                 </div>
                 <div class="control-erreur">
-                @if($errors->has('mot_de_passe'))
-                    {{ $errors->first('mot_de_passe')}}
+                @if($errors->has('password'))
+                    {{ $errors->first('password')}}
                 @endif
                 </div>
             </div>
             <div class="form-inputContainer">
                 <div class="control-input">
-                    <label class="label" for="mot_de_passe_confirmation">@lang('Confirm password')*</label>
-                    <input class="input" type="password" id="mot_de_passe_confirmation" name="mot_de_passe_confirmation">
+                    <label class="label" for="password_confirmation">@lang('Confirm password')*</label>
+                    <input class="input" type="password" id="password_confirmation" name="password_confirmation">
                 </div>
             </div>
             <div class="form-btnContainer">
