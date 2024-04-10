@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2024 at 09:09 PM
+-- Generation Time: Apr 10, 2024 at 05:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -266,10 +266,8 @@ CREATE TABLE `commandes` (
 --
 
 CREATE TABLE `commande_taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
   `commande_id` bigint(20) UNSIGNED NOT NULL,
-  `fed_tax_id` bigint(20) UNSIGNED NOT NULL,
-  `prov_tax_id` bigint(20) UNSIGNED NOT NULL,
+  `tax_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -310,40 +308,6 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `federal_taxes`
---
-
-CREATE TABLE `federal_taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nom` varchar(191) NOT NULL,
-  `valeur` decimal(6,3) NOT NULL,
-  `provence_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `federal_taxes`
---
-
-INSERT INTO `federal_taxes` (`id`, `nom`, `valeur`, `provence_id`, `created_at`, `updated_at`) VALUES
-(1, 'GST/HST', 5.000, 1, NULL, NULL),
-(2, 'GST/HST', 5.000, 2, NULL, NULL),
-(3, 'GST/HST', 5.000, 3, NULL, NULL),
-(4, 'GST/HST', 15.000, 4, NULL, NULL),
-(5, 'GST/HST', 15.000, 5, NULL, NULL),
-(6, 'GST/HST', 15.000, 6, NULL, NULL),
-(7, 'GST/HST', 13.000, 7, NULL, NULL),
-(8, 'GST/HST', 15.000, 8, NULL, NULL),
-(9, 'GST/HST', 5.000, 9, NULL, NULL),
-(10, 'GST/HST', 5.000, 10, NULL, NULL),
-(11, 'GST/HST', 5.000, 11, NULL, NULL),
-(12, 'GST/HST', 5.000, 12, NULL, NULL),
-(13, 'GST/HST', 5.000, 13, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -462,10 +426,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2024_04_05_160613_create_expeditions_table', 1),
 (19, '2024_04_05_181054_create_photos_table', 1),
 (20, '2024_04_07_193133_create_journals_table', 1),
-(21, '2024_04_09_175028_create_federal_taxes_table', 1),
-(22, '2024_04_09_175230_create_provincial_taxes_table', 1),
-(23, '2024_04_09_175231_create_commandes_table', 1),
-(24, '2024_04_09_175232_create_commande_taxes_table', 1);
+(21, '2024_04_09_175028_create_taxes_table', 1),
+(22, '2024_04_09_175231_create_commandes_table', 1),
+(23, '2024_04_09_175232_create_commande_taxes_table', 1);
 
 -- --------------------------------------------------------
 
@@ -766,40 +729,6 @@ INSERT INTO `provences` (`id`, `nom`, `pays_id`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provincial_taxes`
---
-
-CREATE TABLE `provincial_taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nom` varchar(191) NOT NULL,
-  `valeur` decimal(6,3) NOT NULL,
-  `provence_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `provincial_taxes`
---
-
-INSERT INTO `provincial_taxes` (`id`, `nom`, `valeur`, `provence_id`, `created_at`, `updated_at`) VALUES
-(1, 'PST/RST/QST', 0.000, 1, NULL, NULL),
-(2, 'PST/RST/QST', 7.000, 2, NULL, NULL),
-(3, 'PST/RST/QST', 7.000, 3, NULL, NULL),
-(4, 'PST/RST/QST', 0.000, 4, NULL, NULL),
-(5, 'PST/RST/QST', 0.000, 5, NULL, NULL),
-(6, 'PST/RST/QST', 0.000, 6, NULL, NULL),
-(7, 'PST/RST/QST', 0.000, 7, NULL, NULL),
-(8, 'PST/RST/QST', 0.000, 8, NULL, NULL),
-(9, 'PST/RST/QST', 9.975, 9, NULL, NULL),
-(10, 'PST/RST/QST', 6.000, 10, NULL, NULL),
-(11, 'PST/RST/QST', 0.000, 11, NULL, NULL),
-(12, 'PST/RST/QST', 0.000, 12, NULL, NULL),
-(13, 'PST/RST/QST', 0.000, 13, NULL, NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sessions`
 --
 
@@ -833,6 +762,44 @@ INSERT INTO `statuts` (`id`, `nom`, `created_at`, `updated_at`) VALUES
 (1, '{\"en\": \"Pending\", \"fr\": \"En attente\"}', NULL, NULL),
 (2, '{\"en\": \"Reserved\", \"fr\": \"Réservé\"}', NULL, NULL),
 (3, '{\"en\": \"Invoiced\", \"fr\": \"Facturé\"}', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taxes`
+--
+
+CREATE TABLE `taxes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nom` varchar(191) NOT NULL,
+  `valeur` decimal(6,3) NOT NULL,
+  `provence_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `taxes`
+--
+
+INSERT INTO `taxes` (`id`, `nom`, `valeur`, `provence_id`, `created_at`, `updated_at`) VALUES
+(1, 'GST/HST', 5.000, 1, NULL, NULL),
+(2, 'GST/HST', 5.000, 2, NULL, NULL),
+(3, 'PST/RST/QST', 7.000, 2, NULL, NULL),
+(4, 'GST/HST', 5.000, 3, NULL, NULL),
+(5, 'PST/RST/QST', 7.000, 3, NULL, NULL),
+(6, 'GST/HST', 15.000, 4, NULL, NULL),
+(7, 'GST/HST', 15.000, 5, NULL, NULL),
+(8, 'GST/HST', 15.000, 6, NULL, NULL),
+(9, 'GST/HST', 13.000, 7, NULL, NULL),
+(10, 'GST/HST', 15.000, 8, NULL, NULL),
+(11, 'GST/HST', 5.000, 9, NULL, NULL),
+(12, 'PST/RST/QST', 9.975, 9, NULL, NULL),
+(13, 'GST/HST', 5.000, 10, NULL, NULL),
+(14, 'PST/RST/QST', 6.000, 10, NULL, NULL),
+(15, 'GST/HST', 5.000, 11, NULL, NULL),
+(16, 'GST/HST', 5.000, 12, NULL, NULL),
+(17, 'GST/HST', 5.000, 13, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1101,10 +1068,8 @@ ALTER TABLE `commandes`
 -- Indexes for table `commande_taxes`
 --
 ALTER TABLE `commande_taxes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `commande_taxes_commande_id_foreign` (`commande_id`),
-  ADD KEY `commande_taxes_fed_tax_id_foreign` (`fed_tax_id`),
-  ADD KEY `commande_taxes_prov_tax_id_foreign` (`prov_tax_id`);
+  ADD PRIMARY KEY (`commande_id`,`tax_id`),
+  ADD KEY `commande_taxes_tax_id_foreign` (`tax_id`);
 
 --
 -- Indexes for table `expeditions`
@@ -1118,13 +1083,6 @@ ALTER TABLE `expeditions`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Indexes for table `federal_taxes`
---
-ALTER TABLE `federal_taxes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `federal_taxes_provence_id_foreign` (`provence_id`);
 
 --
 -- Indexes for table `jobs`
@@ -1203,13 +1161,6 @@ ALTER TABLE `provences`
   ADD KEY `provences_pays_id_foreign` (`pays_id`);
 
 --
--- Indexes for table `provincial_taxes`
---
-ALTER TABLE `provincial_taxes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `provincial_taxes_provence_id_foreign` (`provence_id`);
-
---
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
@@ -1222,6 +1173,13 @@ ALTER TABLE `sessions`
 --
 ALTER TABLE `statuts`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `taxes`
+--
+ALTER TABLE `taxes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `taxes_provence_id_foreign` (`provence_id`);
 
 --
 -- Indexes for table `tractions`
@@ -1294,12 +1252,6 @@ ALTER TABLE `commandes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `commande_taxes`
---
-ALTER TABLE `commande_taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `expeditions`
 --
 ALTER TABLE `expeditions`
@@ -1310,12 +1262,6 @@ ALTER TABLE `expeditions`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `federal_taxes`
---
-ALTER TABLE `federal_taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -1339,7 +1285,7 @@ ALTER TABLE `marques`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `modeles`
@@ -1378,16 +1324,16 @@ ALTER TABLE `provences`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `provincial_taxes`
---
-ALTER TABLE `provincial_taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
 -- AUTO_INCREMENT for table `statuts`
 --
 ALTER TABLE `statuts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `taxes`
+--
+ALTER TABLE `taxes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tractions`
@@ -1438,14 +1384,7 @@ ALTER TABLE `commandes`
 --
 ALTER TABLE `commande_taxes`
   ADD CONSTRAINT `commande_taxes_commande_id_foreign` FOREIGN KEY (`commande_id`) REFERENCES `commandes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `commande_taxes_fed_tax_id_foreign` FOREIGN KEY (`fed_tax_id`) REFERENCES `federal_taxes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `commande_taxes_prov_tax_id_foreign` FOREIGN KEY (`prov_tax_id`) REFERENCES `provincial_taxes` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `federal_taxes`
---
-ALTER TABLE `federal_taxes`
-  ADD CONSTRAINT `federal_taxes_provence_id_foreign` FOREIGN KEY (`provence_id`) REFERENCES `provences` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `commande_taxes_tax_id_foreign` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `modeles`
@@ -1466,10 +1405,10 @@ ALTER TABLE `provences`
   ADD CONSTRAINT `provences_pays_id_foreign` FOREIGN KEY (`pays_id`) REFERENCES `pays` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `provincial_taxes`
+-- Constraints for table `taxes`
 --
-ALTER TABLE `provincial_taxes`
-  ADD CONSTRAINT `provincial_taxes_provence_id_foreign` FOREIGN KEY (`provence_id`) REFERENCES `provences` (`id`) ON DELETE CASCADE;
+ALTER TABLE `taxes`
+  ADD CONSTRAINT `taxes_provence_id_foreign` FOREIGN KEY (`provence_id`) REFERENCES `provences` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
