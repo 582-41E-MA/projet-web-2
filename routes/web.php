@@ -20,6 +20,7 @@ Route::get('/accueil', function () {
     return view('accueil');
 });
 
+
 Route::get('/registration', [UserController::class, 'create'])->name('user.create');
 Route::post('/registration', [UserController::class, 'store'])->name('user.store');
 
@@ -28,6 +29,8 @@ Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
+Route::post('/voitures', [VoitureController::class, 'select'])->name('voitures.select');
+
 Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
 Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');

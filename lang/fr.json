@@ -34,6 +34,9 @@
     "Crossover": "Crossover",
     "Search": "Rechercher",
     "Add" : "Ajouter",
+    "Apply" : "Appliquer",
+    "1980 and before" : "1980 et avant",
+    "2000 and after" : "2000 et après",
     "Brand" : "Marque",
     "Select a brand" : "Sélectionnez une marque",
     "Model" : "Modèle",
@@ -103,6 +106,6 @@
     "Bodywork:": "Carrosserie :",
     "Transmission:": "Transmission :",
     "Traction:": "Traction :",
+    "More info": "Plus d'info"
 
-    "Secondary photo(s)" : "Photo(s) secundaire(s)"
 }

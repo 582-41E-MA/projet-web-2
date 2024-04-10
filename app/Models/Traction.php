@@ -11,7 +11,6 @@ class Traction extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
     protected $fillable = [
         'id',
         'nom'
@@ -33,15 +32,10 @@ class Traction extends Model
     static public function tractionParId($id)
     {
         $resource = TractionResource::collection(self::select()->where('id', $id)->get());
-
         $data = json_encode($resource);
         $data = json_decode($data,true);
 
         return $data;
     }
-=======
-    protected $casts = [
-        'nom' => 'array',
-    ];
->>>>>>> ec10da0 (Ajouter une voiture)
+
 }

@@ -11,7 +11,6 @@ class Transmission extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
     protected $fillable = [
         'id',
         'nom'
@@ -39,9 +38,5 @@ class Transmission extends Model
 
         return $data;
     }
-=======
-    protected $casts = [
-        'nom' => 'array',
-    ];
->>>>>>> ec10da0 (Ajouter une voiture)
+
 }

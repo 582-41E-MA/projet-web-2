@@ -11,7 +11,6 @@ class Carrosserie extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
     protected $fillable = [
         'id',
         'nom',
@@ -41,9 +40,5 @@ class Carrosserie extends Model
 
         return $data;
     }
-=======
-    protected $casts = [
-        'nom' => 'array',
-    ];
->>>>>>> ec10da0 (Ajouter une voiture)
+
 }

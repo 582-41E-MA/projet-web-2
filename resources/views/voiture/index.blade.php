@@ -8,9 +8,11 @@
 
 <main class="wrapper">
     <div class="form_recherche" data-js-component="Recherche"> 
+        <form class="form_filtre">
             <label for="rechercher"></label>
-            <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
+            <input class="input_recherche" type="text" id="rechercher" name="rechercher">
+            <button class="btn btn-quatrieme mr-sm" type="submit">Rechercher</button>
+        </form>
     </div>
 
     <div class="container_accueil mt-sm mr-sm ml-sm">
@@ -87,7 +89,7 @@
                         @endif 
                     @endif 
                     >
-                    <label class="p-filtre mb-lg" for="annee1">@lang($annee['label'])</label>
+                    <label class="p-filtre mb-lg" for="annees[]">@lang($annee['label'])</label>
                 </div>
                 @endforeach
 
@@ -95,7 +97,7 @@
                 <div class="p_titre_filtre mb-sm mt-sm">
                     <label for="traction_id" class="p-filtre mb-lg">@lang('Traction')</label>
                 </div>
-                <select name="tractions" id="traction_id" class="checkbox-container" >
+                <select name="tractions" id="traction_id">
                     <option value="">@lang('Choose one')</option>
                     @foreach($tractions as $traction)
                         <option value="{{ $traction['id'] }}" 
