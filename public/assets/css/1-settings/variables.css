@@ -13,6 +13,7 @@
     --espace-2: 2rem;
     --espace-2half: 2.5rem;
     --espace-3: 3rem;
+    --espace-3half: 3.5rem;
     --espace-4: 4rem;
     --espace-5: 5rem;
     --espace-6: 6rem;
@@ -22,7 +23,8 @@
     --espace-10: 10rem;
 
     --largeur-input: 17.5rem;
-    --hauteur-input: 2.5rem;
+    /* --hauteur-input: 2.5rem; */
+    --hauteur-input: 3rem;
 
     /* Les couleurs */
     --coul-primaire: #cb0606;

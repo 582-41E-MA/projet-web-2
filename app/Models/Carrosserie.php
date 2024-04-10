@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Carrosserie extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'nom' => 'array',
+    ];
 }

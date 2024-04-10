@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -19,38 +22,41 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'courriel' => 'required|email|exists:users',
+            'password' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $credentials = $request->only('courriel', 'password');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        if(!Auth::validate($credentials)):
+            return redirect(route('login'))  
+                    ->withErrors(trans('auth.password')) 
+                    ->withInput();  
+        endif;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        // return Auth::user();
+
+        return redirect()->intended(route('voiture.index'))->withSuccess(trans('Welcome back'));
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        // effacer toutes les donnees de la session
+        Session::flush();
+        // deconnecter l'utilisateur authentifie
+        Auth::logout();
+        return redirect(route('login'));
+
     }
 }

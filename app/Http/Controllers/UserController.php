@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -53,12 +53,12 @@ class UserController extends Controller
         $user->telephone = $request->telephone;
         $user->courriel = $request->courriel;
         $user->password = Hash::make($request->password);
-        $user->privilege_id = 3;
+        $user->privilege_id = 1;
         $user->ville_id = $request->ville_id;
         $user->timestamps = false;
         $user->save();
 
-        return redirect()->route('login')->with('success', trans('You\'re registered'));
+        return redirect()->route('login')->with('success', trans('You\'re registered successfully'));
     }
 
     /**
