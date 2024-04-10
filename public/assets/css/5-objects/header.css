@@ -2,7 +2,6 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    /*perguntar*/
     height: 70px;
     justify-content: space-between;
     position: relative;
@@ -10,10 +9,8 @@
 
     .line-1 {
         background-color: var(--coul-primaire);
-        /*perguntar*/
-        height: 2px;
+        height: var(--espace-2px);
         position: absolute;
-        /*perguntar*/
         top: 70px;
         width: 100%;
     }
@@ -27,7 +24,6 @@
         height: 100%;
 
         img {
-            /*perguntar*/
             width: 236px;
         }
 
@@ -64,7 +60,7 @@
 
                 .voiture-nav:hover {
                     .sous-list-nav {
-                        border: 2px var(--coul-primaire) solid;
+                        border: var(--espace-2px) var(--coul-primaire) solid;
                         display: flex;
                         flex-direction: column;
                         height: 210px;
@@ -112,9 +108,8 @@
         .line-2 {
             background-color: var(--coul-primaire);
             display: block;
-            height: 2px;
+            height: var(--espace-2px);
             position: absolute;
-            /*perguntar*/
             top: 140px;
             width: 100%;
         }
@@ -123,8 +118,7 @@
 
 @media screen and (max-width: 428px) {
     .div-header {
-        /*perguntar*/
-        border: 2px var(--coul-primaire) solid;
+        border: var(--espace-2px) var(--coul-primaire) solid;
         flex-direction: column;
         height: fit-content;
         position: relative;
@@ -144,8 +138,7 @@
             .div-list-nav {
                 .list-nav {
                     li {
-                        /*perguntar*/
-                        border-bottom: 2px var(--coul-primaire) solid;
+                        border-bottom: var(--espace-2px) var(--coul-primaire) solid;
                         justify-content: center;
                         width: 100%;
                     }
@@ -166,11 +159,9 @@
         }
 
         .div-lang {
-            /*perguntar*/
             height: 70px;
 
             button {
-                /*perguntar*/
                 height: 10%;
                 position: absolute;
                 right: 3px;
