@@ -29,7 +29,6 @@
 .item-catalogue{
     display: flex;
     border: 1px solid var(--coul-primaire);
-
 }
 
 .car-image {
