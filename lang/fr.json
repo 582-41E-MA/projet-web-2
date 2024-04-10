@@ -19,6 +19,9 @@
     "Add car" : "Ajouter une voiture",
     "Car parameters" : "Paramètres voitures",
     "Sign in" : "Connexion",
+    "Sign out" : "Déconnexion",
     "About us" : "À propos",
-    "Sales Policies" : "Politiques de vente"
+    "User:" : "Utilisateur :",
+    "Sales Policies" : "Politiques de vente",
+    "You're registered successfully" : "Vous êtes inscrit avec succès"
 }
