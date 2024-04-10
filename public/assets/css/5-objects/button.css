@@ -1,7 +1,7 @@
 .btn {
-    font-family: "Roboto";
+    font-family: "Palanquin";
     font-size: var(--texte-sm);
-    font-weight: 500;
+    font-weight: 700;
     pointer-events: auto;
     cursor: pointer;
     border-radius: 0.3rem;
@@ -9,6 +9,7 @@
 }
 
 .btn-primaire {
+    font-family: "Roboto";
     background-color: var(--coul-primaire);
     border: 1px solid var(--coul-primaire);
     color: var(--coul-texte-claire);
