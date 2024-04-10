@@ -452,16 +452,19 @@ INSERT INTO villes (nom, provence_id) VALUES
 -- Dumping data for table `taxes`
 -- 
 
-INSERT INTO federal_taxes (nom, valeur, provence_id) 
+INSERT INTO taxes (nom, valeur, provence_id) 
 VALUES 
 -- Alberta
 ('GST/HST', 5.0, 1),
 
 -- British Columbia
 ('GST/HST', 5.0, 2),
+('PST/RST/QST', 7.0, 2),
 
 -- Manitoba
 ('GST/HST', 5.0, 3),
+('PST/RST/QST', 7.0, 3),
+
 
 -- New Brunswick
 ('GST/HST', 15.0, 4),
@@ -480,9 +483,11 @@ VALUES
 
 -- Quebec
 ('GST/HST', 5.0, 9),
+('PST/RST/QST', 9.975, 9),
 
 -- Saskatchewan
 ('GST/HST', 5.0, 10),
+('PST/RST/QST', 6.0, 10),
 
 -- Northwest Territories
 ('GST/HST', 5.0, 11),
@@ -491,46 +496,4 @@ VALUES
 ('GST/HST', 5.0, 12),
 
 -- Yukon
-('GST/HST', 5.0, 13),
-
-
-INSERT INTO provincial_taxes (nom, valeur, provence_id) 
-VALUES 
--- Alberta
-('PST/RST/QST', 0.0, 1),
-
--- British Columbia
-('PST/RST/QST', 7.0, 2),
-
--- Manitoba
-('PST/RST/QST', 7.0, 3),
-
--- New Brunswick
-('PST/RST/QST', 0.0, 4),
-
--- Newfoundland and Labrador
-('PST/RST/QST', 0.0, 5),
-
--- Nova Scotia
-('PST/RST/QST', 0.0, 6),
-
--- Ontario
-('PST/RST/QST', 0.0, 7),
-
--- Prince Edward Island
-('PST/RST/QST', 0.0, 8),
-
--- Quebec
-('PST/RST/QST', 9.975, 9),
-
--- Saskatchewan
-('PST/RST/QST', 6.0, 10),
-
--- Northwest Territories
-('PST/RST/QST', 0.0, 11),
-
--- Nunavut
-('PST/RST/QST', 0.0, 12),
-
--- Yukon
-('PST/RST/QST', 0.0, 13);
+('GST/HST', 5.0, 13);
