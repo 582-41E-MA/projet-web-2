@@ -6,8 +6,11 @@
 
 /* 4 - ELEMENTS */
 @import url(/assets/css/4-elements/typographies.css);
+@import url(/assets/css/4-elements/header.css);
+@import url(/assets/css/4-elements/nav.css);
 
 /* 5 - OBJECTS */
+@import url(/assets/css/5-objects/header.css);
 @import url(/assets/css/5-objects/button.css);
 @import url(/assets/css/5-objects/spacing.css);
 @import url(/assets/css/5-objects/wrapper.css);
