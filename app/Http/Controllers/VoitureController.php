@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Voiture;
 use App\Models\Marque;
+<<<<<<< HEAD
 use App\Models\Modele;
 use App\Models\Annee;
 use App\Models\Photo;
+=======
+use App\Models\Annee;
+>>>>>>> ec10da0 (Ajouter une voiture)
 use App\Models\Transmission;
 use App\Models\Traction;
 use App\Models\Carburant;
 use App\Models\Carrosserie;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+=======
+use App\Models\Photo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+>>>>>>> ec10da0 (Ajouter une voiture)
 
 class VoitureController extends Controller
 {
@@ -112,7 +122,10 @@ class VoitureController extends Controller
         $tractions = Traction::all();
         $carburants = Carburant::all();
         $carrosseries = Carrosserie::all();
+<<<<<<< HEAD
 
+=======
+>>>>>>> ec10da0 (Ajouter une voiture)
         return view('voiture.create', ['marques' => $marques, 'annees' => $annees, 'transmissions' => $transmissions, 'tractions' => $tractions, 'carburants' => $carburants, 'carrosseries' => $carrosseries]);
     }
 
@@ -120,7 +133,13 @@ class VoitureController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+<<<<<<< HEAD
     {   
+=======
+    {
+        //return $request->prix_vente;
+        
+>>>>>>> ec10da0 (Ajouter une voiture)
         $request->validate([
             'marque_id' => 'required|exists:marques,id',
             'modele_id' => 'required|exists:modeles,id',
@@ -129,6 +148,7 @@ class VoitureController extends Controller
             'traction_id' => 'required|exists:tractions,id',
             'carburant_id' => 'required|exists:carburants,id',
             'carrosserie_id' => 'required|exists:carrosseries,id',
+<<<<<<< HEAD
             'date_arrive' => 'required|date|before_or_equal:today',
             'photo_principale' => 'required|image',
             'photo_secundaire' => 'required|array|size:3',
@@ -149,11 +169,33 @@ class VoitureController extends Controller
         $file = $request->file('photo_principale');
         $filename = time() . "." . $file->getClientOriginalExtension();
         $request->photo_principale->move('assets/img/voitures', $filename);
+=======
+            'proprietaire' => 'required',
+            'date_arrive' => 'required|date|before_or_equal:today',
+            'photo_principale' => 'required',
+            'prix_paye' => 'required',
+            'prix_vente' => 'required',
+            'disponible' => 'required',
+        ]);
+        //$request->prix_vente = $request->prix_paye * 1.25;
+        
+        $voiture = new Voiture;
+        $voiture->fill($request->all());
+        $voiture->save();
+
+        $photo = new Photo();
+        $file = $request->photo_principale;
+        //$filename = time() . "." . $file;
+        //return $photo;
+        $filename = time() . "." . $file->getClientOriginalExtension();
+        //$request->photo_principale->move('assets', $filename);
+>>>>>>> ec10da0 (Ajouter une voiture)
 
         $photo->nom = $filename;
         $photo->principal = 1;
         $photo->voiture_id = $voiture->id;
         $photo->save();
+<<<<<<< HEAD
         
         // Création photos secundaires
         $filesSecundaires = $request->file('photo_secundaire');
@@ -171,6 +213,11 @@ class VoitureController extends Controller
 
         $voitures = Voiture::all();
         return redirect()->route('voiture.index', ['voitures' => $voitures])->with('success', trans('You\'ve added a new car successfully'));
+=======
+
+        $voitures = Voiture::all();
+        return redirect()->route('voiture.index', ['voitures' => $voitures]);
+>>>>>>> ec10da0 (Ajouter une voiture)
     }
 
     /**

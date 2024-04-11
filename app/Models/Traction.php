@@ -11,6 +11,7 @@ class Traction extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
     protected $fillable = [
         'id',
         'nom'
@@ -38,4 +39,9 @@ class Traction extends Model
 
         return $data;
     }
+=======
+    protected $casts = [
+        'nom' => 'array',
+    ];
+>>>>>>> ec10da0 (Ajouter une voiture)
 }

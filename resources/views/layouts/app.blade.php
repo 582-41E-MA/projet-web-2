@@ -14,6 +14,9 @@
     <!-- Scripts -->
     <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
 
+    <!-- Scripts -->
+    <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
+
 </head>
 <body>
     @php $locale = session()->get('locale') @endphp
