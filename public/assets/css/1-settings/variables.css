@@ -11,6 +11,7 @@
     --espace-1: 1rem;
     --espace-1half: 1.5rem;
     --espace-2: 2rem;
+    --espace-2half: 2.5rem;
     --espace-3: 3rem;
     --espace-4: 4rem;
     --espace-5: 5rem;
@@ -19,6 +20,9 @@
     --espace-8: 8rem;
     --espace-9: 9rem;
     --espace-10: 10rem;
+
+    --largeur-input: 17.5rem;
+    --hauteur-input: 2.5rem;
 
     /* Les couleurs */
     --coul-primaire: #cb0606;
@@ -44,4 +48,14 @@
     --texte-lg: 2rem;
     --texte-xl: 2.25rem;
     --texte-xxl: 3rem;
+
+    @media screen and (max-width: 428px) {
+        --texte-xxs: 1rem;
+        --texte-xs: 1.25rem;
+        --texte-sm: 1.5rem;
+        --texte-md: 1.625rem;
+        --texte-lg: 2rem;
+        --texte-xl: 2.25rem;
+        --texte-xxl: 2rem;
+    }
 }

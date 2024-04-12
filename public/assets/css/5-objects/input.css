@@ -1,0 +1,13 @@
+.input {
+    height: var(--hauteur-input);
+    padding: var(--espace-1);
+    font-size: var(--texte-xs);
+    border-radius: 0px;
+    color: var(--coul-texte-default);
+    border: 1.5px solid var(--coul-tertiaire);
+    width: 50%;
+}
+
+.input-placeholder {
+    padding: 0px var(--espace-1);
+}

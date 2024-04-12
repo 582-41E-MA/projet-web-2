@@ -1,0 +1,15 @@
+.label {
+    font-family: "Palanquin Dark";
+    font-size: var(--texte-sm);
+    font-weight: 400;
+    color: var(--coul-texte-default);
+    width: 50%;
+}
+
+@media screen and (max-width: 428px) {
+    .label {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+}
