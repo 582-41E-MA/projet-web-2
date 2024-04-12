@@ -8,6 +8,7 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
     flex-basis: 80%;
+<<<<<<< HEAD
 
 }
 
@@ -23,13 +24,26 @@
     font-family: "Palanquin";
     font-size: var(--texte-xxs);
     padding: var(--espace-quart) var(--espace-3quarts);
+=======
+    margin: 45px;
+   
+}
+
+.filtres-catalogue{
+    flex-basis: 20%;
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
 
 }
 
 .item-catalogue{
     display: flex;
     border: 1px solid var(--coul-primaire);
+<<<<<<< HEAD
 
+=======
+    margin-top: var(--espace-1);
+    
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
 }
 
 .car-image {
@@ -37,16 +51,23 @@
     border: 5px solid var(--coul-primaire);
     margin-right: var(--espace-1);
 }
+<<<<<<< HEAD
 img{
     width: 100%;
 }
+=======
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
 
 .car-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     flex-basis: 75%;
     margin-top: var(--espace-1);
+<<<<<<< HEAD
   
+=======
+    text-align:justify;
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
 }
 
 .car-detail {
