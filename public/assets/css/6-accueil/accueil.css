@@ -29,6 +29,15 @@
 .item-catalogue{
     display: flex;
     border: 1px solid var(--coul-primaire);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+    margin-top: var(--espace-1);
+    
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
+>>>>>>> dcad354aac91d31a88af68a302f121b329fae0c6
 }
 
 .car-image {
@@ -36,16 +45,23 @@
     border: 5px solid var(--coul-primaire);
     margin-right: var(--espace-1);
 }
+<<<<<<< HEAD
 img{
     width: 100%;
 }
+=======
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
 
 .car-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     flex-basis: 75%;
     margin-top: var(--espace-1);
+<<<<<<< HEAD
   
+=======
+    text-align:justify;
+>>>>>>> 0893caa6c50572c289637b209c1c69fb2b9eb525
 }
 
 .car-detail {
