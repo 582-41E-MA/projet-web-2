@@ -23,10 +23,16 @@ class Carrosserie extends Model
     static public function carrosseries()
     {
         $resource = CarrosserieResource::collection(self::select()->get());
+
+    }
+
+    static public function carrosserieParId($id)
+    {
+        $resource = CarrosserieResource::collection(self::select()->where('id', $id)->get());
+
         $data = json_encode($resource);
         $data = json_decode($data,true);
 
         return $data;
-
     }
 }

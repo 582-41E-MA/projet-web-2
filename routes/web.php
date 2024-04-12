@@ -67,6 +67,7 @@ Route::post('/create/carburant', [CarburantController::class, 'store'])->name('c
 Route::get('/edit/carburant/{carburant}', [CarburantController::class, 'edit'])->name('carburant.edit');
 Route::put('/edit/carburant/{carburant}', [CarburantController::class, 'update'])->name('carburant.update');
 Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])->name('carburant.delete');
+Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

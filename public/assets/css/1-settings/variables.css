@@ -50,14 +50,4 @@
     --texte-lg: 2rem;
     --texte-xl: 2.25rem;
     --texte-xxl: 3rem;
-
-    @media screen and (max-width: 428px) {
-        --texte-xxs: 1rem;
-        --texte-xs: 1.25rem;
-        --texte-sm: 1.5rem;
-        --texte-md: 1.625rem;
-        --texte-lg: 2rem;
-        --texte-xl: 2.25rem;
-        --texte-xxl: 2rem;
-    }
 }

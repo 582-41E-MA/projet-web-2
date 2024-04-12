@@ -11,7 +11,10 @@ class Traction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nom'];
+    protected $fillable = [
+        'id',
+        'nom'
+    ];
 
     protected $casts = [
         'nom' => 'array',
@@ -25,6 +28,7 @@ class Traction extends Model
 
         return $data;
     }
+
 
     static public function tractionParId($id)
     {

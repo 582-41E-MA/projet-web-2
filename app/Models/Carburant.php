@@ -10,7 +10,10 @@ class Carburant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nom'];
+    protected $fillable = [
+        'id',
+        'nom'
+    ];
 
     protected $casts = [
         'nom' => 'array',
@@ -24,7 +27,6 @@ class Carburant extends Model
 
         return $data;
     }
-
 
     static public function carburantParId($id)
     {

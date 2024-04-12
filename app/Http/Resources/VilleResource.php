@@ -22,5 +22,6 @@ class VilleResource extends JsonResource
             'nom' => isset($this->nom[app()->getLocale()])? $this->nom[app()->getLocale()] : $this->nom['en'],
             'provence_id' => $this->provence_id,
             'updated_at' => $timeUpdated,
-        ];    }
+        ];    
+    }
 }

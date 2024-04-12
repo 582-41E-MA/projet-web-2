@@ -12,7 +12,7 @@ class CarburantResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray($request)
+    public function toArray(Request $request): array
     {
         $updated_at = explode("T", $this->updated_at);
         $timeUpdated = $updated_at[0];
@@ -21,6 +21,6 @@ class CarburantResource extends JsonResource
             'id' => $this->id,
             'nom' => isset($this->nom[app()->getLocale()])? $this->nom[app()->getLocale()] : $this->nom['en'],
             'updated_at' => $timeUpdated,
-        ];    
+        ];   
     }
 }

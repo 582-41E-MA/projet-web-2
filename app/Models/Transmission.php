@@ -11,10 +11,13 @@ class Transmission extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nom'];
-    
+    protected $fillable = [
+        'id',
+        'nom'
+    ];
+
     protected $casts = [
-        'nom' => 'array',
+        'nom' => 'array'
     ];
 
     static public function transmissions()
@@ -29,6 +32,7 @@ class Transmission extends Model
     static public function transmissionParId($id)
     {
         $resource = TransmissionResource::collection(self::select()->where('id', $id)->get());
+
         $data = json_encode($resource);
         $data = json_decode($data,true);
 

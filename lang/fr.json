@@ -93,5 +93,14 @@
     "You've modified a traction successfully": "Vous avez mis à jour une traction avec succès",
     "Modify fuel type": "Modifier carburant",
     "You've modified a fuel type successfully": "Vous avez mis à jour un type de carburant avec succès",
-    "Mileage": "Kilometrage"
+    "Mileage": "Kilometrage",
+    "Add to cart": "Ajouter au panier",
+    "Contact us": "Contactez nous",
+    "Year:": "Année :",
+    "Make:": "Marque :",
+    "Model:": "Modèle :",
+    "Feul:": "Carburant :",
+    "Bodywork:": "Carrosserie :",
+    "Transmission:": "Transmission :",
+    "Traction:": "Traction :"
 }
