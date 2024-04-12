@@ -1,6 +1,7 @@
 .container_accueil {
     display: flex;
     flex-direction: row;
+
 }
 
 .grid-catalogue {
@@ -109,6 +110,7 @@ img{
     flex-basis: 50%;
     flex-direction: column;
     margin-top: var(--espace-1);
+
 }
 
 .car-prix {

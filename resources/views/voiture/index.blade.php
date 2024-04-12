@@ -211,6 +211,7 @@
         </div>
     </template>
 
+    <!-- Filtres -->
 
         <!-- Catalogue -->
         <div class="grid-catalogue" data-js-catalogue>

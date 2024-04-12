@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2083fe1 (Ajouter traduction)
 Route::get('/registration', [UserController::class, 'create'])->name('user.create');
 Route::post('/registration', [UserController::class, 'store'])->name('user.store');
 
