@@ -2,67 +2,140 @@
 @section('title', 'Accueil')
 @section('content')
 <main>
-    <div class="container_accueil">
-        <div class="filtres-catalogue">filtres</div>
+    <div class="form_recherche"> 
+        <form class="form_filtre">
+            <label for="rechercher"></label>
+            <input class="input_recherche" type="text" id="rechercher" name="rechercher">
+            <button class="btn btn-quatrieme" type="submit">Rechercher</button>
+        </form>
+    </div>
+    <div class="container_accueil mt-sm">
+        <div class="filtres-catalogue">
+            <h3 class="mb-sm">Marques</h3>
+            <div class="mb-xs">
+                <input class="checkbox-container" type="checkbox" id="chevrolet" name="marca" value="Chevrolet">
+                <label class="p-filtre mb-lg" for="chevrolet">Chevrolet</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="ford" name="marca" value="Ford">
+                <label class="p-filtre" for="ford">Ford</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="gmc" name="marca" value="GMC">
+                <label class="p-filtre" for="gmc">GMC</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="honda" name="marca" value="Honda">
+                <label class="p-filtre" for="honda">Honda</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="hyundai" name="marca" value="Hyundai">
+                <label class="p-filtre" for="hyundai">Hyundai</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="jeep" name="marca" value="Jeep">
+                <label class="p-filtre" for="jeep">Jeep</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="nissan" name="marca" value="Nissan">
+                <label class="p-filtre" for="nissan">Nissan</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="ram" name="marca" value="Ram">
+                <label class="p-filtre" for="ram">Ram</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="toyota" name="marca" value="Toyota">
+                <label class="p-filtre" for="toyota">Toyota</label>
+            </div>
+            <div class="mb-xs">
+                <input type="checkbox" id="volkswagen" name="marca" value="Volkswagen">
+                <label class="p-filtre" for="volkswagen">Volkswagen</label>
+            </div>
+            <h3 class="mb-sm mt-sm">Type de Carrosserie</h3>
+            <div class="grid_carrosserie" class="mb-xs">
+                <div>
+                    <div>
+                        <label class="p-filtre mb-lg" for="chevrolet">Sedan</label>
+                        <input class="checkbox-container" type="checkbox" id="chevrolet" name="marca" value="Chevrolet">
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                        width="60" height="60"
+                        viewBox="0 0 194.4 64.62" fill="#999999">
+                        <title>资源 9</title>
+                        <g id="图层_2" data-name="图层 2">
+                        <g id="图层_1-2" data-name="图层 1">
+                        <path d="M194.31,42.57c-5.05-1-10,.56-14.52-1l.06-1.29h11.9a13,13,0,0,0,.22-1.64,9.72,9.72,0,0,0-.19-1.52C190.17,28.9,185,24,177,22.52c-10.57-1.9-21.27-3-31.87-4.75a14.58,14.58,0,0,1-6.47-2.7c-8.12-6.32-17-10.85-27.16-12.79C94.27-1,77.06-.47,59.87,2.12,49.29,3.71,39.07,6.43,30,12.37c-1,.69-2,1.53-3.81,2.91,6.87,0,12.36.62,17.58-3.23,3.74-2.75,8.65-3.92,13-5.79l.51.85C56,9.72,54.64,12.33,53.3,15c3.53,1.09,4.81-.29,5.73-3.08.79-2.37,2-6.07,3.68-6.43C70,3.85,77.48,3.23,85.57,2.16v13h4.76V2.93c15.4-.79,33.57,3.64,42.84,14.13a10,10,0,0,1-1.89.38L38,17.38c-9,0-17.93-.1-26.88,0C5.74,17.43,2.65,19.7,2.23,24c-.31,3.13-.06,6.31-.06,9.64l7.2.44.05,1.46-9.35.75c0,3.65-.21,7,.09,10.26a6.64,6.64,0,0,0,2,4.25,27.68,27.68,0,0,0,21.24,5.82C21.06,48.06,22.72,41,30,36a15.74,15.74,0,0,1,18.1-.62c8.08,4.87,10,12.37,7.51,21.36h86.21c-1.91-9.78-.22-15.65,5.9-20.24,5.52-4.13,11.64-4.78,17.73-1.71,9,4.56,10.84,12.48,8.78,22,5.08,0,9.8.09,14.51-.07a4.06,4.06,0,0,0,2.8-1.6A19.3,19.3,0,0,0,194.31,42.57Zm-60.83,8.82H61v-.92h72.51Z"/><path d="M158.07,37A13.83,13.83,0,1,0,158,64.62,13.83,13.83,0,0,0,158.07,37Zm.21,24a10.34,10.34,0,0,1-10.66-10.17v0A1.82,1.82,0,0,0,149,51.94a29.55,29.55,0,0,0,4-.86l.17-1.12a33.6,33.6,0,0,0-4.51-.89c-.31,0-.94,1-1,1.65a10.33,10.33,0,0,1,2.23-6.3c-.06.29-.07.53,0,.6a44.88,44.88,0,0,0,3.88,2.79l.87-1a31.35,31.35,0,0,0-2.4-3.57,1.41,1.41,0,0,0-1-.21,10.25,10.25,0,0,1,5.65-2.38c-.49.3-1,.76-1,1.1a34.39,34.39,0,0,0,.84,4.89c2.19-1.54,2.06-3.36,2-5,0-.29-.41-.75-.79-1a10.08,10.08,0,0,1,10.23,9.92A10.27,10.27,0,0,1,158.28,61Z"/><path d="M39.55,37a13.83,13.83,0,1,0,13.77,13.6A13.79,13.79,0,0,0,39.55,37Zm-.67,24a10.21,10.21,0,1,1,1-20.4,10.21,10.21,0,1,1-1,20.4Z"/><path d="M161.17,51c2.07.43,3.63.83,5.22,1,.35,0,1.08-.76,1.11-1.21s-.42-1.67-.74-1.7C164.92,48.93,163,48.8,161.17,51Z"/><path d="M160.43,46.49c-.09.15.49.74,1.07,1.56l3.71-3.82-2-1.6C162.3,43.91,161.31,45.16,160.43,46.49Z"/><path d="M156.77,54.78a27.83,27.83,0,0,0-1,4.26c0,.42.94,1.2,1.55,1.31.43.07,1.47-.75,1.44-1.1a41,41,0,0,0-.93-4.59Z"/><path d="M160.94,53.18l-.88.77c.92,1.39,1.78,2.83,2.83,4.12.15.19,1.36-.17,1.78-.59s.43-1.44.18-1.64C163.63,54.85,162.26,54.05,160.94,53.18Z"/><path d="M150,55.76c-.23.2.06,1.47.46,1.82a1.91,1.91,0,0,0,1.84,0A31.63,31.63,0,0,0,154.66,54l-.81-.89A41.07,41.07,0,0,0,150,55.76Z"/><path d="M43.09,51.46c2.07.42,3.64.83,5.22,1,.35,0,1.09-.77,1.12-1.21s-.42-1.68-.74-1.71C46.85,49.37,44.92,49.23,43.09,51.46Z"/><path d="M42.36,46.93c-.1.15.49.74,1.06,1.56l3.72-3.83-2-1.59C44.22,44.34,43.23,45.6,42.36,46.93Z"/><path d="M35.07,50.4a33.77,33.77,0,0,0-4.5-.89c-.33,0-1,1.1-1,1.72,0,.38.91,1.19,1.36,1.15a29.88,29.88,0,0,0,4-.86C35,51.14,35,50.77,35.07,50.4Z"/><path d="M38.69,55.22a26.66,26.66,0,0,0-.95,4.26c0,.42.94,1.2,1.54,1.3.43.08,1.48-.75,1.44-1.09a38.48,38.48,0,0,0-.93-4.59Z"/><path d="M40.7,42c0-.45-1-1.32-1.33-1.23-.61.15-1.55.89-1.53,1.36a34.59,34.59,0,0,0,.83,4.9C40.87,45.52,40.73,43.71,40.7,42Z"/><path d="M35.69,48.25l.87-1a32.8,32.8,0,0,0-2.41-3.57,1.83,1.83,0,0,0-1.81,0c-.41.33-.75,1.58-.54,1.76A45,45,0,0,0,35.69,48.25Z"/><path d="M42.87,53.62l-.89.76c.92,1.39,1.78,2.84,2.83,4.13.16.19,1.36-.18,1.78-.59s.44-1.44.19-1.65A47.07,47.07,0,0,0,42.87,53.62Z"/><path d="M31.92,56.2c-.23.19,0,1.46.46,1.81a1.84,1.84,0,0,0,1.83,0,30.23,30.23,0,0,0,2.37-3.6l-.8-.9A38.7,38.7,0,0,0,31.92,56.2Z"/></g></g></svg>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label class="p-filtre mb-lg" for="chevrolet">VUS</label>
+                        <input class="checkbox-container" type="checkbox" id="chevrolet" name="marca" value="Chevrolet">
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg"width="60" height="60"
+                        viewBox="0 0 237.24 77.93" fill="#999999" ><title>资源 2</title><g id="图层_2" data-name="图层 2"><g id="图层_1-2" data-name="图层 1"><path d="M232.33,46.93H215.22l-.09,1.72H237c1.7,11.56-6,23.33-31.2,19.79,2.36-9.16,1.54-17.72-5.7-24.65-5-4.8-11.08-6.4-17.89-6-13.43.82-20.9,12.92-18.65,30.76h-99c3.06-11.42.86-21.14-9.44-27.56-8.1-5-16.6-4.72-24.4.84C21.58,48.4,19.89,57.62,22.63,68,10.11,70.45-1.6,56.76.18,41.6L11,40.85l.05-1.57L2.53,38.06a67.28,67.28,0,0,1,.52-7.63c.55-3.12,2.32-4.9,5.91-4.69,4.14.25,8.32.11,12.48,0,1.72,0,3.43-.34,5.14-.53V23.55H6.17c.76-3.15.81-5.4,1.81-7.1C13.67,6.75,21.38,0,33.43,0c26,0,52-.12,77.93.05,20.49.12,37.94,8.59,54.15,20.33A15,15,0,0,0,172.07,23c13.15,1.8,26.42,2.87,39.46,5.26,5.33,1,10.4,4.25,15.16,7.18C230.27,37.61,232.38,41.33,232.33,46.93Zm-194-35C41.71,18.2,46.5,21.72,53,22.5a5.44,5.44,0,0,0,4.29-2.42c1.78-3.35,2.72-7.14,4.43-10.54.74-1.49,2.51-2.45,3.82-3.65l1.2,1c-1,5.14-2.09,10.28-3.23,15.85H98.06c-1.2-5.73-2.31-11-3.41-16.22l1.61-.92c1.19,1.19,2.79,2.18,3.51,3.62,1.73,3.4,2.78,7.16,4.65,10.46.85,1.5,3,3.17,4.55,3.22,10.48.29,21,.23,31.45.11a52,52,0,0,0,7.46-1.16l.48-1.62c-1.79-1.75-3.35-3.89-5.42-5.2C131.78,8,119.76,3.5,106.35,3.49c-12.81,0-25.62-.31-38.42-.14C57.55,3.49,47.38,4.82,38.35,11.94ZM155.62,48.67V47.33H72v1.34Z"/><path d="M25.71,59.89a17.68,17.68,0,0,1,18.09-18,18,18,0,1,1-18.09,18ZM43.39,73.26A13.26,13.26,0,0,0,57,60.17,13.31,13.31,0,1,0,43.39,73.26Z"/><path d="M184.7,42a18,18,0,1,1-17.9,18.15A17.79,17.79,0,0,1,184.7,42Zm.08,31.25A13.32,13.32,0,1,0,171.49,60,13.12,13.12,0,0,0,184.78,73.23Z"/><path d="M188.62,59.06c1.66-.3,3.3-.69,5-.83.28,0,.93,1.09.88,1.62s-.85,1.38-1.24,1.34a35.29,35.29,0,0,1-4.47-1Z"/><path d="M193,53.5c-2.09,1.57-3.29,3.33-6.07,2.5a45.76,45.76,0,0,1,3.44-4.12C190.51,51.73,191.81,52.75,193,53.5Z"/><path d="M187.82,62.17a37.19,37.19,0,0,1,3.8,2.57,1.89,1.89,0,0,1,.08,1.86c-.33.44-1.63.81-1.79.62-1.1-1.34-2-2.83-3-4.27Z"/><path d="M178.39,50.92l3.48,5.21-.92.93a32.31,32.31,0,0,1-4-3C176.74,53.83,177.66,52.46,178.39,50.92Z"/><path d="M180.16,60.24a38.42,38.42,0,0,1-4.59.82c-.34,0-1-1-1.06-1.54,0-.4.65-1.31,1-1.29,1.56.1,3.1.44,4.65.69Z"/><path d="M178.41,68.08c-.7-1.23-1.68-2.52-1.5-2.7a45.14,45.14,0,0,1,4.44-3.64C181.73,64.86,180,66,178.41,68.08Z"/><path d="M182.41,51.18c.92-.72,1.55-1.22,2.18-1.73.43.65,1.27,1.36,1.18,1.93a21,21,0,0,1-1.3,3.87C183.86,54,183.24,52.81,182.41,51.18Z"/><path d="M185.09,63.53c.37,2,.7,3.44.81,4.87,0,.35-.65,1-1.05,1.07s-1.63-.3-1.65-.55C183,67.2,182.72,65.35,185.09,63.53Z"/><path d="M46.63,60.57c1.83-2.22,3.75-2.09,5.59-1.91.32,0,.77,1.12.74,1.7s-.76,1.25-1.11,1.21A53,53,0,0,1,46.63,60.57Z"/><path d="M47,57.61c-.58-.83-1.16-1.42-1.07-1.56.87-1.34,1.86-2.59,2.82-3.87l2,1.6C49.53,55,48.39,56.12,47,57.61Z"/><path d="M38.44,60.63a28.11,28.11,0,0,1-4,.86c-.45,0-1.37-.76-1.35-1.14,0-.62.69-1.75,1-1.73a35.24,35.24,0,0,1,4.51.89C38.55,59.89,38.5,60.26,38.44,60.63Z"/><path d="M43.33,64.21a43.07,43.07,0,0,1,.93,4.6c0,.34-1,1.16-1.44,1.09-.61-.11-1.59-.89-1.55-1.31a28.9,28.9,0,0,1,.95-4.25Z"/><path d="M42.2,56.18a35.72,35.72,0,0,1-.83-4.89c0-.47.92-1.21,1.54-1.37.34-.08,1.31.79,1.32,1.24C44.27,52.82,44.4,54.64,42.2,56.18Z"/><path d="M39.22,57.36a42.73,42.73,0,0,1-3.88-2.78c-.21-.18.12-1.43.54-1.77a1.88,1.88,0,0,1,1.81,0,32.26,32.26,0,0,1,2.4,3.57Z"/><path d="M46.4,62.73c1.32.87,2.69,1.67,3.91,2.66.25.2.14,1.33-.19,1.64s-1.62.78-1.78.59c-1-1.29-1.9-2.73-2.82-4.12Z"/><path d="M40.12,63.56a31.63,31.63,0,0,1-2.37,3.61,1.89,1.89,0,0,1-1.84,0c-.41-.35-.69-1.62-.46-1.81a38.18,38.18,0,0,1,3.86-2.65Z"/></g></g></svg>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+
         <div class="grid-catalogue">
-            <div> 
-                <form>
-                    <label for="rechercher"></label>
-                    <input type="text" id="rechercher" name="rechercher">
-                    <button class="btn-primaire" type="submit">Rechercher</button>
-                </form>
+            <div class="item-catalogue">
+                <div class="car-image">
+                    <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" alt="Audi A5">
+                </div>
+                <div class="car-info">
+                    <div class="car-detail">
+                        <h2>2022 Audi A5</h2>
+                        <p class="mt-xs">Km : 10,000</p>
+                        <p class="mt-xs">Transmission : Automatic</p>
+                        <p class="mt-xs">Fuel: Gas</p>
+                    </div>
+                    <div class="car-prix">
+                        <p class="p_text_prix mr-sm mb-sm">49 999$</p>
+                        <button class="btn btn-primaire mt-xs mr-sm " type="submit">Plus d‘info</button>
+                    </div>
+                </div>
             </div>
-        <div class="item-catalogue">
+            <div class="item-catalogue">
+                <div class="car-image">
+                    <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" alt="Audi A5">
+                </div>
+                <div class="car-info">
+                    <div class="car-detail">
+                        <h2>Audi A5</h2>
+                        <p class="mt-xs">Km : 10,000</p>
+                        <p class="mt-xs">Transmission : Automatic</p>
+                        <p class="mt-xs">Fuel: Gas</p>
+                    </div>
+                    <div class="car-prix">
+                        <p class="p_text_prix mr-sm mb-sm">49 999$</p>
+                        <button class="btn btn-primaire mt-xs mr-sm " type="submit">Plus d‘info</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item-catalogue">
             <div class="car-image">
-                <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" width="252" alt="Audi A5">
+                <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" alt="Audi A5">
             </div>
             <div class="car-info">
                 <div class="car-detail">
                     <h2>Audi A5</h2>
-                    <p>Km : 10,000</p>
-                    <p>Transmission : Automatic</p>
-                    <p>Fuel: Gas</p>
+                    <p class="mt-xs">Km : 10,000</p>
+                    <p class="mt-xs">Transmission : Automatic</p>
+                    <p class="mt-xs">Fuel: Gas</p>
                 </div>
                 <div class="car-prix">
-                    <h2>50.000,00</h2>
-                    <button class="btn-primaire" type="submit">Plus</button>
-                </div>
-            </div>
-        </div>
-        <div class="item-catalogue">
-            <div class="car-image">
-                <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" width="252" alt="Audi A5">
-            </div>
-            <div class="car-info">
-                <div class="car-detail">
-                    <h2>Audi A5</h2>
-                    <p>Km : 10,000</p>
-                    <p>Transmission : Automatic</p>
-                    <p>Fuel: Gas</p>
-                </div>
-                <div class="car-prix">
-                    <h2>50.000,00</h2>
-                    <button class="btn-primaire" type="submit">Plus</button>
-                </div>
-            </div>
-        </div>
-        <div class="item-catalogue">
-            <div class="car-image">
-                <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" width="252" alt="Audi A5">
-            </div>
-            <div class="car-info">
-                <div class="car-detail">
-                    <h2>Audi A5</h2>
-                    <p>Km : 10,000</p>
-                    <p>Transmission : Automatic</p>
-                    <p>Fuel: Gas</p>
-                </div>
-                <div class="car-prix">
-                    <h2>50.000,00</h2>
-                    <button class="btn-primaire" type="submit">Plus</button>
+                    <p class="p_text_prix mr-sm mb-sm">49 999$</p>
+                    <button class="btn btn-primaire mt-xs mr-sm " type="submit">Plus d‘info</button>
                 </div>
             </div>
         </div>
     </div>
+
+        
 </main>
 @endsection
