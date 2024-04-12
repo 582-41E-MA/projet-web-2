@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class VilleResource extends JsonResource
+class TransmissionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,8 +20,8 @@ class VilleResource extends JsonResource
         return [
             'id' => $this->id,
             'nom' => isset($this->nom[app()->getLocale()])? $this->nom[app()->getLocale()] : $this->nom['en'],
-            'provence_id' => $this->provence_id,
             'updated_at' => $timeUpdated,
         ];    
     }
 }
+

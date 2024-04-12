@@ -1,11 +1,11 @@
 .btn {
     font-family: "Palanquin";
     font-size: var(--texte-sm);
-    font-weight: 700;
     pointer-events: auto;
     cursor: pointer;
     border-radius: 0.3rem;
     padding: var(--espace-quart) var(--espace-3quarts);
+    line-height: 180%;
 }
 
 .btn-primaire {
@@ -13,6 +13,7 @@
     background-color: var(--coul-primaire);
     border: 1px solid var(--coul-primaire);
     color: var(--coul-texte-claire);
+    font-weight: 400;
 }
 
 .btn-primaire:hover {

@@ -9,7 +9,6 @@
 @import url(/assets/css/4-elements/header.css);
 @import url(/assets/css/4-elements/nav.css);
 
-/* 5 - OBJECTS */
 @import url(/assets/css/5-objects/header.css);
 @import url(/assets/css/5-objects/button.css);
 @import url(/assets/css/5-objects/spacing.css);
@@ -18,3 +17,6 @@
 @import url(/assets/css/5-objects/label.css);
 @import url(/assets/css/5-objects/input.css);
 @import url(/assets/css/5-objects/message.css);
+
+/* 5 - PAGES */
+@import url(/assets/css/6-pages/page-voiture.css);
