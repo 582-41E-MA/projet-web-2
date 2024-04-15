@@ -33,6 +33,8 @@
     "Pickup": "Camionnette",
     "Convertible": "Cabriolet",
     "Minivan": "Monospace",
-    "Crossover": "Crossover"
+    "Crossover": "Crossover",
+    "Year": "Année"
+
 
 }
