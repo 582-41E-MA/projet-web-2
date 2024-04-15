@@ -1,7 +1,16 @@
 @extends('layouts.app')
 @section('title', __('Car parameters'))
+@section('styles')
+    <!-- Lien Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+@endsection
 @section('content')
 <main class="wrapper">
+    <p class="message">
+      @if(session('success'))
+         {{session('success')}}
+      @endif
+    </p>
     <div class="div-parametres">
         <div class="div-marque pl-lg pr-lg">
             <div class="div-titre">
@@ -9,25 +18,31 @@
             </div>
             <div class="div-input pt-md pb-xs">
                 <input type="text" name="" class="input" id="date_arrive">
+                <a href="{{ route('marque.create') }}">Ajout</a>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
                     @foreach ($marques as $marque)
-                        <div class="div-li pt-xs pb-xs">
+                        <div class="div-li pt-xs pb-xs"> 
                             <li>{{ $marque->nom}}</li>
-                            <div>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M14.6283 6.43471C14.9067 6.15637 15.2842 6 15.6779 6C16.0716 6 16.4492 6.15637 16.7276 6.43471L18.5649 8.27207C18.7029 8.40995 18.8123 8.57365 18.8869 8.75383C18.9616 8.934 19 9.12712 19 9.32215C19 9.51718 18.9616 9.7103 18.8869 9.89047C18.8123 10.0706 18.7029 10.2344 18.5649 10.3722L9.73618 19.2012L5 20L5.79951 15.2637L14.6283 6.43471ZM14.4583 8.70413L16.2956 10.5415L17.5152 9.32178L15.6779 7.48516L14.4583 8.70413ZM15.2451 11.5919L13.4086 9.75458L7.18473 15.9786L6.81133 18.1886L9.0213 17.816L15.2451 11.5919Z" fill="black"/>
-                                </svg>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M6 7.78271L18 17.9105M18 7.78271L6 17.9105" stroke="#3D3D3D" stroke-width="3"/>
-                                </svg>
+                            <div class="div-form">
+                                <a href="{{ route('marque.edit', $marque->id) }}">
+                                    <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
+                                </a>
+                                <form action="{{ route('marque.delete', $marque->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit">
+                                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </ul>
+            </div>
+            <div class="div-pagination pt-xs pb-xs">
+                {{ $marques->links() }}
             </div>
         </div>
         <div class="div-modele pl-lg pr-lg">
@@ -36,25 +51,31 @@
             </div>
             <div class="div-input pt-md pb-xs">
                 <input type="text" name="" class="input" id="date_arrive">
+                <a href="{{ route('modele.create') }}">Ajout</a>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
                     @foreach ($modeles as $modele)
                         <div class="div-li pt-xs pb-xs">
-                            <li>{{ $modele->nom}}</li>
-                            <div>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M14.6283 6.43471C14.9067 6.15637 15.2842 6 15.6779 6C16.0716 6 16.4492 6.15637 16.7276 6.43471L18.5649 8.27207C18.7029 8.40995 18.8123 8.57365 18.8869 8.75383C18.9616 8.934 19 9.12712 19 9.32215C19 9.51718 18.9616 9.7103 18.8869 9.89047C18.8123 10.0706 18.7029 10.2344 18.5649 10.3722L9.73618 19.2012L5 20L5.79951 15.2637L14.6283 6.43471ZM14.4583 8.70413L16.2956 10.5415L17.5152 9.32178L15.6779 7.48516L14.4583 8.70413ZM15.2451 11.5919L13.4086 9.75458L7.18473 15.9786L6.81133 18.1886L9.0213 17.816L15.2451 11.5919Z" fill="black"/>
-                                </svg>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M6 7.78271L18 17.9105M18 7.78271L6 17.9105" stroke="#3D3D3D" stroke-width="3"/>
-                                </svg>
+                            <li>{{ $modele->marque->nom }} - {{ $modele->nom}}</li>
+                            <div class="div-form">
+                                <a href="{{ route('modele.edit', $modele->id) }}">
+                                    <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
+                                </a>
+                                <form action="{{ route('modele.delete', $modele->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button>
+                                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </ul>
+            </div>
+            <div class="div-pagination pt-xs pb-xs">
+                {{ $modeles->onEachSide(3)->links() }}
             </div>
         </div>
         <div class="div-carrosserie pl-lg pr-lg">
@@ -63,6 +84,7 @@
             </div>
             <div class="div-input pt-md pb-xs">
                 <input type="text" name="" class="input" id="date_arrive">
+                <a href="{{ route('carrosserie.create') }}">Ajout</a>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -73,19 +95,24 @@
                     @endphp
                         <div class="div-li pt-xs pb-xs">
                             <li>{{ $carrosserie->nom}}</li>
-                            <div>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M14.6283 6.43471C14.9067 6.15637 15.2842 6 15.6779 6C16.0716 6 16.4492 6.15637 16.7276 6.43471L18.5649 8.27207C18.7029 8.40995 18.8123 8.57365 18.8869 8.75383C18.9616 8.934 19 9.12712 19 9.32215C19 9.51718 18.9616 9.7103 18.8869 9.89047C18.8123 10.0706 18.7029 10.2344 18.5649 10.3722L9.73618 19.2012L5 20L5.79951 15.2637L14.6283 6.43471ZM14.4583 8.70413L16.2956 10.5415L17.5152 9.32178L15.6779 7.48516L14.4583 8.70413ZM15.2451 11.5919L13.4086 9.75458L7.18473 15.9786L6.81133 18.1886L9.0213 17.816L15.2451 11.5919Z" fill="black"/>
-                                </svg>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M6 7.78271L18 17.9105M18 7.78271L6 17.9105" stroke="#3D3D3D" stroke-width="3"/>
-                                </svg>
+                            <div class="div-form">
+                                <a href="{{ route('carrosserie.edit', $carrosserie->id) }}">
+                                    <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
+                                </a>
+                                <form action="{{ route('carrosserie.delete', $carrosserie->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button>
+                                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </ul>
+            </div>
+            <div class="div-pagination pt-xs pb-xs">
+                {{ $carrosseries->onEachSide(3)->links() }}
             </div>
         </div>
         <div class="div-transmission pl-lg pr-lg">
@@ -94,6 +121,7 @@
             </div>
             <div class="div-input pt-md pb-xs">
                 <input type="text" name="" class="input" id="date_arrive">
+                <a href="{{ route('transmission.create') }}">Ajout</a>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -104,19 +132,24 @@
                     @endphp
                         <div class="div-li pt-xs pb-xs">
                             <li>{{ $transmission->nom}}</li>
-                            <div>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M14.6283 6.43471C14.9067 6.15637 15.2842 6 15.6779 6C16.0716 6 16.4492 6.15637 16.7276 6.43471L18.5649 8.27207C18.7029 8.40995 18.8123 8.57365 18.8869 8.75383C18.9616 8.934 19 9.12712 19 9.32215C19 9.51718 18.9616 9.7103 18.8869 9.89047C18.8123 10.0706 18.7029 10.2344 18.5649 10.3722L9.73618 19.2012L5 20L5.79951 15.2637L14.6283 6.43471ZM14.4583 8.70413L16.2956 10.5415L17.5152 9.32178L15.6779 7.48516L14.4583 8.70413ZM15.2451 11.5919L13.4086 9.75458L7.18473 15.9786L6.81133 18.1886L9.0213 17.816L15.2451 11.5919Z" fill="black"/>
-                                </svg>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M6 7.78271L18 17.9105M18 7.78271L6 17.9105" stroke="#3D3D3D" stroke-width="3"/>
-                                </svg>
+                            <div class="div-form">
+                                <a href="{{ route('transmission.edit', $transmission->id) }}">
+                                    <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
+                                </a>
+                                <form action="{{ route('transmission.delete', $transmission->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit">
+                                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </ul>
+            </div>
+            <div class="div-pagination pt-xs pb-xs">
+                {{ $transmissions->links() }}
             </div>
         </div>
         <div class="div-traction pl-lg pr-lg">
@@ -125,6 +158,7 @@
             </div>
             <div class="div-input pt-md pb-xs">
                 <input type="text" name="" class="input" id="date_arrive">
+                <a href="{{ route('traction.create') }}">Ajout</a>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -135,19 +169,24 @@
                     @endphp
                         <div class="div-li pt-xs pb-xs">
                             <li>{{ $traction->nom}}</li>
-                            <div>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M14.6283 6.43471C14.9067 6.15637 15.2842 6 15.6779 6C16.0716 6 16.4492 6.15637 16.7276 6.43471L18.5649 8.27207C18.7029 8.40995 18.8123 8.57365 18.8869 8.75383C18.9616 8.934 19 9.12712 19 9.32215C19 9.51718 18.9616 9.7103 18.8869 9.89047C18.8123 10.0706 18.7029 10.2344 18.5649 10.3722L9.73618 19.2012L5 20L5.79951 15.2637L14.6283 6.43471ZM14.4583 8.70413L16.2956 10.5415L17.5152 9.32178L15.6779 7.48516L14.4583 8.70413ZM15.2451 11.5919L13.4086 9.75458L7.18473 15.9786L6.81133 18.1886L9.0213 17.816L15.2451 11.5919Z" fill="black"/>
-                                </svg>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M6 7.78271L18 17.9105M18 7.78271L6 17.9105" stroke="#3D3D3D" stroke-width="3"/>
-                                </svg>
+                            <div class="div-form">
+                                <a href="{{ route('traction.edit', $traction->id) }}">
+                                    <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
+                                </a>
+                                <form action="{{ route('traction.delete', $traction->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit">
+                                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </ul>
+            </div>
+            <div class="div-pagination pt-xs pb-xs">
+                {{ $tractions->links() }}
             </div>
         </div>
         <div class="div-carburant pl-lg pr-lg">
@@ -156,6 +195,7 @@
             </div>
             <div class="div-input pt-md pb-xs">
                 <input type="text" name="" class="input" id="date_arrive">
+                <a href="{{ route('carburant.create') }}">Ajout</a>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -166,19 +206,24 @@
                     @endphp
                         <div class="div-li pt-xs pb-xs">
                             <li>{{ $carburant->nom}}</li>
-                            <div>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M14.6283 6.43471C14.9067 6.15637 15.2842 6 15.6779 6C16.0716 6 16.4492 6.15637 16.7276 6.43471L18.5649 8.27207C18.7029 8.40995 18.8123 8.57365 18.8869 8.75383C18.9616 8.934 19 9.12712 19 9.32215C19 9.51718 18.9616 9.7103 18.8869 9.89047C18.8123 10.0706 18.7029 10.2344 18.5649 10.3722L9.73618 19.2012L5 20L5.79951 15.2637L14.6283 6.43471ZM14.4583 8.70413L16.2956 10.5415L17.5152 9.32178L15.6779 7.48516L14.4583 8.70413ZM15.2451 11.5919L13.4086 9.75458L7.18473 15.9786L6.81133 18.1886L9.0213 17.816L15.2451 11.5919Z" fill="black"/>
-                                </svg>
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="25" height="25" rx="5" fill="#D9D9D9"/>
-                                <path d="M6 7.78271L18 17.9105M18 7.78271L6 17.9105" stroke="#3D3D3D" stroke-width="3"/>
-                                </svg>
+                            <div class="div-form">
+                                <a href="{{ route('carburant.edit', $carburant->id) }}">
+                                    <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
+                                </a>
+                                <form action="{{ route('carburant.delete', $carburant->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit">
+                                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </ul>
+            </div>
+            <div class="div-pagination pt-xs pb-xs">
+                {{ $carburants->links() }}
             </div>
         </div>
     </div>

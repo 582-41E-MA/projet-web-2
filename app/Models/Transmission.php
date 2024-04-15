@@ -9,6 +9,8 @@ class Transmission extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id', 'nom'];
+    
     protected $casts = [
         'nom' => 'array',
     ];

@@ -6,7 +6,7 @@ export default class Marque {
         this._elChampSelect = this._el.querySelector('[data-js-select]');
         this._elChampSelectionne = this._elChampSelect.options[this._elChampSelect.selectedIndex];
         this._elChampSelectionneIndex = this._elChampSelectionne.dataset.jsMarque;
-        
+
         // Si le formulaire contient des erreurs, il conservera les champs précédemment sélectionnés
         if (this._elChampSelectionneIndex != undefined) this.afficheModeles(this._elChampSelectionneIndex);
         
@@ -19,8 +19,6 @@ export default class Marque {
      */
     init() {
         this._elChampSelect.addEventListener('change', function() {
-            console.log('entrei no change do campo select');
-
             let elMarque = this._elChampSelect.options[this._elChampSelect.selectedIndex];
             let elMarqueId = elMarque.dataset.jsMarque;
 
@@ -35,13 +33,21 @@ export default class Marque {
      * Afficher les modèles que la marque sélectionnée possède
      */
     afficheModeles(id) {
-        fetch(`../requetes/requeteFetch.php?marqueId=${id}`)
+
+        let oOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({marqueId: id, action: 'affichageModeles'})
+        }
+
+        fetch('/requetes/requeteFetch.php', oOptions)
             .then(function(response) {
                 if (response.ok) return response.json();
                 else throw new Error('La réponse n\'est pas OK');
             })
             .then(function(data) {
-                console.log(data);
                 let elModeles = document.querySelector('[data-js-modeles]');
                 elModeles.innerHTML = '';
                 
@@ -49,11 +55,10 @@ export default class Marque {
 
                 let oldModeleId = elModeles.dataset.oldModeleId;
 
-                data.forEach(function(modele) {
+                for (let i = 0, l = data.length; i < l; i++) {
+                    let modele = data[i];
                     dom += `<option value="${modele.id}" ${oldModeleId == modele.id ? 'selected' : ''}>${modele.nom}</option>`;
-                });
-
-                //dom += `</select>`;
+                }
 
                 elModeles.innerHTML = dom;
             })
