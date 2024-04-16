@@ -2,17 +2,16 @@
 @section('title', trans('Accueil'))
 @section('content')
 <script>
-    var currentLocale = "<?php echo app()->getLocale(); ?>";
-    console.log(currentLocale); // Imprime el valor de currentLocale en la consola del navegador
+    var currentLocale = "<?php app()->getLocale(); ?>";
 </script>
    
 <main>
 <div class="form_recherche" data-js-component="Recherche"> 
-        <form class="form_filtre">
+        
             <label for="rechercher"></label>
             <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
             <button class="btn btn-quatrieme mr-sm" type="submit">Rechercher</button>
-        </form>
+        
     </div>
     <div class="container_accueil mt-sm mr-sm ml-sm">
 

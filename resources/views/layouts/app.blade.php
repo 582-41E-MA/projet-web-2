@@ -23,7 +23,7 @@
     @else
         @php $privilege = 1 @endphp
     @endif
-    {{ $locale }}
+    
     <header>
         <div class="div-header">
             <div class="line-1"></div>

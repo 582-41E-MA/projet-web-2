@@ -25,7 +25,6 @@ class VoitureController extends Controller
         $transmissions = Transmission::transmissions();
         $tractions = Traction::tractions();
         $carburants = Carburant::carburants();
-        print_r($transmissions);
         return view ('voiture.index', compact('voitures','marques', 'transmissions', 'tractions', 'carburants'));
     }
 

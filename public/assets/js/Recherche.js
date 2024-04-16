@@ -9,15 +9,13 @@ export default class Recherche {
         this._elVoitures = document.querySelector('[data-js-catalogue]');
 
         
-        console.log("Current Locale:", currentLocale);
-        
         this.init();
     }
     init() {
         
         this._elRecherche.addEventListener('change', function(){
+
             let recherche = this._elRecherche.value;
-            console.log(recherche)
             this.rechercheVoiture(recherche);
 
         }.bind(this));
@@ -70,12 +68,14 @@ export default class Recherche {
     
                             carImage.src = `assets/img/voitures/${voitureData.photo_nom}`;
                             carDetail.querySelector('h2').textContent = `${voitureData.marque_nom} ${voitureData.modele_nom}`;
-                            // carDetail.querySelectorAll('p')[1].textContent += ` ${voitureData.transmission_nom}`;
 
-                            carDetail.querySelectorAll('p')[1].textContent += ` ${voitureData.transmission_nom[currentLocale] ?? voitureData.transmission_nom['en']}`;
+                            let transmissionData = JSON.parse(voitureData.transmission_nom);
+                            carDetail.querySelectorAll('p')[1].textContent += `${currentLocale !== 'en' ? transmissionData.fr : transmissionData.en}`;
 
-                            console.log('voitureData.transmission_nom:', voitureData.transmission_nom);
-                            carDetail.querySelectorAll('p')[2].textContent += ` ${voitureData.carburant_nom}`;carPrix.textContent = voitureData.prix_vente;
+                            let carburantData = JSON.parse(voitureData.carburant_nom);
+                            carDetail.querySelectorAll('p')[2].textContent += `${currentLocale !== 'en' ? carburantData.fr : carburantData.en}`;
+                            
+                            carPrix.textContent = voitureData.prix_vente;
     
                             this._elVoitures.appendChild(voitureTemplate);
                         }
