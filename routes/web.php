@@ -3,24 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 use App\Http\Controllers\VoitureController;
-=======
->>>>>>> a3199dd (Rebaser inscription au header)
-=======
-use App\Http\Controllers\VoitureController;
->>>>>>> 5d7d181 (Ajouter connexion)
+
+
 use App\Http\Controllers\SetLocaleController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2083fe1 (Ajouter traduction)
 Route::get('/registration', [UserController::class, 'create'])->name('user.create');
 Route::post('/registration', [UserController::class, 'store'])->name('user.store');
 
