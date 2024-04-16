@@ -23,5 +23,16 @@
     "About us" : "À propos",
     "User:" : "Utilisateur :",
     "Sales Policies" : "Politiques de vente",
-    "You're registered successfully" : "Vous êtes inscrit avec succès"
+    "You're registered successfully" : "Vous êtes inscrit avec succès",
+    "Add to cart": "Ajouter au panier",
+    "Contact us": "Contactez nous",
+    "Year:": "Année :",
+    "Make:": "Marque :",
+    "Model:": "Modèle :",
+    "Feul:": "Carburant :",
+    "Bodywork:": "Carrosserie :",
+    "Transmission:": "Transmission :",
+    "Traction:": "Traction :",
+    "Check Out": "Commander",
+    "Reserve": "Réserver"
 }

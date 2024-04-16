@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\SetLocaleController;
 
 Route::get('/', function () {
@@ -17,9 +18,11 @@ Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
-
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
+Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
+Route::get('/panier/{panier}', [PanierController::class, 'show'])->name('panier.show');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
+
 
