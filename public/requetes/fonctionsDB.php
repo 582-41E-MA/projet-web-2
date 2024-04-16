@@ -59,15 +59,28 @@
 	 */
     function rechercheVoitures($propriete) {
 		
-		return executeRequete("SELECT * 
-        FROM voitures 
-        WHERE CONCAT(
-            (SELECT nom FROM marques WHERE id = voitures.marque_id), 
-            ' ', 
-            (SELECT nom FROM modeles WHERE id = voitures.modele_id), 
-            ' ', 
-            (SELECT annee FROM annees WHERE id = voitures.annee_id)
-        ) LIKE '%$propriete%'");    
+		return executeRequete("SELECT voitures.id,
+                                voitures.prix_vente,
+                                marques.nom AS marque_nom,
+                                modeles.nom AS modele_nom,
+                                annees.annee AS annee_valor,
+                                carburants.nom AS carburant_nom,
+                                transmissions.nom AS transmission_nom,
+                                photos.nom AS photo_nom
+                                FROM voitures 
+                                JOIN marques ON voitures.marque_id = marques.id
+                                JOIN modeles ON voitures.modele_id = modeles.id
+                                JOIN annees ON voitures.annee_id = annees.id
+                                JOIN carburants ON voitures.carburant_id = carburants.id
+                                JOIN transmissions ON voitures.transmission_id = transmissions.id
+                                LEFT JOIN photos ON voitures.id = photos.voiture_id
+                                WHERE CONCAT(
+                                marques.nom, 
+                                ' ', 
+                                modeles.nom, 
+                                ' ', 
+                                annees.annee
+                            ) LIKE  '%$propriete%'");    
         
 	}
 

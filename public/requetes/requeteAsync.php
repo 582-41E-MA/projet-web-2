@@ -1,7 +1,5 @@
 <?php
     require_once('fonctionsDB.php');
-    //require_once('../model/Enchere.php');
-    //RequirePage::model('Enchere');
 
     $request_payload = file_get_contents('php://input');
     $data = json_decode($request_payload, true);
@@ -11,16 +9,16 @@
         // Switch en fonction de l'action envoyée
         switch ($data['action']) {
 
-            case 'rechercheEncheres':
+            case 'rechercheVoitures':
                 if (isset($data['recherche'])) {
-                    $encheres = rechercheEncheres($data['recherche']); 
+                    $voitures = rechercheVoitures($data['recherche']); 
                 
                     $data = [];
                 
-                    if (mysqli_num_rows($encheres) > 0) {
+                    if (mysqli_num_rows($voitures) > 0) {
                         // Récupérer la ligne suivante d'un ensemble de résultats sous forme de tableau associatif
-                        while ($enchere = mysqli_fetch_assoc($encheres)) { 
-                            $data[] = $enchere;
+                        while ($voiture = mysqli_fetch_assoc($voitures)) { 
+                            $data[] = $voiture;
                         }
                     }
                 
@@ -30,7 +28,6 @@
                 
             break;
 
-            
         }
 
         } else {

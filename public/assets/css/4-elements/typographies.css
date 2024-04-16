@@ -82,3 +82,11 @@ p {
     font-family: "Roboto Slab";
     font-size: 2.5rem;
 }
+
+.p_titre_filtre{
+    color: var(--coul-primaire);
+    font-family: "Roboto Slab";
+    font-size: 1rem;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
