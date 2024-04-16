@@ -35,7 +35,7 @@
 }
 
 .car-image {
-    flex-basis: 25%;
+    flex-basis: 35%;
     border: 5px solid var(--coul-primaire);
     margin-right: var(--espace-1);
     align-content: center; 
@@ -50,7 +50,7 @@ img{
 .car-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    flex-basis: 75%;
+    flex-basis: 65%;
     text-align:justify;
     align-content: center; 
     

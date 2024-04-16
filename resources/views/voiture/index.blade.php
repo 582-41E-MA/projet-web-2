@@ -3,10 +3,10 @@
 @section('content')
    
 <main class="wrapper">
-<div class="form_recherche"> 
+<div class="form_recherche" data-js-component="Recherche"> 
         <form class="form_filtre">
             <label for="rechercher"></label>
-            <input class="input_recherche" type="text" id="rechercher" name="rechercher">
+            <input class="input_recherche" type="text" id="recherche" name="rechercher">
             <button class="btn btn-quatrieme mr-sm" type="submit">Rechercher</button>
         </form>
     </div>
@@ -14,51 +14,17 @@
 
     <!-- Filtres -->
 
-        <div class="filtres-catalogue">
+        <form class="filtres-catalogue">
 
             <!-- Make -->
 
             <h3 class="p_titre_filtre mb-sm">@lang('Make')</h3>
+            @foreach($marques as $marque)
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="chevrolet" name="marca" value="Chevrolet">
-                <label class="p-filtre mb-lg" for="chevrolet">Chevrolet</label>
+                <input class="checkbox" type="checkbox" id="{{ $marque->nom }}" name="nom" value="{{ $marque->nom }}">
+                <label class="p-filtre mb-lg" for="{{ $marque->nom }}">{{ $marque->nom }}</label>
             </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="ford" name="ford" value="Ford">
-                <label class="p-filtre" for="ford">Ford</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="gmc" name="gmc" value="GMC">
-                <label class="p-filtre" for="gmc">GMC</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="honda" name="honda" value="Honda">
-                <label class="p-filtre" for="honda">Honda</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="hyundai" name="hyundai" value="Hyundai">
-                <label class="p-filtre" for="hyundai">Hyundai</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="jeep" name="jeep" value="Jeep">
-                <label class="p-filtre" for="jeep">Jeep</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="nissan" name="nissan" value="Nissan">
-                <label class="p-filtre" for="nissan">Nissan</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="ram" name="ram" value="Ram">
-                <label class="p-filtre" for="ram">Ram</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="toyota" name="toyota" value="Toyota">
-                <label class="p-filtre" for="toyota">Toyota</label>
-            </div>
-            <div class="mb-xs">
-                <input type="checkbox" id="volkswagen" name="volkswagen" value="Volkswagen">
-                <label class="p-filtre" for="volkswagen">Volkswagen</label>
-            </div>
+            @endforeach
 
             <!-- Body Type -->
 
@@ -67,7 +33,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="sedan">@lang('Sedan')</label>
-                        <input class="checkbox-container" type="checkbox" id="sedan" name="sedan" value="Sedan">
+                        <input class="checkbox-container" type="checkbox" id="sedan" name="nom" value="Sedan">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -82,7 +48,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="coupe">@lang('Coupe')</label>
-                        <input class="checkbox-container" type="checkbox" id="coupe" name="coupe" value="Coupe">
+                        <input class="checkbox-container" type="checkbox" id="coupe" name="nom" value="Coupe">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -94,7 +60,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="hatchback">@lang('Hatchback')</label>
-                        <input class="checkbox-container" type="checkbox" id="hatchback" name="hatchback" value="Hatchback">
+                        <input class="checkbox-container" type="checkbox" id="hatchback" name="nom" value="Hatchback">
                     </div>
                     <div>
                     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -105,7 +71,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="suv">@lang('SUV')</label>
-                        <input class="checkbox-container" type="checkbox" id="suv" name="suv" value="SUV">
+                        <input class="checkbox-container" type="checkbox" id="suv" name="nom" value="SUV">
                     </div>
                     <div>
                     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -117,7 +83,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="pickup">@lang('Pickup')</label>
-                        <input class="checkbox-container" type="checkbox" id="pickup" name="pickup" value="Pickup">
+                        <input class="checkbox-container" type="checkbox" id="pickup" name="nom" value="Pickup">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -129,7 +95,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="convertible">@lang('Convertible')</label>
-                        <input class="checkbox-container" type="checkbox" id="convertible" name="convertible" value="Convertible">
+                        <input class="checkbox-container" type="checkbox" id="convertible" name="nom" value="Convertible">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -141,7 +107,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="minivan">@lang('Minivan')</label>
-                        <input class="checkbox-container" type="checkbox" id="minivan" name="minivan" value="Minivan">
+                        <input class="checkbox-container" type="checkbox" id="minivan" name="nom" value="Minivan">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -153,7 +119,7 @@
                 <div>
                     <div>
                         <label class="p-filtre mb-lg" for="crossover">@lang('Crossover')</label>
-                        <input class="checkbox-container" type="checkbox" id="crossover" name="crossover" value="Crossover">
+                        <input class="checkbox-container" type="checkbox" id="crossover" name="nom" value="Crossover">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -168,68 +134,82 @@
 
             <h3 class="p_titre_filtre mb-sm mt-sm">@lang('Year')</h3>
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="1980" name="1980" value="1980">
+                <input class="checkbox-container" type="checkbox" id="1980" name="annee" value="1980">
                 <label class="p-filtre mb-lg" for="1980">Avant 1980</label>
             </div>
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="1981" name="1981" value="1981-1990">
+                <input class="checkbox-container" type="checkbox" id="1981" name="annee" value="1981-1990">
                 <label class="p-filtre mb-lg" for="1981">1981 - 1990</label>
             </div>
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="1991" name="1991" value="1991-2000">
+                <input class="checkbox-container" type="checkbox" id="1991" name="annee" value="1991-2000">
                 <label class="p-filtre mb-lg" for="1991">1991 - 2000</label>
             </div>
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="2001" name="2001" value="2001-2010">
+                <input class="checkbox-container" type="checkbox" id="2001" name="annee" value="2001-2010">
                 <label class="p-filtre mb-lg" for="2001">2001 - 2010</label>
             </div>
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="2011" name="2011" value="2011-2020">
+                <input class="checkbox-container" type="checkbox" id="2011" name="annee" value="2011-2020">
                 <label class="p-filtre mb-lg" for="2011">2011 - 2020</label>
             </div>
             <div class="mb-xs">
-                <input class="checkbox-container" type="checkbox" id="2021" name="2021" value="2021-2024">
+                <input class="checkbox-container" type="checkbox" id="2021" name="annee" value="2021-2024">
                 <label class="p-filtre mb-lg" for="2021">2021 - 2024</label>
             </div>
-        </div>
+
+            <label for="transmission_id" class="p_titre_filtre mb-xs mt-lg">Transmission</label>
+            <select name="transmission_id" id="transmission_id" >
+                <option value="">Select a transmission</option>
+                @foreach($transmissions as $transmission)
+                    <option value="{{ $transmission['id'] }}" @if ($transmission['id'] == old('transmission_id')) selected @endif>{{ $transmission['nom'] }}</option>
+                @endforeach
+            </select>
+
+            <label for="traction_id" class="p_titre_filtre mb-xs mt-lg">Traction</label>
+            <select name="traction_id" id="traction_id" >
+                <option value="">Select a traction</option>
+                @foreach($tractions as $traction)
+                    <option value="{{ $traction['id'] }}" @if ($traction['id'] == old('traction')) selected @endif>{{ $traction['nom'] }}</option>
+                @endforeach
+            </select>
+
+            <label for="carburant_id" class="p_titre_filtre mb-xs mt-lg">Carburant</label>
+            <select name="carburant_id" id="carburant_id" >
+                <option value="">Select a traction</option>
+                @foreach($carburants as $carburant)
+                    <option value="{{ $carburant['id'] }}" @if ($carburant['id'] == old('carburant')) selected @endif>{{ $carburant['nom'] }}</option>
+                @endforeach
+            </select>
+
+            <button class="mt-lg" type="submit">Enviar</button>
+        </form>
 
       <!-- Catalogue -->
 
+      @foreach($voitures as $voiture)
         <div class="grid-catalogue">
             <div class="item-catalogue">
                 <div class="car-image">
-                    <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" alt="Audi A5">
+                @foreach($voiture->photos as $foto)
+                    <img src="{{ asset('assets/img/voitures/'. $foto->nom) }}" alt="Audi A5">
+                @break
+                @endforeach  
                 </div>
                 <div class="car-info">
                     <div class="car-detail">
-                        <h2>2022 Audi A5</h2>
+                        <h2>{{ $voiture->marque->nom }} {{ $voiture->modele->nom }}</h2>
                         <p class="mt-xs">Km : 10,000</p>
-                        <p class="mt-xs">Transmission : Automatic</p>
-                        <p class="mt-xs">Fuel: Gas</p>
+                        <p class="mt-xs">Transmission : {{ $voiture->transmission->nom ? $voiture->transmission->nom[app()->getLocale()] ?? $voiture->nom['en'] : '' }}</p>
+                        <p class="mt-xs">Fuel: {{ $voiture->carburant->nom ? $voiture->carburant->nom[app()->getLocale()] ?? $voiture->carburant->nom['en'] : '' }} </p>
                     </div>
                     <div class="car-prix">
-                        <p class="p_text_prix mr-sm mb-sm">49 999$</p>
+                        <p class="p_text_prix mr-sm mb-sm">{{ $voiture->prix_vente }}</p>
                         <button class="btn btn-primaire mt-xs mr-sm " type="submit">Plus d‘info</button>
                     </div>
                 </div>
             </div>
-            <div class="item-catalogue">
-                <div class="car-image">
-                    <img src="{{ asset('assets/img/voitures/1712948100_2.jpg') }}" alt="Audi A5">
-                </div>
-                <div class="car-info">
-                    <div class="car-detail">
-                        <h2>Audi A5</h2>
-                        <p class="mt-xs">Km : 10,000</p>
-                        <p class="mt-xs">Transmission : Automatic</p>
-                        <p class="mt-xs">Fuel: Gas</p>
-                    </div>
-                    <div class="car-prix">
-                        <p class="p_text_prix mr-sm mb-sm">49 999$</p>
-                        <button class="btn btn-primaire mt-xs mr-sm " type="submit">Plus d‘info</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
             <div class="item-catalogue">
             <div class="car-image">
                 <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" alt="Audi A5">

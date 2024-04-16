@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Voiture;
+use App\Models\Marque;
+use App\Models\Modele;
+use App\Models\Transmission;
+use App\Models\Traction;
+use App\Models\Carburant;
+
 
 class VoitureController extends Controller
 {
@@ -11,7 +18,14 @@ class VoitureController extends Controller
      */
     public function index()
     {
-        return view ('voiture.index');
+
+        $voitures = Voiture::with('photos')->get();
+
+        $marques = Marque::all();
+        $transmissions = Transmission::transmissions();
+        $tractions = Traction::tractions();
+        $carburants = Carburant::carburants();
+        return view ('voiture.index', compact('voitures','marques', 'transmissions', 'tractions', 'carburants'));
     }
 
     /**
