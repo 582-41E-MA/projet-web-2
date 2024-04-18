@@ -22,6 +22,24 @@
     "Sign out" : "Déconnexion",
     "About us" : "À propos",
     "User:" : "Utilisateur :",
-    "Sales Policies" : "Politiques de vente",
-    "You're registered successfully" : "Vous êtes inscrit avec succès"
+    "Sales Policies" : "Politiques",
+    "You're registered successfully" : "Vous êtes inscrit avec succès",
+    "Make" : "Marques",
+    "Body Type" : "Type de Carrosserie",
+    "Sedan": "Berline",
+    "Coupe": "Coupé",
+    "Hatchback": "Compacte",
+    "SUV": "VUS",
+    "Pickup": "Camionnette",
+    "Convertible": "Cabriolet",
+    "Minivan": "Monospace",
+    "Crossover": "Crossover",
+    "Year": "Année",
+    "Model": "Modèle :",
+    "Fuel": "Carburant :",
+    "Transmission": "Transmission",
+    "Search": "Rechercher",
+    "Traction": "Traction"
+
+
 }

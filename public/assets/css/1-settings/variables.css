@@ -33,6 +33,8 @@
 
     --coul-fond-claire: #ffffff;
     --coul-fond-fonce: #d9d9d9;
+    --coul-fond-pale: #F5F5F5;  /* Cree pour le fond de champ recherche */
+
 
     --coul-texte-default: #3d3d3d;
     --coul-texte-fonce: #000000;

@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }} - @yield('title')</title>
 
+    <!-- Styles supplémentaire -->
+    @yield('styles')
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" media="screen">
+
+    <!-- Scripts -->
+    <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
 
 </head>
 <body>
@@ -17,7 +23,7 @@
     @else
         @php $privilege = 1 @endphp
     @endif
-
+    
     <header>
         <div class="div-header">
             <div class="line-1"></div>
@@ -30,12 +36,10 @@
                             <ul class="list-nav">
                                 <li><a href="">@lang('Employee')</a></li>
                                 <li><a href="">@lang('Client')</a></li>
-                                <li class="voiture-nav"><a href="" class="active">@lang('Car')</a>                          
+                                <!-- ajouter l'autres routes -->
+                                <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
                                     <ul class="sous-list-nav">
-                                        <li><a href="" class="active">@lang('Cars list')</a></li>
-                                        <li><a href="">@lang('Add car')</a></li>
-                                        <li><a href="">@lang('Car parameters')</a></li>
-                                    </ul>
+                                       </ul>
                                 </li>
                             </ul>
                         </nav>

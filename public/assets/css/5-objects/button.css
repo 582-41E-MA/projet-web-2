@@ -53,5 +53,5 @@
     background-color: var(--coul-fond-claire);
     border: 1px solid var(--coul-primaire);
     color: var(--coul-primaire);
-    border-radius: 0;
+    /* border-radius: 0; */
 }
