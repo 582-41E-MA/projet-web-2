@@ -1,0 +1,120 @@
+.div-parametres {
+    display: flex;
+    flex-wrap: wrap;
+
+    .div-marque,
+    .div-modele,
+    .div-carrosserie,
+    .div-transmission,
+    .div-traction,
+    .div-carburant {
+        display: flex;
+        flex-basis: 33%;
+        flex-direction: column;
+
+        .div-titre {
+            align-items: center;
+            background-color: var(--coul-fond-fonce);
+            display: flex;
+            height: var(--espace-3half);
+            justify-content: center;
+
+            h2 {
+                font-family: "Roboto";
+                font-size: var(--texte-sm);
+                font-weight: bold;
+            }
+        }
+
+        .div-input {
+            display: flex;
+            justify-content: right;
+            width: 100%;
+
+            button {
+                margin: 0 var(--espace-2) 0 var(--espace-2);
+
+                .ajout {
+                    color: var(--coul-texte-fonce);
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .div-liste {
+            align-items: center;
+            display: flex;
+
+            ul {
+                list-style: disc;
+                width: 100%;
+
+                .div-li {
+                    display: flex;
+                    font-family: "Roboto";
+                    font-size: var(--texte-xxs);
+                    font-style: normal;
+                    justify-content: space-between;
+
+                    .div-form {
+                        display: flex;
+
+                        button {
+                            background-color: var(--coul-fond-claire);
+                            border: none;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
+        .div-pagination {
+            display: flex;
+
+            .pagination {
+                display: flex;
+                flex-wrap: wrap;
+                max-width: 100%;
+
+                .page-item {
+                    --bs-pagination-active-bg: var(--coul-secondaire);
+                    --bs-pagination-active-border-color: var(--coul-secondaire);
+                    --bs-pagination-color: var(--coul-secondaire);
+                    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem
+                        var(--coul-primaire);
+                    --bs-pagination-focus-color: var(--coul-primaire);
+                    --bs-pagination-hover-color: var(--coul-primaire);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 834px) {
+    .div-parametres {
+        .div-marque,
+        .div-modele,
+        .div-carrosserie,
+        .div-transmission,
+        .div-traction,
+        .div-carburant {
+            display: flex;
+            flex-basis: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 428px) {
+    .div-parametres {
+        .div-marque,
+        .div-modele,
+        .div-carrosserie,
+        .div-transmission,
+        .div-traction,
+        .div-carburant {
+            display: flex;
+            flex-basis: 100%;
+        }
+    }
+}
