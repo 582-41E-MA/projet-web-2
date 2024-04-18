@@ -72,57 +72,9 @@ img{
 }
 
 
-
-/* .item-catalogue{
-    display: flex;   
-    border: 1px solid var(--coul-primaire);
-    margin-top: var(--espace-1);
-
-}
-
-.car-image {
-    border: 5px solid var(--coul-primaire);
-    flex-basis: 25%;
-    margin-right: var(--espace-1);
-    align-content: center;
-    width: 252px;
-    
-}
-
-img{
-    width: 100%;
-    height: auto;
-    
-}
-
-.car-info {
-    display: flex;
-    flex-direction: row;
-  
-    align-items:center;
-    justify-content: space-around;
-   
-    
-}
-
-.car-detail {
-    display: flex;
-    flex-basis: 50%;
-    flex-direction: column;
-    margin-top: var(--espace-1);
-
-}
-
-.car-prix {
-    display: flex;
-    flex-direction: column;
-    margin-top: var(--espace-1);
-
-} */
-
 h2 {
     font-family: "Roboto";
-    font-size: var(--texte-xl);
+    font-size: var(--texte-lg);
     color: var(--coul-texte-default);
     font-weight: bold;
     text-transform: uppercase;
@@ -147,7 +99,7 @@ h2 {
     
 }
 
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 835px) {
     .item-catalogue{
         display: grid;
         grid-template-columns: repeat(1, 1fr);

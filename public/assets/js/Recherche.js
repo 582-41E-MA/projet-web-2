@@ -49,11 +49,11 @@ export default class Recherche {
                 if (data.length === 0) {
                     if(currentLocale == "fr"){
                         
-                        this._elVoitures.innerHTML = `<h2 class="mt-lg"> Il n'y a pas de résultats pour '${propriete}'</h2>`;
+                        this._elVoitures.innerHTML = `<h2 class="ml-xl mt-lg"> Il n'y a pas de résultats pour '${propriete}'</h2>`;
                     
                     } else {
                 
-                        this._elVoitures.innerHTML = `<h2 class="mt-lg">There are no results for '${propriete}'</h2>`;
+                        this._elVoitures.innerHTML = `<h2 class="ml-xl mt-lg">There are no results for '${propriete}'</h2>`;
                     }
                 } else {
                     const template = document.querySelector('[data-template-voiture]');
@@ -75,7 +75,7 @@ export default class Recherche {
                             const carPrix = voitureTemplate.querySelector('.p_text_prix');
     
                             carImage.src = `assets/img/voitures/${voitureData.photo_nom}`;
-                            carDetail.querySelector('h2').textContent = `${voitureData.marque_nom} ${voitureData.modele_nom}`;
+                            carDetail.querySelector('h2').textContent = `${voitureData.marque_nom} ${voitureData.modele_nom} ${voitureData.annee_valor}`;
 
                             let transmissionData = JSON.parse(voitureData.transmission_nom);
                             carDetail.querySelectorAll('p')[1].textContent += `${currentLocale !== 'en' ? transmissionData.fr : transmissionData.en}`;

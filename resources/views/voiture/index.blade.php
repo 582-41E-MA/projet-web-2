@@ -10,7 +10,7 @@
     <div class="form_recherche" data-js-component="Recherche"> 
             <label for="rechercher"></label>
             <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">Rechercher</button>
+            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
     </div>
 
     <div class="container_accueil mt-sm mr-sm ml-sm">
@@ -150,7 +150,7 @@
             </form>
         </div>
 
-<!-- Template -->
+        <!-- Template -->
         <template data-template-voiture>
             <div class="item-catalogue">
                 <div class="car-image">
@@ -179,7 +179,7 @@
                     </div>
                     <div class="car-info">
                         <div class="car-detail">
-                            <h2>{{ $voiture['annee']}} {{ $voiture['marque']}} {{ $voiture['modele']}}</h2>
+                            <h2>{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}</h2>
                             <p class="mt-xs">@lang('Traction'): {{ $voiture['traction']}}</p>
                             <p class="mt-xs">@lang('Transmission'): {{ $voiture['transmission']}}</p>
                             <p class="mt-xs">@lang('Fuel'): {{ $voiture['carburant']}}</p>
