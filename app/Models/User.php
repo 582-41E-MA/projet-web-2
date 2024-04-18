@@ -52,4 +52,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function privilege(){
+
+        return $this->belongsTo(Privilege::class);
+
+    }
 }

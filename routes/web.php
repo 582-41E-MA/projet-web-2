@@ -70,5 +70,10 @@ Route::put('/edit/carburant/{carburant}', [CarburantController::class, 'update']
 Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])->name('carburant.delete');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
+
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
