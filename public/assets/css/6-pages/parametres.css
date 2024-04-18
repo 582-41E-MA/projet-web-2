@@ -27,10 +27,17 @@
         }
 
         .div-input {
+            display: flex;
+            justify-content: right;
             width: 100%;
 
-            .input {
-                width: 100%;
+            button {
+                margin: 0 var(--espace-2) 0 var(--espace-2);
+
+                .ajout {
+                    color: var(--coul-texte-fonce);
+                    text-decoration: none;
+                }
             }
         }
 

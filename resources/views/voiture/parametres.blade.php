@@ -17,8 +17,9 @@
                 <h2>@lang('Brand')</h2>
             </div>
             <div class="div-input pt-md pb-xs">
-                <input type="text" name="" class="input" id="date_arrive">
-                <a href="{{ route('marque.create') }}">Ajout</a>
+                <button class="btn btn-tertiaire" type="submit">
+                    <a class="ajout" href="{{ route('marque.create') }}">@lang('Add')</a>
+                </button>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -50,8 +51,9 @@
                 <h2>@lang('Model')</h2>
             </div>
             <div class="div-input pt-md pb-xs">
-                <input type="text" name="" class="input" id="date_arrive">
-                <a href="{{ route('modele.create') }}">Ajout</a>
+                <button class="btn btn-tertiaire" type="submit">
+                    <a class="ajout" href="{{ route('modele.create') }}">@lang('Add')</a>
+                </button>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -83,8 +85,9 @@
                 <h2>@lang('Body type')</h2> 
             </div>
             <div class="div-input pt-md pb-xs">
-                <input type="text" name="" class="input" id="date_arrive">
-                <a href="{{ route('carrosserie.create') }}">Ajout</a>
+                <button class="btn btn-tertiaire" type="submit">
+                    <a class="ajout" href="{{ route('carrosserie.create') }}">@lang('Add')</a>
+                </button>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -120,8 +123,9 @@
                 <h2>@lang('Transmission')</h2>
             </div>
             <div class="div-input pt-md pb-xs">
-                <input type="text" name="" class="input" id="date_arrive">
-                <a href="{{ route('transmission.create') }}">Ajout</a>
+                <button class="btn btn-tertiaire" type="submit">
+                    <a class="ajout" href="{{ route('transmission.create') }}">@lang('Add')</a>
+                </button>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -157,8 +161,9 @@
                 <h2>@lang('Traction')</h2>
             </div>
             <div class="div-input pt-md pb-xs">
-                <input type="text" name="" class="input" id="date_arrive">
-                <a href="{{ route('traction.create') }}">Ajout</a>
+                <button class="btn btn-tertiaire" type="submit">
+                    <a class="ajout" href="{{ route('traction.create') }}">@lang('Add')</a>
+                </button>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>
@@ -194,8 +199,9 @@
                 <h2>@lang('Fuel')</h2>
             </div>
             <div class="div-input pt-md pb-xs">
-                <input type="text" name="" class="input" id="date_arrive">
-                <a href="{{ route('carburant.create') }}">Ajout</a>
+                <button class="btn btn-tertiaire" type="submit">
+                    <a class="ajout" href="{{ route('carburant.create') }}">@lang('Add')</a>
+                </button>
             </div>
             <div class="div-liste pl-md pr-md pt-xs pb-xs">
                 <ul>

@@ -502,4 +502,20 @@ class VoitureController extends Controller
 
         return view('voiture.index', ['marques' => $marques, 'annees' => $optionsAnnee, 'tractions'=> $tractions, 'transmissions'=> $transmissions, 'carburants'=> $carburants, 'carrosseries' => $filtresCarrosserie, 'filtres'=>$request, 'voitures'=> $donneesVoiture]);
     }
+
+    /**
+     * Show cars parameters.
+     */
+    public function parametres()
+    {
+        $marques = Marque::paginate(10);
+        $modeles = Modele::paginate(10);
+        $annees = Annee::paginate(10);
+        $transmissions = Transmission::paginate(10);
+        $tractions = Traction::paginate(10);
+        $carburants = Carburant::paginate(10);
+        $carrosseries = Carrosserie::paginate(10);
+       
+        return view('voiture.parametres', compact('marques', 'modeles', 'annees', 'transmissions', 'tractions', 'carburants', 'carrosseries'));
+    } 
 }
