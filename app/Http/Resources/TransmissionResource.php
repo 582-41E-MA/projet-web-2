@@ -14,10 +14,13 @@ class TransmissionResource extends JsonResource
      */
     public function toArray($request)
     {
+        $updated_at = explode("T", $this->updated_at);
+        $timeUpdated = $updated_at[0];
 
         return [
             'id' => $this->id,
-            'nom' => isset($this->nom[app()->getLocale()]) ? $this->nom[app()->getLocale()] : $this->nom['en'],
-        ];
+            'nom' => isset($this->nom[app()->getLocale()])? $this->nom[app()->getLocale()] : $this->nom['en'],
+            'updated_at' => $timeUpdated,
+        ];    
     }
 }

@@ -74,15 +74,50 @@
                                 JOIN carburants ON voitures.carburant_id = carburants.id
                                 JOIN transmissions ON voitures.transmission_id = transmissions.id
                                 LEFT JOIN photos ON voitures.id = photos.voiture_id
-                                WHERE CONCAT(
+                                WHERE (CONCAT(
                                 marques.nom, 
                                 ' ', 
                                 modeles.nom, 
                                 ' ', 
                                 annees.annee
-                            ) LIKE  '%$propriete%'");    
+                            ) LIKE '%$propriete%') OR (CONCAT(
+                                marques.nom, 
+                                ' ', 
+                                annees.annee,
+                                ' ', 
+                                modeles.nom
+                            ) LIKE '%$propriete%') OR (CONCAT(
+                                modeles.nom, 
+                                ' ', 
+                                marques.nom, 
+                                ' ', 
+                                annees.annee
+                            ) LIKE '%$propriete%') OR (CONCAT(
+                                modeles.nom, 
+                                ' ', 
+                                annees.annee,
+                                ' ', 
+                                marques.nom
+                            ) LIKE '%$propriete%') OR (CONCAT(
+                                annees.annee,
+                                ' ', 
+                                modeles.nom, 
+                                ' ', 
+                                marques.nom
+                            ) LIKE '%$propriete%') OR (CONCAT(
+                                annees.annee,
+                                ' ', 
+                                marques.nom,
+                                ' ', 
+                                modeles.nom
+                            ) LIKE '%$propriete%')");
+
+  
         
 	}
+
+
+	
 
 
 

@@ -8,6 +8,7 @@ export default class Recherche {
         this._elTemplateVoiture = document.querySelector('[data-template-voiture]');
         this._elVoitures = document.querySelector('[data-js-catalogue]');
 
+        console.log(currentLocale)
         
         this.init();
     }
@@ -46,7 +47,14 @@ export default class Recherche {
             })
             .then(data => {
                 if (data.length === 0) {
-                    this._elVoitures.innerHTML = `<p> Il n'y a pas de résultats pour '${propriete}'</p>`;
+                    if(currentLocale == "fr"){
+                        
+                        this._elVoitures.innerHTML = `<h2 class="mt-lg"> Il n'y a pas de résultats pour '${propriete}'</h2>`;
+                    
+                    } else {
+                
+                        this._elVoitures.innerHTML = `<h2 class="mt-lg">There are no results for '${propriete}'</h2>`;
+                    }
                 } else {
                     const template = document.querySelector('[data-template-voiture]');
 
