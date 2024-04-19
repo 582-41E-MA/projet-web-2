@@ -8,7 +8,7 @@ export default class Recherche {
         this._elTemplateVoiture = document.querySelector('[data-template-voiture]');
         this._elVoitures = document.querySelector('[data-js-catalogue]');
 
-        console.log(currentLocale)
+        // console.log(currentLocale)
         
         this.init();
     }
