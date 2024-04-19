@@ -1,3 +1,4 @@
+
 import { classesMapping } from './classMapping.js';
 
 (function() {

@@ -24,3 +24,4 @@ class TransmissionResource extends JsonResource
         ];    
     }
 }
+

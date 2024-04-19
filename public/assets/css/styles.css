@@ -9,7 +9,7 @@
 @import url(/assets/css/4-elements/header.css);
 @import url(/assets/css/4-elements/nav.css);
 
-/* 5 - OBJECTS */
+/* 5 - OBJETCS */
 @import url(/assets/css/5-objects/header.css);
 @import url(/assets/css/5-objects/button.css);
 @import url(/assets/css/5-objects/spacing.css);
@@ -22,3 +22,5 @@
 /* 6 - PAGES */
 @import url(/assets/css/6-pages/accueil.css);
 @import url(/assets/css/6-pages/parametres.css);
+@import url(/assets/css/6-pages/voiture.css);
+
