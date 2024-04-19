@@ -139,6 +139,12 @@
                             ) LIKE '%$propriete%')");
 	}
 
+    function rechercheUtilisateurs($propriete) {
+        return executeRequete("SELECT *
+                                FROM users 
+                                WHERE users.nom LIKE '%$propriete%'");
+    }
+
 
 	
 
