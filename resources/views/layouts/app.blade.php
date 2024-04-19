@@ -26,14 +26,13 @@
     @else
         @php $privilege = 1 @endphp
     @endif
-    {{ $locale }}
     <header>
         <div class="div-header">
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="div-nav">
                 <img src="{{asset('assets/img/svg/logo.svg')}}" alt="logo">
-                    @if($privilege == 2 || $privilege == 3)
+                @if($privilege == 2 || $privilege == 3)
                     <div class="div-list-nav">
                         <nav>
                             <ul class="list-nav">

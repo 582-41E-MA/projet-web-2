@@ -35,7 +35,7 @@
     "Search": "Rechercher",
     "Add" : "Ajouter",
     "Apply" : "Appliquer",
-    "1980 and before" : "1980 et avant",
+    "1919 and before" : "1919 et avant",
     "2000 and after" : "2000 et après",
     "Brand" : "Marque",
     "Select a brand" : "Sélectionnez une marque",
@@ -106,6 +106,7 @@
     "Bodywork:": "Carrosserie :",
     "Transmission:": "Transmission :",
     "Traction:": "Traction :",
+    "Reset": "Réinitialiser",
     "More info": "Plus d'info"
 
 }

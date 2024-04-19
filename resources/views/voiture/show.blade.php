@@ -1,7 +1,12 @@
 @extends('layouts.app')
 @section('title', trans('Car'))
 @section('content')
-   
+@if(Auth::user()) 
+    @php $privilege = Auth::user()->privilege_id @endphp
+@else
+    @php $privilege = 1 @endphp
+@endif
+
 <main class="page-voiture">
     <div class="voiture-photos" data-js-component="Photo">
         <div class="photo-large" data-js-photo>
@@ -21,8 +26,21 @@
 
         <div class="voiture-actions">
             <span class="prix">${{$voiture['prix']}}</span>
-            <button class="btn btn-primaire">@lang('Add to cart')</button>
-            <button class="btn btn-primaire">@lang('Contact us')</button>
+                @if($privilege == 2 || $privilege == 3)
+                <div class="icons">
+                    <div class="icon">
+                        <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="modifier">
+                    </div>
+                    <div class="icon">
+                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="supprimer">
+                    </div>
+                </div>
+
+                @else
+                <button class="btn btn-primaire">@lang('Add to cart')</button>
+                <button class="btn btn-primaire">@lang('Contact us')</button>
+                @endif
+
         </div>
 
 

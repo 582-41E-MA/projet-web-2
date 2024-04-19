@@ -4,6 +4,7 @@ import Marque from './Marque.js';
 import Prix from './Prix.js';
 import Photo from './Photo.js';
 import TrierVoitures from './TrierVoitures.js';
+import Filtrage from './Filtrage.js';
 
 export const classesMapping = {
     'Recherche': Recherche,
@@ -11,4 +12,5 @@ export const classesMapping = {
     'Prix': Prix,
     'Photo': Photo,
     'TrierVoitures': TrierVoitures,
+    'Filtrage': Filtrage,
 };

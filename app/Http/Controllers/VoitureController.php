@@ -45,24 +45,28 @@ class VoitureController extends Controller
         // 1.2 Afficher les filtres d'annees
         $optionsAnnee = [
             0 => [
-                "value" => "1925",
-                "label" => "1925 and before",
+                "value" => "1919",
+                "label" => "1919 and before",
             ],
             1 => [
-                "value" => "1950",
-                "label" => "1926 - 1950",
+                "value" => "1939",
+                "label" => "1920 - 1939",
             ],
             2 => [
-                "value" => "1975",
-                "label" => "1951 - 1975",
+                "value" => "1959",
+                "label" => "1940 - 1959",
             ],
             3 => [
-                "value" => "2000",
-                "label" => "2076 - 2000",
+                "value" => "1979",
+                "label" => "1960 - 1979",
             ],
             4 => [
-                "value" => "2021",
-                "label" => "2021 and after",
+                "value" => "1999",
+                "label" => "1980 - 1999",
+            ], 
+            5 => [
+                "value" => "2000",
+                "label" => "2000 and after",
             ] 
         ];
 
@@ -345,24 +349,28 @@ class VoitureController extends Controller
         
         $optionsAnnee = [
             0 => [
-                "value" => "1925",
-                "label" => "1925 and before",
+                "value" => "1919",
+                "label" => "1919 and before",
             ],
             1 => [
-                "value" => "1950",
-                "label" => "1926 - 1950",
+                "value" => "1939",
+                "label" => "1920 - 1939",
             ],
             2 => [
-                "value" => "1975",
-                "label" => "1951 - 1975",
+                "value" => "1959",
+                "label" => "1940 - 1959",
             ],
             3 => [
-                "value" => "2000",
-                "label" => "2076 - 2000",
+                "value" => "1979",
+                "label" => "1960 - 1979",
             ],
             4 => [
-                "value" => "2021",
-                "label" => "2021 and after",
+                "value" => "1999",
+                "label" => "1980 - 1999",
+            ], 
+            5 => [
+                "value" => "2000",
+                "label" => "2000 and after",
             ] 
         ];
 
