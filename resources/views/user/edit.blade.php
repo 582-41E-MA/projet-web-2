@@ -4,7 +4,7 @@
 
 <main class="wrapper">
     <div class="container-form">
-        <h1>@lang('Registration')</h1>
+        <h1>Modification</h1>
         <form action="{{ route('user.update', $user->id) }}" method="POST" class="form"> 
             @csrf
             @method('put')
@@ -71,34 +71,6 @@
                 @if($errors->has('telephone'))
                     {{ $errors->first('telephone')}}
                 @endif
-                </div>
-            </div>
-            <div class="form-inputContainer">
-                <div class="control-input">
-                    <label class="label" for="courriel">@lang('Email')*</label>
-                    <input class="input" type="text" id="courriel" name="courriel" value="{{old('courriel', $user->courriel)}}">
-                </div>
-                <div class="control-erreur">
-                @if($errors->has('courriel'))
-                    {{ $errors->first('courriel')}}
-                @endif
-                </div>
-            </div>
-            <div class="form-inputContainer">
-                <div class="control-input">
-                    <label class="label" for="password" >@lang('Password')*</label>
-                    <input class="input" type="password" id="password" name="password">
-                </div>
-                <div class="control-erreur">
-                @if($errors->has('password'))
-                    {{ $errors->first('password')}}
-                @endif
-                </div>
-            </div>
-            <div class="form-inputContainer">
-                <div class="control-input">
-                    <label class="label" for="password_confirmation">@lang('Confirm password')*</label>
-                    <input class="input" type="password" id="password_confirmation" name="password_confirmation">
                 </div>
             </div>
             <div class="form-btnContainer">

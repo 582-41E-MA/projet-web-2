@@ -34,8 +34,19 @@
                     <div class="div-list-nav">
                         <nav>
                             <ul class="list-nav">
-                                <li><a href="">@lang('Employee')</a></li>
-                                <li><a href="">@lang('Client')</a></li>
+                            <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Employee')</a>                          
+                                    <ul class="sous-list-nav">
+                                        <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('user.index') }}">@lang('Employee list')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Add an employee')</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Client')</a>                          
+                                    <ul class="sous-list-nav">
+                                        <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('userClient.index') }}">@lang('Employee list')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Add an employee')</a></li>
+                                    </ul>
+                                </li>
                                 <!-- ajouter l'autres routes -->
                                 <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
                                     <ul class="sous-list-nav">
