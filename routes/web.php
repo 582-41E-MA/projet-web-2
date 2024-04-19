@@ -28,6 +28,7 @@ Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voitu
 Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');
 Route::put('/edit/voiture/{voiture}', [VoitureController::class, 'update'])->name('voiture.update');
+Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name('voiture.delete');
 
 Route::get('/parametres', [VoitureController::class, 'parametres'])->name('voiture.parametres');

@@ -33,7 +33,7 @@ export default class Photo
         // Creer et inserer le dom de l'image 
         let nomPhoto = e.currentTarget.dataset.jsThumbnail,
             dom = `
-                    <img src="${this.#_urlRacine}assets/img/jpg/${nomPhoto}" alt="${nomPhoto}">
+                    <img src="${this.#_urlRacine}assets/img/voitures/${nomPhoto}" alt="${nomPhoto}">
                 `;
 
         this.#_elPhoto.innerHTML = dom;

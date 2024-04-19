@@ -14,7 +14,6 @@ use App\Models\Carrosserie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 
 
 class VoitureController extends Controller
@@ -36,7 +35,7 @@ class VoitureController extends Controller
         // 1.1 Afficher les filtres de carrosseries
         $filtresCarrosserie = [];
 
-        return $carrosseries;
+        // return $carrosseries;
         
         foreach ($carrosseries as $key => $carrosserie) 
         {
@@ -88,6 +87,7 @@ class VoitureController extends Controller
             $carburant = Carburant::carburantParId($voiture['carburant_id']);
             $transmission = Transmission::transmissionParId($voiture['transmission_id']);
 
+            $donneesVoiture[$key]['id'] = $voiture->id;
             $donneesVoiture[$key]['photoPrincipale'] = $photoPrincipale->nom;
             $donneesVoiture[$key]['annee'] = $annee->annee;
             $donneesVoiture[$key]['marque'] = $marque->nom;
@@ -97,7 +97,7 @@ class VoitureController extends Controller
             $donneesVoiture[$key]['carburant'] = $carburant[0]['nom'];
             $donneesVoiture[$key]['prix_vente'] = round($voiture['prix_vente']);
         }
-
+        
         return view('voiture.index', ['marques' => $marques, 'annees' => $optionsAnnee, 'tractions'=> $tractions, 'transmissions'=> $transmissions, 'carburants'=> $carburants, 'carrosseries' => $filtresCarrosserie, 'voitures'=> $donneesVoiture]);
     }
 
@@ -192,6 +192,7 @@ class VoitureController extends Controller
         $carburant = Carburant::carburantParId($voiture['carburant_id']);
         $carrosserie = Carrosserie::carrosserieParId($voiture['carrosserie_id']);
 
+        $data['id'] = $voiture['id'];
         $data['annee'] = $annee;
         $data['marque'] = $marque;
         $data['modele'] = $modele;
@@ -200,7 +201,6 @@ class VoitureController extends Controller
         $data['traction'] = $traction[0]['nom'];
         $data['carburant'] = $carburant[0]['nom'];
         $data['carrosserie'] = $carrosserie[0]['nom'];
-
 
         return view('voiture.show', ['voiture' => $data, 'photosSecondaires'=>$photosSecondaires, 'photoPrincipale' => $photoPrincipale]);
     }

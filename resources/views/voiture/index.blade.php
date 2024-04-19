@@ -179,14 +179,18 @@
                     </div>
                     <div class="car-info">
                         <div class="car-detail">
-                            <h2>{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}</h2>
+                            <a href="{{ route('voiture.show', $voiture['id'] ) }}">
+                                <h2>{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}</h2>
+                            </a>
                             <p class="mt-xs">@lang('Traction'): {{ $voiture['traction']}}</p>
                             <p class="mt-xs">@lang('Transmission'): {{ $voiture['transmission']}}</p>
                             <p class="mt-xs">@lang('Fuel'): {{ $voiture['carburant']}}</p>
                         </div>
                         <div class="car-prix">
                             <p class="p_text_prix mr-sm mb-sm">{{ $voiture['prix_vente']}}$</p>
-                            <button class="btn btn-primaire mt-xs mr-sm " type="submit">@lang('More info')</button>
+                            <a href="{{ route('voiture.show', $voiture['id'] ) }}">
+                                <button class="btn btn-primaire mt-xs mr-sm " type="submit">@lang('More info')</button>
+                            </a>
                         </div>
                     </div>
                 </div>

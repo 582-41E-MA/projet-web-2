@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Voiture extends Model
 {
     use HasFactory;
-     /**
+
+        /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -27,6 +28,7 @@ class Voiture extends Model
         'date_arrive',
         'prix_paye',
         'prix_vente',
+        'kilometrage',
         'disponible'
     ];
 

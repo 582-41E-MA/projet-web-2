@@ -11,8 +11,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" media="screen">
     
-    <script type="module" src="{{asset('assets/js/main.js')}}" defer ></script>
-
     <!-- Scripts -->
     <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
 

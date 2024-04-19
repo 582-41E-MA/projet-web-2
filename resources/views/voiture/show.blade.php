@@ -5,12 +5,12 @@
 <main class="page-voiture">
     <div class="voiture-photos" data-js-component="Photo">
         <div class="photo-large" data-js-photo>
-            <img src="{{asset('assets/img/jpg/').'/'. $photoPrincipale->nom}}" alt="{{$photoPrincipale->nom}}">
+            <img src="{{asset('assets/img/voitures/').'/'. $photoPrincipale->nom}}" alt="{{$photoPrincipale->nom}}">
         </div>
         <div class="thumbnails">
             @forelse($photosSecondaires as $photoSecondaire)
             <div class="thumbnail " data-js-thumbnail="{{ $photoSecondaire->nom }}">
-                <img src="{{asset('assets/img/jpg/').'/'. $photoSecondaire->nom}}" alt="{{$photoSecondaire->nom}}">
+                <img src="{{asset('assets/img/voitures/').'/'. $photoSecondaire->nom}}" alt="{{$photoSecondaire->nom}}">
             </div>
             @empty
             @endforelse
