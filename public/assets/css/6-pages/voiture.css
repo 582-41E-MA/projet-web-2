@@ -73,6 +73,11 @@
             button {
                 width: 20vw;
             }
+
+            .icons {
+                display: flex;
+                gap: var(--espace-2);
+            }
         }
     }
 

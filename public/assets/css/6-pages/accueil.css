@@ -1,27 +1,13 @@
 .container_accueil {
     display: flex;
     flex-direction: row;
-
+    gap: var(--espace-4);
 }
 
 .grid-catalogue {
-    flex-grow: 1; 
+    flex-grow: 1;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
-}
-
-.grid-catalogue {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-    flex-basis: 80%;
-    margin: 45px;
-   
-}
-
-.filtres-catalogue{
-    flex-basis: 20%;
-
 }
 
 .form_recherche {
@@ -31,17 +17,14 @@
 .filtres-catalogue {
     display: flex;
     flex-direction: column;
-    flex-basis: 20%;
     font-family: "Palanquin";
     font-size: var(--texte-xxs);
     padding: var(--espace-quart) var(--espace-3quarts);
 }
 
-
-
-.item-catalogue{
-    display: flex; 
-    flex-direction: row; 
+.item-catalogue {
+    display: flex;
+    flex-direction: row;
     border: 1px solid var(--coul-primaire);
     margin-top: var(--espace-1);
 }
@@ -52,57 +35,19 @@
     margin-right: var(--espace-1);
     align-content: center;
     width: 252px;
-
 }
 
-img{
+img {
     width: 100%;
     height: auto;
-
 }
 
 .car-info {
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
-    flex-grow: 1; 
-
-}
-
-.filtres__btns {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.item-catalogue {
-    display: flex;
-    border: 1px solid var(--coul-primaire);
-    margin-top: var(--espace-1);
-
-}
-
-.car-image {
-    flex-basis: 25%;
-    border: 5px solid var(--coul-primaire);
-    margin-right: var(--espace-1);
-    align-content: center;
-}
-
-img {
-    width: 100%;
-}
-
-.car-info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    flex-basis: 75%;
-    margin-top: var(--espace-1);
-    text-align:justify;
-    text-align: justify;
-    align-content: center;
-
+    flex-grow: 1;
 }
 
 .car-detail {
@@ -117,23 +62,11 @@ img {
     flex-direction: column;
     margin-top: var(--espace-1);
     align-items: end;
-
 }
-
 
 h2 {
     font-family: "Roboto";
     font-size: var(--texte-lg);
-    color: var(--coul-texte-default);
-    font-weight: bold;
-    text-transform: uppercase;
-
-}
-
-
-h2 {
-    font-family: "Roboto";
-    font-size: var(--texte-xl);
     color: var(--coul-texte-default);
     font-weight: bold;
     text-transform: uppercase;
@@ -150,9 +83,24 @@ h2 {
     width: 48%;
 }
 
-.grid_carrosserie {
+.filtres__btns {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.filtres__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 0px var(--espace-3);
+
+    .body-type {
+        height: 50px;
+    }
+}
+
+.filtrage {
+    display: none;
 }
 
 @media screen and (max-width: 834px) {
@@ -168,7 +116,20 @@ h2 {
         width: 100%;
         margin-right: 0;
     }
-    h2{
+    h2 {
         font-size: var(--texte-lg);
+    }
+
+    @media screen and (max-width: 428px) {
+        .filtres-catalogue {
+            display: none;
+        }
+
+        .filtrage {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin: 0 var(--espace-2);
+        }
     }
 }

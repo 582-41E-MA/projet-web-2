@@ -8,57 +8,75 @@
 
 <main class="wrapper">
     <div class="form_recherche" data-js-component="Recherche"> 
-        <form class="form_filtre">
             <label for="rechercher"></label>
-            <input class="input_recherche" type="text" id="rechercher" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">Rechercher</button>
-        </form>
+            <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
+            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
     </div>
+
 
     <p class="message">
       @if(session('success'))
          {{session('success')}}
       @endif
     </p>
+    
+    <!-- Button de filtrage a la version mobile -->
+    <div class="filtrage" data-js-component="Filtrage">
+        <button class="btn btn-primaire mt-xl" type="submit">@lang('Filters')</button>
+    </div>
+
 
     <div class="container_accueil mt-sm mr-sm ml-sm">
 
-        <!-- Filtres -->
-        <div class="filtres-catalogue" >
+        <!-- Modal pour afficher les filtres a la version mobile -->
+        <section class="modal modal--ferme" data-js-modal="exit">
+            <div class="modal__filtres">
+                <div class="filtres__titre">
+                    <h2 >Filtres</h2>
+                </div>
+                <form class="filtres__form" action="{{ route('voitures.select') }}"  data-js-filtres="modal" >         
+                </form>
+            </div>
+        </section>
 
-            <form method="post">
-            @csrf
+        <!-- Filtres -->
+        <div class="filtres-catalogue">
+
+            <form action="{{ route('voitures.select') }}" data-js-filtres="ecran">
 
                 <!-- Make -->
 
                 <h3 class="p_titre_filtre mb-sm">@lang('Make')</h3>
-                @foreach($marques as $marque)
-                <div class="mb-xs">
-                    <label class="p-filtre mb-lg" for="{{$marque->nom}}">{{$marque->nom}}</label>
-                    <input class="checkbox-container" type="checkbox" id="{{$marque->nom}}" name="marques[]" value="{{$marque->id}}"
-                    @if(isset($filtres->marques))
-                        @php
-                            $key = $marque['id'];
-                            $table = $filtres->marques;
-                        @endphp
-
-                        @if (in_array($key, $table))
-                            checked
+                <div class="filtres__grid mb-xs">
+                    @foreach($marques as $marque)
+                    <div class="checkbox-container mb-xs">
+                        <input type="checkbox" id="{{$marque->nom}}" name="marques[]" value="{{$marque->id}}"
+                        @if(isset($filtres->marques))
+                            @php
+                                $key = $marque['id'];
+                                $table = $filtres->marques;
+                            @endphp
+    
+                            @if (in_array($key, $table))
+                                checked
+                            @endif 
                         @endif 
-                    @endif 
-                    >
+                        >
+                        <label class="p-filtre mb-lg" for="{{$marque->nom}}">{{$marque->nom}}</label>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
 
                 <!-- Body Type -->
 
                 <h3 class="p_titre_filtre mb-sm mt-sm">@lang('Body Type')</h3>
-                <div class="grid_carrosserie" class="mb-xs">
+                <div class="filtres__grid mb-xs">
                     @foreach($carrosseries as $carrosserie)
                     <div>
-                        <div>
-                            <label class="p-filtre mb-lg" for="{{$carrosserie['nom']}}">{{$carrosserie['nom']}}</label>
-                            <input class="checkbox-container" type="checkbox" id="carrosserie" name="carrosseries[]" value="{{$carrosserie['id']}}"
+                        <div class="checkbox-container checkbox-container--body-type" >
+                            <label class="p-filtre" for="{{$carrosserie['nom']}}">{{$carrosserie['nom']}}</label>
+
+                            <input type="checkbox" id="{{$carrosserie['nom']}}" name="carrosseries[]" value="{{$carrosserie['id']}}"
                             @if(isset($filtres->carrosseries))
                                 @php
                                     $key = $carrosserie['id'];
@@ -71,7 +89,7 @@
                             @endif 
                             >
                         </div>
-                        <div>
+                        <div class="body-type">
                             <img src="{{asset('assets/img/svg/').'/'.$carrosserie['url_svg'].'.svg'}}" alt="{{$carrosserie['nom']}}">
                         </div>
                     </div>
@@ -82,8 +100,8 @@
 
                 <h3 class="p_titre_filtre mb-sm mt-sm">@lang('Year')</h3>
                 @foreach($annees as $annee)
-                <div class="mb-xs">
-                    <input class="checkbox-container" type="checkbox" id="annee1" name="annees[]" value="{{ $annee['value'] }}"
+                <div class="checkbox-container mb-xs">
+                    <input type="checkbox" id="{{ $annee['value'] }}" name="annees[]" value="{{ $annee['value'] }}"
                     @if(isset($filtres->annees))
                         @php
                             $key = $annee['value'];
@@ -95,15 +113,16 @@
                         @endif 
                     @endif 
                     >
-                    <label class="p-filtre mb-lg" for="annees[]">@lang($annee['label'])</label>
+                    <label class="p-filtre mb-lg" for="{{ $annee['value'] }}">@lang($annee['label'])</label>
                 </div>
                 @endforeach
 
+
                 <!-- Traction -->
                 <div class="p_titre_filtre mb-sm mt-sm">
-                    <label for="traction_id" class="p-filtre mb-lg">@lang('Traction')</label>
+                    <label for="traction_id p-filtre mb-lg">@lang('Traction')</label>
                 </div>
-                <select name="tractions" id="traction_id">
+                <select class="select" name="tractions" id="traction_id">
                     <option value="">@lang('Choose one')</option>
                     @foreach($tractions as $traction)
                         <option value="{{ $traction['id'] }}" 
@@ -118,9 +137,9 @@
 
                 <!-- Carburant -->
                 <div class="p_titre_filtre mb-sm mt-sm">
-                    <label for="carburant_id" class="p-filtre mb-lg">@lang('Carburant')</label>
+                    <label for="carburant_id p-filtre mb-lg">@lang('Carburant')</label>
                 </div>
-                <select name="carburants" id="carburant_id" >
+                <select  class="select" name="carburants" id="carburant_id" >
                     <option value="">@lang('Choose one')</option>
                     @foreach($carburants as $carburant)
                         <option value="{{ $carburant['id'] }}" 
@@ -135,9 +154,9 @@
 
                 <!-- Transmission -->
                 <div class="p_titre_filtre mb-sm mt-sm">
-                    <label for="transmission_id" class="p-filtre mb-lg">@lang('Transmission')</label>
+                    <label for="transmission_id p-filtre mb-lg">@lang('Transmission')</label>
                 </div>
-                <select name="transmissions" id="transmission_id" >
+                <select  class="select" name="transmissions" id="transmission_id" >
                     <option value="">@lang('Choose one')</option>
                     @foreach($transmissions as $transmission)
                         <option value="{{ $transmission['id'] }}" 
@@ -178,12 +197,15 @@
             </div>
         </template>
 
+
+        
+        
         <!-- Catalogue -->
         <div class="grid-catalogue" data-js-catalogue>
             @forelse($voitures as $voiture)
                 <div class="item-catalogue">
                     <div class="car-image">
-                        <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="">
+                        <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}" >
                     </div>
                     <div class="car-info">
                         <div class="car-detail">

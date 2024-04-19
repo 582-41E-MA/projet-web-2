@@ -1,0 +1,39 @@
+.modal {
+	opacity: 1;
+	position: fixed;
+	background-color: var(--coul-fond-claire);
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: var(--espace-3);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	background-color: var(--coul-fond-claire);
+	overflow: scroll;
+
+
+	.modal__filtres {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: var(--espace-2);
+		align-items: left;
+		box-shadow: 0px 20px 20px var(--coul-tertiaire);
+
+
+
+		.filtres__titre {
+			text-align: center;
+			margin-bottom: var(--espace-2);
+		}
+
+	}
+
+}
+
+.modal--ferme {
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(100px);
+}
