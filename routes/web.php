@@ -82,6 +82,7 @@ Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/clients', [UserController::class, 'indexClient'])->name('userClient.index');
 Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');

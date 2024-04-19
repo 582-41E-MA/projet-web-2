@@ -22,6 +22,14 @@ class UserController extends Controller
       
     }
 
+    public function indexClient()
+    {
+        $privileges = Privilege::all();
+        $users = User::all(); 
+        return view('user.indexClient', ["users" => $users, "privileges" => $privileges]);
+      
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -102,7 +110,8 @@ class UserController extends Controller
         $privileges = Privilege::all();
         return view('user.edit', ['user' => $user, 'privileges' => $privileges, 'villes'=> $villes]);
     }
-
+    
+    
     /**
      * Update the specified resource in storage.
      */
