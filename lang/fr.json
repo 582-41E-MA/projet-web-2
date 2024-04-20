@@ -1,6 +1,6 @@
 
 {
-    "Registration" : "Inscription",
+    "New user" : "Nouvel utilisateur",
     "Submit":"Soumettre",
     "Name":"Nom",
     "Post code":"Code postal",
@@ -107,6 +107,7 @@
     "Transmission:": "Transmission :",
     "Traction:": "Traction :",
     "Reset": "Réinitialiser",
+    "User created successfully": "Utilisateur a été crée avec succès",
     "More info": "Plus d'info"
 
 }
