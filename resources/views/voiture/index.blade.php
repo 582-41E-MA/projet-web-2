@@ -47,7 +47,7 @@
                 <!-- Make -->
 
                 <h3 class="p_titre_filtre mb-sm">@lang('Make')</h3>
-                <div class="filtres__grid mb-xs">
+                <div class="mb-xs">
                     @foreach($marques as $marque)
                     <div class="checkbox-container mb-xs">
                         <input type="checkbox" id="{{$marque->nom}}" name="marques[]" value="{{$marque->id}}"
@@ -70,7 +70,7 @@
                 <!-- Body Type -->
 
                 <h3 class="p_titre_filtre mb-sm mt-sm">@lang('Body Type')</h3>
-                <div class="filtres__grid mb-xs">
+                <div class="grid_carrosserie mb-xs">
                     @foreach($carrosseries as $carrosserie)
                     <div>
                         <div class="checkbox-container checkbox-container--body-type" >
@@ -225,7 +225,7 @@
                     </div>
                 </div>
             @empty
-            <p>@lang('No results')</p>
+            <h2 class="ml-xl mt-lg">@lang('There are no results for the selected filtres')</h2>
             @endforelse
         </div>
 

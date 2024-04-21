@@ -1,7 +1,7 @@
 .container_accueil {
     display: flex;
-    flex-direction: row;
-    gap: var(--espace-4);
+    flex-direction: col;
+    gap: var(--espace-1);
 }
 
 .grid-catalogue {
@@ -17,9 +17,11 @@
 .filtres-catalogue {
     display: flex;
     flex-direction: column;
+    width: 300px;
     font-family: "Palanquin";
     font-size: var(--texte-xxs);
     padding: var(--espace-quart) var(--espace-3quarts);
+    gap: var(--espace-1);
 }
 
 .item-catalogue {
@@ -89,11 +91,10 @@ h2 {
     text-align: center;
 }
 
-.filtres__grid {
+.grid_carrosserie {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0px var(--espace-3);
-
+    gap: var(--espace-half) var(--espace-1half);
     .body-type {
         height: 50px;
     }
