@@ -47,10 +47,6 @@
             <button class="btn btn-primaire">@lang('Contact us')</button>
             @endif
 
-            <button class="btn btn-primaire">
-                <a href="{{ route('commande.index', $voiture['id']) }}">@lang('Add to cart')</a>
-            </button>
-            <button class="btn btn-primaire">@lang('Contact us')</button>
         </div>
 
 
