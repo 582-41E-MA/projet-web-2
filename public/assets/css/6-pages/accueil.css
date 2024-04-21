@@ -1,20 +1,13 @@
 .container_accueil {
     display: flex;
-    flex-direction: row;
+    flex-direction: col;
+    gap: var(--espace-1);
 }
 
 .grid-catalogue {
     flex-grow: 1;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
-}
-
-.grid-catalogue {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-    flex-basis: 80%;
-    margin: 45px;
 }
 
 .form_recherche {
@@ -24,10 +17,11 @@
 .filtres-catalogue {
     display: flex;
     flex-direction: column;
-    flex-basis: 23%;
+    width: 300px;
     font-family: "Palanquin";
     font-size: var(--texte-xxs);
     padding: var(--espace-quart) var(--espace-3quarts);
+    gap: var(--espace-1);
 }
 
 .item-catalogue {
@@ -58,39 +52,6 @@ img {
     flex-grow: 1;
 }
 
-.filtres__btns {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.item-catalogue {
-    display: flex;
-    border: 1px solid var(--coul-primaire);
-    margin-top: var(--espace-1);
-}
-
-.car-image {
-    flex-basis: 25%;
-    border: 5px solid var(--coul-primaire);
-    margin-right: var(--espace-1);
-    align-content: center;
-}
-
-img {
-    width: 100%;
-}
-
-.car-info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    flex-basis: 75%;
-    margin-top: var(--espace-1);
-    text-align: justify;
-    text-align: justify;
-    align-content: center;
-}
-
 .car-detail {
     display: flex;
     flex-direction: column;
@@ -113,14 +74,6 @@ h2 {
     text-transform: uppercase;
 }
 
-h2 {
-    font-family: "Roboto";
-    font-size: var(--texte-xl);
-    color: var(--coul-texte-default);
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 .input_recherche {
     border-radius: 0.3rem;
     background-color: var(--coul-fond-pale);
@@ -132,11 +85,20 @@ h2 {
     width: 48%;
 }
 
+.grid_carrosserie {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.filtres__btns {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
 .filtres__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0px var(--espace-3);
-
+    gap: var(--espace-half) var(--espace-1half);
     .body-type {
         height: 50px;
     }

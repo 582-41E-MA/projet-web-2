@@ -8,11 +8,9 @@
 
 <main class="wrapper">
     <div class="form_recherche" data-js-component="Recherche"> 
-        <form class="form_filtre">
             <label for="rechercher"></label>
-            <input class="input_recherche" type="text" id="recherche" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">Rechercher</button>
-        </form>
+            <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
+            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
     </div>
 
     <p class="message">
@@ -20,6 +18,7 @@
          {{session('success')}}
       @endif
     </p>
+
     <!-- Button de filtrage a la version mobile -->
     <div class="filtrage" data-js-component="Filtrage">
         <button class="btn btn-primaire mt-xl" type="submit">@lang('Filters')</button>
@@ -47,7 +46,7 @@
                 <!-- Make -->
 
                 <h3 class="p_titre_filtre mb-sm">@lang('Make')</h3>
-                <div class="filtres__grid" class="mb-xs">
+                <div class="mb-xs">
                     @foreach($marques as $marque)
                     <div class="checkbox-container mb-xs">
                         <input type="checkbox" id="{{$marque->nom}}" name="marques[]" value="{{$marque->id}}"
@@ -70,7 +69,7 @@
                 <!-- Body Type -->
 
                 <h3 class="p_titre_filtre mb-sm mt-sm">@lang('Body Type')</h3>
-                <div class="filtres__grid" class="mb-xs">
+                <div class="grid_carrosserie mb-xs">
                     @foreach($carrosseries as $carrosserie)
                     <div>
                         <div class="checkbox-container checkbox-container--body-type" >
@@ -120,7 +119,7 @@
 
                 <!-- Traction -->
                 <div class="p_titre_filtre mb-sm mt-sm">
-                    <label for="traction_id" class="p-filtre mb-lg">@lang('Traction')</label>
+                    <label for="traction_id p-filtre mb-lg">@lang('Traction')</label>
                 </div>
                 <select class="select" name="tractions" id="traction_id">
                     <option value="">@lang('Choose one')</option>
@@ -137,7 +136,7 @@
 
                 <!-- Carburant -->
                 <div class="p_titre_filtre mb-sm mt-sm">
-                    <label for="carburant_id" class="p-filtre mb-lg">@lang('Carburant')</label>
+                    <label for="carburant_id p-filtre mb-lg">@lang('Carburant')</label>
                 </div>
                 <select  class="select" name="carburants" id="carburant_id" >
                     <option value="">@lang('Choose one')</option>
@@ -154,7 +153,7 @@
 
                 <!-- Transmission -->
                 <div class="p_titre_filtre mb-sm mt-sm">
-                    <label for="transmission_id" class="p-filtre mb-lg">@lang('Transmission')</label>
+                    <label for="transmission_id p-filtre mb-lg">@lang('Transmission')</label>
                 </div>
                 <select  class="select" name="transmissions" id="transmission_id" >
                     <option value="">@lang('Choose one')</option>
@@ -205,7 +204,7 @@
             @forelse($voitures as $voiture)
                 <div class="item-catalogue">
                     <div class="car-image">
-                        <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}">
+                        <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}" >
                     </div>
                     <div class="car-info">
                         <div class="car-detail">
@@ -225,7 +224,7 @@
                     </div>
                 </div>
             @empty
-            <p>@lang('No results')</p>
+            <h2 class="ml-xl mt-lg">@lang('There are no results for the selected filtres')</h2>
             @endforelse
         </div>
 

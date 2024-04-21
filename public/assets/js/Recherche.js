@@ -7,7 +7,7 @@ export default class Recherche {
 
         this._elTemplateVoiture = document.querySelector('[data-template-voiture]');
         this._elVoitures = document.querySelector('[data-js-catalogue]');
-
+        this._elsCheckbox = document.querySelectorAll('input[type=checkbox]');
         // console.log(currentLocale)
         
         this.init();
@@ -18,6 +18,7 @@ export default class Recherche {
 
             let recherche = this._elRecherche.value;
             this.rechercheVoiture(recherche);
+            this.supprimeFiltre();
 
         }.bind(this));
     }
@@ -35,10 +36,12 @@ export default class Recherche {
             },
             body: JSON.stringify(voiture)
         };
+
+        let host = window.location.host;
     
         this._elVoitures.innerHTML = '';
-    
-        fetch('requetes/requeteAsync.php', oOptions)
+
+        fetch(`http://${host}/requetes/requeteAsync.php`, oOptions)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('La reponse n\'est pas ok');
@@ -94,7 +97,20 @@ export default class Recherche {
                 console.error('Error:', error);
             });
     }
-    
-        
+
+    /**
+     * enlever les filtres selectionnes si'l y en a
+     */
+    supprimeFiltre()
+    {
+        for (let i = 0, l = this._elsCheckbox.length; i < l; i++) 
+        {
+            if (this._elsCheckbox[i].checked) 
+            {
+                this._elsCheckbox[i].checked = false;
+            }
+        }
     }
+        
+}
 
