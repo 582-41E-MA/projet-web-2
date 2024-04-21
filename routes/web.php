@@ -115,6 +115,8 @@ Route::post('/panier/inscription', [CommandeController::class, 'inscriptionPanie
 Route::get('/panier/voiture/{voiture}', [CommandeController::class, 'panier'])->name('commande.panier');
 Route::get('/panier/{user}', [CommandeController::class, 'showPanier'])->name('commande.showPanier');
 Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePanier'])->name('commande.deleteVoiturePanier');
+// Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
+Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
