@@ -22,25 +22,73 @@ use Illuminate\Support\Facades\Cookie;
 
 class CommandeController extends Controller
 {
-    /**
-     * Display the cart.
-     */
     public function panier(Voiture $voiture)
     {
-        //return $voiture->id;
+        if (!Auth::user()) {
+            $id = 0;
+        } else {
+            $id = Auth::user()->id;
+        }
 
-        $cookie = Cookie::make('voiture_id', $voiture->id, 60);
-  
-        return response()->view('commande.panier')->withCookie($cookie);
-        //return response()->view('commande.show')->withCookie($cookie);
+        // Obter o cookie existente com o nome 'voiture_id' ou iniciar com uma lista vazia
+        $existingCookie = Cookie::get('voiture_id_' . $id, '');
+
+        // Separar a lista de IDs existentes em um array
+        $voitureIds = $existingCookie ? explode(',', $existingCookie) : [];
+    
+        // Adicionar o novo ID do carro à lista se ainda não estiver presente
+        if (!in_array($voiture->id, $voitureIds)) {
+            $voitureIds[] = $voiture->id;
+        }
+    
+        // Converter a lista de IDs de volta para uma string separada por vírgulas
+        $updatedCookieValue = implode(',', $voitureIds);
+    
+        // Criar ou atualizar o cookie com a lista de IDs
+        $cookie = Cookie::make('voiture_id_' . $id, $updatedCookieValue, 60);
+    
+        // Redirecionar para a rota 'commande.show' com o cookie atualizado
+        return redirect()->route('commande.show', $id)->withCookie($cookie);
     }
-
-    public function showPanier()
+    
+    public function showPanier($id)
     {
-        $cookieValue = Cookie::get('voiture_id');
+        // return $id;
+        // Obter o cookie com a lista de IDs de carros
+        $cookieValue = Cookie::get('voiture_id_' . $id, '');
+    
+        if ($cookieValue) {
+            // Converter a string separada por vírgulas em um array de IDs
+            //$voitureIds = explode(',', $cookieValue);
+            $voitureIds = explode(',', $cookieValue);
+    
+            $voitures = Voiture::all();
 
-        return $cookieValue;
+            $voitureAfficher = [];
+
+            foreach ($voitures as $voiture) {                
+                foreach ($voitureIds as $voitureId) {
+                    if ($voiture->id == $voitureId) {
+                        $voitureAfficher[] = $voiture;
+                    }
+                }
+            }
+            
+            $voitures = $voitureAfficher;
+            $marques = Marque::all();
+            $annees = Annee::all();
+            $transmissions = Transmission::all();
+            $tractions = Traction::all();
+            $carburants = Carburant::all();
+            $carrosseries = Carrosserie::all();
+            $photos = Photo::select()->where('principal', 1)->get();
+
+            return view('commande.index', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+        } else {
+            return view('voiture.index');
+        }
     }
+    
 
     /**
      * Display a listing of the resource.

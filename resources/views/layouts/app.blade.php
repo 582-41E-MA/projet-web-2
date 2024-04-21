@@ -83,6 +83,7 @@
                 <div class="div-connexion">
                     <a href="{{ route('logout') }}">@lang('Sign out')</a>
                 </div>
+                <p class="user-email">{{ Auth::user()->courriel }}</p>
                 <p>@lang('User:') {{ Auth::user()->courriel }}</p>
 
                 <!-- temporaire -->

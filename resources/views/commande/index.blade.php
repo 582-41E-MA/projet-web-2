@@ -7,9 +7,8 @@
         <h3>@lang('Cart')</h3>
     </div>
     <div class="liste-panier">
-    @forelse($commandes as $commande)
+ 
         @foreach($voitures as $voiture)
-            @if($voiture->id == $commande->voiture_id)
             <div class="chaque-voiture">
                 <div>
                     @foreach($photos as $photo)
@@ -22,7 +21,7 @@
                     <div class="detail">
                         <h3>{{ $voiture->annee->annee }} 
                             {{ $voiture->marque->nom }} 
-                            {{ $voiture->modele->nom }}
+                            {{ $voiture->modele->nom }}        
                         </h3>
                     </div>
                     <div class="prix">
@@ -31,10 +30,9 @@
                 </div>
             </div>
             <hr>
-            @endif
         @endforeach
-    @empty
-    @endforelse
+
+
     </div>
     <div class="buttons">
         <button class="btn btn-primaire">@lang('Check Out')</button>
