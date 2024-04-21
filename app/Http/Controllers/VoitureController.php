@@ -95,6 +95,7 @@ class VoitureController extends Controller
             $donneesVoiture[$key]['carburant'] = $carburant[0]['nom'];
             $donneesVoiture[$key]['prix_vente'] = round($voiture['prix_vente']);
         }
+
         return view('voiture.index', ['marques' => $marques, 'annees' => $optionsAnnee, 'tractions'=> $tractions, 'transmissions'=> $transmissions, 'carburants'=> $carburants, 'carrosseries' => $filtresCarrosserie, 'voitures'=> $donneesVoiture]);
     }
 
@@ -437,13 +438,13 @@ class VoitureController extends Controller
             // saisir les ids d'annees selectionnees
             foreach($request['annees'] as $key=>$value)
             {   
-                if(($value) == 1925)
+                if(($value) == 1919)
                 {
                     $annees = Annee::select('id')
                                 ->where('annee', '<=', $value)
                                 ->get();
                 }
-                else if(($value) == 2001)
+                else if(($value) == 2000)
                 {
                     $annees = Annee::select('id')
                                 ->where('annee', '>=', $value)
@@ -452,7 +453,7 @@ class VoitureController extends Controller
                 else
                 {
                     $annees = Annee::select('id')
-                                ->where('annee', '>', $value - 25)
+                                ->where('annee', '>', $value - 20)
                                 ->where('annee', '<=', $value)
                                 ->get();
                 }
@@ -499,7 +500,6 @@ class VoitureController extends Controller
                     ->whereIn('carburant_id', $idsVoitureParCarburant)
                     ->whereIn('transmission_id', $idsVoitureParTransmission)
                     ->get();
-        
 
         // 4 Afficher la liste de voitures filtres // 
 
