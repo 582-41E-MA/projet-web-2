@@ -32,10 +32,10 @@ class Traction extends Model
     static public function tractionParId($id)
     {
         $resource = TractionResource::collection(self::select()->where('id', $id)->get());
-
         $data = json_encode($resource);
         $data = json_decode($data,true);
 
         return $data;
     }
+
 }

@@ -10,17 +10,19 @@
 @import url(/assets/css/4-elements/nav.css);
 
 /* 5 - OBJETCS */
-@import url(/assets/css/5-objects/header.css);
 @import url(/assets/css/5-objects/button.css);
+@import url(/assets/css/5-objects/checkbox.css);
+@import url(/assets/css/5-objects/div.css);
+@import url(/assets/css/5-objects/form.css);
+@import url(/assets/css/5-objects/header.css);
+@import url(/assets/css/5-objects/input.css);
+@import url(/assets/css/5-objects/label.css);
+@import url(/assets/css/5-objects/message.css);
+@import url(/assets/css/5-objects/modal.css);
 @import url(/assets/css/5-objects/spacing.css);
 @import url(/assets/css/5-objects/wrapper.css);
-@import url(/assets/css/5-objects/form.css);
-@import url(/assets/css/5-objects/label.css);
-@import url(/assets/css/5-objects/input.css);
-@import url(/assets/css/5-objects/message.css);
 
 /* 6 - PAGES */
 @import url(/assets/css/6-pages/accueil.css);
 @import url(/assets/css/6-pages/parametres.css);
 @import url(/assets/css/6-pages/voiture.css);
-

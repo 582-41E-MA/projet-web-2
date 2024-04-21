@@ -1,6 +1,6 @@
 
 {
-    "Registration" : "Inscription",
+    "New user" : "Nouvel utilisateur",
     "Submit":"Soumettre",
     "Name":"Nom",
     "Post code":"Code postal",
@@ -34,6 +34,9 @@
     "Crossover": "Crossover",
     "Search": "Rechercher",
     "Add" : "Ajouter",
+    "Apply" : "Appliquer",
+    "1919 and before" : "1919 et avant",
+    "2000 and after" : "2000 et après",
     "Brand" : "Marque",
     "Select a brand" : "Sélectionnez une marque",
     "Model" : "Modèle",
@@ -102,5 +105,9 @@
     "Feul:": "Carburant :",
     "Bodywork:": "Carrosserie :",
     "Transmission:": "Transmission :",
-    "Traction:": "Traction :"
+    "Traction:": "Traction :",
+    "Reset": "Réinitialiser",
+    "User created successfully": "Utilisateur a été crée avec succès",
+    "More info": "Plus d'info"
+
 }

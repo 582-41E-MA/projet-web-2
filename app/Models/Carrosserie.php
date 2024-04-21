@@ -40,4 +40,5 @@ class Carrosserie extends Model
 
         return $data;
     }
+
 }

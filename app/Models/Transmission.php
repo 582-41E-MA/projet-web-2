@@ -38,4 +38,5 @@ class Transmission extends Model
 
         return $data;
     }
+
 }

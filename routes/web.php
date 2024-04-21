@@ -16,14 +16,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/accueil', function () {
+    return view('accueil');
+});
+
+
 Route::get('/registration', [UserController::class, 'create'])->name('user.create');
+Route::get('/create/employee', [UserController::class, 'employee'])->name('user.employee');
 Route::post('/registration', [UserController::class, 'store'])->name('user.store');
+
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/users/{privilege}', [UserController::class, 'privilege'])->name('user.privilege');
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
+Route::get('/voitures/select', [VoitureController::class, 'select'])->name('voitures.select');
+
 Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
 Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');

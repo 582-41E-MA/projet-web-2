@@ -1,4 +1,3 @@
-
 import { classesMapping } from './classMapping.js';
 
 (function() {
@@ -10,7 +9,8 @@ import { classesMapping } from './classMapping.js';
 		let datasetComponent = elComponents[i].dataset.jsComponent,
 			elComponent = elComponents[i];
 
-        // Instancier les classes
+        // console.log(datasetComponent);
+        // console.log(elComponent);
 		for (let key in classesMapping) {
 			if (datasetComponent == key) new classesMapping[datasetComponent](elComponent);
 		}

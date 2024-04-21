@@ -34,8 +34,6 @@ class VoitureController extends Controller
         
         // 1.1 Afficher les filtres de carrosseries
         $filtresCarrosserie = [];
-
-        // return $carrosseries;
         
         foreach ($carrosseries as $key => $carrosserie) 
         {
@@ -47,29 +45,29 @@ class VoitureController extends Controller
         // 1.2 Afficher les filtres d'annees
         $optionsAnnee = [
             0 => [
-                "value" => "1980",
-                "label" => "1980 and before",
+                "value" => "1919",
+                "label" => "1919 and before",
             ],
             1 => [
-                "value" => "1990",
-                "label" => "1981 - 1990",
+                "value" => "1939",
+                "label" => "1920 - 1939",
             ],
             2 => [
-                "value" => "2000",
-                "label" => "1991 - 2000",
+                "value" => "1959",
+                "label" => "1940 - 1959",
             ],
             3 => [
-                "value" => "2010",
-                "label" => "2001 - 2010",
+                "value" => "1979",
+                "label" => "1960 - 1979",
             ],
             4 => [
-                "value" => "2020",
-                "label" => "2011 - 2020",
-            ],
-            4 => [
-                "value" => "2021",
+                "value" => "1999",
+                "label" => "1980 - 1999",
+            ], 
+            5 => [
+                "value" => "2000",
                 "label" => "2000 and after",
-            ]
+            ] 
         ];
 
         // 2 Afficher la liste de toutes les voitures de BD // 
@@ -97,7 +95,6 @@ class VoitureController extends Controller
             $donneesVoiture[$key]['carburant'] = $carburant[0]['nom'];
             $donneesVoiture[$key]['prix_vente'] = round($voiture['prix_vente']);
         }
-        
         return view('voiture.index', ['marques' => $marques, 'annees' => $optionsAnnee, 'tractions'=> $tractions, 'transmissions'=> $transmissions, 'carburants'=> $carburants, 'carrosseries' => $filtresCarrosserie, 'voitures'=> $donneesVoiture]);
     }
 
@@ -352,29 +349,29 @@ class VoitureController extends Controller
         
         $optionsAnnee = [
             0 => [
-                "value" => "1980",
-                "label" => "1980 and before",
+                "value" => "1919",
+                "label" => "1919 and before",
             ],
             1 => [
-                "value" => "1990",
-                "label" => "1981 - 1990",
+                "value" => "1939",
+                "label" => "1920 - 1939",
             ],
             2 => [
-                "value" => "2000",
-                "label" => "1991 - 2000",
+                "value" => "1959",
+                "label" => "1940 - 1959",
             ],
             3 => [
-                "value" => "2010",
-                "label" => "2001 - 2010",
+                "value" => "1979",
+                "label" => "1960 - 1979",
             ],
             4 => [
-                "value" => "2020",
-                "label" => "2011 - 2020",
-            ],
-            4 => [
-                "value" => "2021",
+                "value" => "1999",
+                "label" => "1980 - 1999",
+            ], 
+            5 => [
+                "value" => "2000",
                 "label" => "2000 and after",
-            ]
+            ] 
         ];
 
         // 1.4 recuperer tous les ids de tractions depuis BD (quand aucune tractions n'est selectionne, selectionner toutes les tractions comme filtres)
@@ -440,13 +437,13 @@ class VoitureController extends Controller
             // saisir les ids d'annees selectionnees
             foreach($request['annees'] as $key=>$value)
             {   
-                if(($value) == 1980)
+                if(($value) == 1925)
                 {
                     $annees = Annee::select('id')
                                 ->where('annee', '<=', $value)
                                 ->get();
                 }
-                else if(($value) == 2021)
+                else if(($value) == 2001)
                 {
                     $annees = Annee::select('id')
                                 ->where('annee', '>=', $value)
@@ -455,7 +452,7 @@ class VoitureController extends Controller
                 else
                 {
                     $annees = Annee::select('id')
-                                ->where('annee', '>', $value - 10)
+                                ->where('annee', '>', $value - 25)
                                 ->where('annee', '<=', $value)
                                 ->get();
                 }
@@ -465,8 +462,9 @@ class VoitureController extends Controller
                     $idsVoitureParAnnee[] = $annee['id'];
                 }
             }
-        }
 
+        }
+        
         // 2.4 si une traction est selectionnee
         if (isset($request['tractions']) && $request['tractions'] != null)
         {
@@ -491,7 +489,6 @@ class VoitureController extends Controller
             $idsVoitureParTransmission[0] = $request['transmissions'];   
         }
 
-        
         // 3 Envoyer la requete de filtrage a la BD // 
         
         $voitures = Voiture::select()
@@ -518,6 +515,7 @@ class VoitureController extends Controller
             $carburant = Carburant::carburantParId($voiture['carburant_id']);
             $transmission = Transmission::transmissionParId($voiture['transmission_id']);
 
+            $donneesVoiture[$key]['id'] = $voiture['id'];
             $donneesVoiture[$key]['photoPrincipale'] = $photoPrincipale->nom;
             $donneesVoiture[$key]['annee'] = $annee->annee;
             $donneesVoiture[$key]['marque'] = $marque->nom;

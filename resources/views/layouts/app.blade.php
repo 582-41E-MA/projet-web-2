@@ -10,32 +10,39 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" media="screen">
-    
+
     <!-- Scripts -->
     <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
 
 </head>
 <body>
-    @php $locale = session()->get('locale') @endphp
+    @php 
+        $locale = session()->get('locale');
 
-    @if(Auth::user()) 
-        @php $privilege = Auth::user()->privilege_id @endphp
-    @else
-        @php $privilege = 1 @endphp
-    @endif
-    {{ $locale }}
+        if(Auth::user()) $privilege = Auth::user()->privilege->nom;
+        else $privilege = 'client';
+    @endphp
+
     <header>
         <div class="div-header">
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="div-nav">
                 <img src="{{asset('assets/img/svg/logo.svg')}}" alt="logo">
-                    @if($privilege == 2 || $privilege == 3)
+                @if($privilege == 'employé' || $privilege == 'administrateur')
                     <div class="div-list-nav">
                         <nav>
                             <ul class="list-nav">
-                                <li><a href="">@lang('Employee')</a></li>
-                                <li><a href="">@lang('Client')</a></li>
+                                <li class="voiture-nav"><a class="{{ request()->routeIs('user.employee') ? 'active' : '' }}"href="">@lang('Employee')</a>                          
+                                    <ul class="sous-list-nav">
+                                        <li><a class="{{ request()->routeIs('user.employee') ? 'active' : '' }}" href="{{ route('user.employee') }}">@lang('Add employee')</a></li>
+                                    </ul>
+                                </li>
+                                <li class="voiture-nav"><a class="{{ request()->routeIs('user.create') ? 'active' : '' }}"href="">@lang('Client')</a>                          
+                                    <ul class="sous-list-nav">
+                                        <li><a class="{{ request()->routeIs('user.create') ? 'active' : '' }}" href="{{ route('user.create') }}">@lang('Add Client')</a></li>
+                                    </ul>
+                                </li>
                                 <!-- ajouter l'autres routes -->
                                 <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
                                     <ul class="sous-list-nav">
@@ -52,7 +59,7 @@
                 <div class="div-list-nav">
                     <nav>
                         <ul class="list-nav">
-                            <li><a href="{{ route('voiture.index') }}" class="active">@lang('Cars list')</a></li>
+                            <li><a href="{{ route('voiture.index') }}" class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}">@lang('Cars list')</a></li>
                             <li><a href="">@lang('About us')</a></li>
                             <li><a href="">@lang('Sales Policies')</a></li>
                         </ul>

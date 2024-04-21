@@ -6,7 +6,6 @@ export default class Marque {
         this._elChampSelect = this._el.querySelector('[data-js-select]');
         this._elChampSelectionne = this._elChampSelect.options[this._elChampSelect.selectedIndex];
         this._elChampSelectionneIndex = this._elChampSelectionne.dataset.jsMarque;
-
         // Si le formulaire contient des erreurs, il conservera les champs précédemment sélectionnés
         if (this._elChampSelectionneIndex != undefined) this.afficheModeles(this._elChampSelectionneIndex);
         

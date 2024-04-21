@@ -38,6 +38,7 @@ class Voiture extends Model
     }
 
 
+
     public function modele(){
 
         return $this->belongsTo(Modele::class);
@@ -63,7 +64,5 @@ class Voiture extends Model
     public function carrosserie() {
         return $this->belongsTo(Carrosserie::class);
     }
-
-
 
 }

@@ -1,0 +1,12 @@
+.checkbox-container {
+    /* display: flex;
+    justify-content: space-between;
+    height: 20px; */
+    accent-color: var(--coul-primaire);
+}
+
+.checkbox-container--body-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
