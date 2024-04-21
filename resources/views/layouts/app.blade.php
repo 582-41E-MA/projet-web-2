@@ -95,7 +95,6 @@
                 </div>
                 <p class="user-email">{{ Auth::user()->courriel }}</p>
 
-
                 @else
 
                 @php
