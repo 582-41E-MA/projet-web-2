@@ -10,6 +10,14 @@
     gap: 10px;
 }
 
+.grid-catalogue {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    flex-basis: 80%;
+    margin: 45px;
+}
+
 .form_recherche {
     text-align: end;
 }
@@ -85,13 +93,17 @@ h2 {
     width: 48%;
 }
 
+.grid_carrosserie {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
 .filtres__btns {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-.grid_carrosserie {
+.filtres__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--espace-half) var(--espace-1half);

@@ -13,7 +13,6 @@
             <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
     </div>
 
-
     <p class="message">
       @if(session('success'))
          {{session('success')}}
