@@ -21,13 +21,14 @@ export default class Marque {
      */
     init() {
         this._elValeurPrixPaye.addEventListener('input', function() {
+            // Si le privilège de l'utilisateur n'est pas administrateur, le bouton sera désactivé
+            this.disableInput();
+
             let prixPaye = this._elValeurPrixPaye.value;
 
             // Caluculer le prix de vente
             this._elValeurPrixVente.value = (prixPaye * 1.25).toFixed(2);
         
-            // Si le privilège de l'utilisateur n'est pas administrateur, le bouton sera désactivé
-            this.disableInput();
         }.bind(this));
     }
     
@@ -36,7 +37,9 @@ export default class Marque {
      */ 
     disableInput() {
         if (privilegeLevel !== 3) {
-            this._elValeurPrixVente.disabled = true;
+            this._elValeurPrixVente.readOnly = true;
+        } else {
+            this._elValeurPrixVente.readOnly = false;
         }
     }
 }   

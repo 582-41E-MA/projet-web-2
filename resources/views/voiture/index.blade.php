@@ -13,6 +13,12 @@
             <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
     </div>
 
+    <p class="message">
+      @if(session('success'))
+         {{session('success')}}
+      @endif
+    </p>
+
     <div class="container_accueil mt-sm mr-sm ml-sm">
 
         <!-- Filtres -->
