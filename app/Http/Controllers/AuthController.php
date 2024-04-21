@@ -39,8 +39,6 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        // return Auth::user();
-
         return redirect()->intended(route('voiture.index'))->withSuccess(trans('Welcome back'));
     }
 

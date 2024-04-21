@@ -18,7 +18,7 @@
          {{session('success')}}
       @endif
     </p>
-    
+
     <!-- Button de filtrage a la version mobile -->
     <div class="filtrage" data-js-component="Filtrage">
         <button class="btn btn-primaire mt-xl" type="submit">@lang('Filters')</button>

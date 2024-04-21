@@ -1,6 +1,6 @@
 
 {
-    "Registration" : "Inscription",
+    "New user" : "Nouvel utilisateur",
     "Submit":"Soumettre",
     "Name":"Nom",
     "Post code":"Code postal",
@@ -108,6 +108,6 @@
     "Traction:": "Traction :",
     "Reset": "Réinitialiser",
     "More info": "Plus d'info",
-    "There are no results for the selected filtres": "Il n'y a pas de résultats pour les filtres sélectionnées"
-
+    "There are no results for the selected filtres": "Il n'y a pas de résultats pour les filtres sélectionnées",
+    "User created successfully": "Utilisateur a été crée avec succès"
 }

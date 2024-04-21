@@ -1,11 +1,18 @@
 @extends('layouts.app')
-@section('title', trans('Registration'))
+
+@php
+    if(request()->routeIs('user.create')) $title = "Registration";
+    else $title = "New user";
+@endphp
+
+@section('title', trans($title))
 @section('content')
+
 
 <main class="wrapper">
     <div class="container-form">
-        <h1>@lang('Registration')</h1>
-        <form method="POST" class="form">
+        <h1>@lang($title)</h1>
+        <form method="POST" action="{{ route('user.store') }}" class="form">
             @csrf
             <div class="form-inputContainer">
                 <div class="control-input">
@@ -18,6 +25,37 @@
                 @endif
                 </div>
             </div>
+
+            @if(request()->routeIs('user.create'))
+            <input type="hidden" name="privilege_id" value="1">
+            @elseif(request()->routeIs('user.employee'))
+            <div class="form-inputContainer">
+                <div class="control-input">
+                    <label class="label" for="privilege" >@lang('Privilege')*</label>
+                    <select class="input input-placeholder" name="privilege_id" id="privilege">
+                        <option value="2"  
+                            @if(2 == old('privilege_id'))
+                            selected
+                            @endif 
+                            >@lang('Employee')
+                        </option>
+                        <option value="3"  
+                            @if(3 == old('privilege_id'))
+                            selected
+                            @endif 
+                            >@lang('Administrator')
+                        </option>
+                    </select>
+                </div>
+                <div class="control-erreur">
+                @if($errors->has('privilege_id'))
+                    {{ $errors->first('privilege_id')}}
+                @endif
+                </div>
+            </div>
+            @endif
+
+
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label class="label" for="date_de_naissance" >@lang('Date of birth')*</label>
