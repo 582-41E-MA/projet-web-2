@@ -10,6 +10,7 @@ use App\Http\Controllers\CarrosserieController;
 use App\Http\Controllers\TransmissionController;
 use App\Http\Controllers\TractionController;
 use App\Http\Controllers\CarburantController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\CommandeController;
@@ -102,6 +103,8 @@ Route::get('/success/{commande}', [CommandeController::class, 'success'])->name(
 Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
 
 
+// Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
+Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

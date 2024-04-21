@@ -11,16 +11,50 @@ use App\Models\Annee;
 use App\Models\Marque;
 use App\Models\Modele;
 use Dompdf\Dompdf;
-
+use App\Models\Transmission;
+use App\Models\Traction;
+use App\Models\Carburant;
+use App\Models\Carrosserie;
+use App\Http\Controllers\VoitureController;
+use Illuminate\Support\Facades\Auth;
 
 class CommandeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Voiture $voiture)
     {
-        //
+        $id = Auth::user()->id;
+        $commandeExist = Commande::where('voiture_id', $voiture->id)->exists();
+
+        if ($commandeExist) {
+            return redirect()->route('voiture.index');
+        } else {
+            $commande = Commande::create([
+                'voiture_id' => $voiture->id,
+                'user_id' => $id,
+                'payment_id' => 0,
+                'statut_id' => 0,
+                'expedition_id' => 0,
+                'date' => now(),
+                'quantite' => 1,
+                'prix' => $voiture->prix_vente
+            ]);
+
+            $marques = Marque::all();
+            $annees = Annee::all();
+            $transmissions = Transmission::all();
+            $tractions = Traction::all();
+            $carburants = Carburant::all();
+            $carrosseries = Carrosserie::all();
+            $photos = Photo::select()->where('principal', 1)->get();
+            
+            $commandes = Commande::select()->where('user_id', $id)->get();
+            $voitures = Voiture::all();
+       
+            return view('commande.index', compact('commandes', 'voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+        }
     }
 
     /**

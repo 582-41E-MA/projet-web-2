@@ -120,5 +120,8 @@
     "User deleted successfully": "Utilisateur a été supprimé avec succès",
     "Amount": "Montant",
     "Checkout": "Paiement",
-    "Download the order": "Télécharger la commande"
+    "Download the order": "Télécharger la commande",
+    "Check Out": "Commander",
+    "Reserve": "Réserver",
+    "Cart": "Panier"
 }
