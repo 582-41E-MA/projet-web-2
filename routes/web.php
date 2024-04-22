@@ -105,6 +105,7 @@ Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmat
 
 // Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
+Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
