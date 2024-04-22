@@ -35,14 +35,17 @@
                     <div class="div-list-nav">
                         <nav>
                             <ul class="list-nav">
-                                <li class="voiture-nav"><a class="{{ request()->routeIs('user.employee') ? 'active' : '' }}"href="">@lang('Employee')</a>                          
+                            <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Employee')</a>                          
                                     <ul class="sous-list-nav">
-                                        <li><a class="{{ request()->routeIs('user.employee') ? 'active' : '' }}" href="{{ route('user.employee') }}">@lang('Add employee')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('user.index') }}">@lang('Employee list')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Add an employee')</a></li>
                                     </ul>
                                 </li>
-                                <li class="voiture-nav"><a class="{{ request()->routeIs('user.create') ? 'active' : '' }}"href="">@lang('Client')</a>                          
+
+                                <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Client')</a>                          
                                     <ul class="sous-list-nav">
-                                        <li><a class="{{ request()->routeIs('user.create') ? 'active' : '' }}" href="{{ route('user.create') }}">@lang('Add Client')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('userClient.index') }}">@lang('Client list')</a></li>
+                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Add a client')</a></li>
                                     </ul>
                                 </li>
                                 <!-- ajouter l'autres routes -->

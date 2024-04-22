@@ -1,22 +1,13 @@
 @extends('layouts.app')
 @section('title', trans('Users'))
 @section('content')
-   
-<main class="wrapper">
-   <p class="message">
-      @if(session('success'))
-         {{session('success')}}
-      @endif
-   </p>
-
-    <!-- form -->
 <script>
     var currentLocale = "<?php print app()->getLocale(); ?>";
 </script>
 
 <main class="wrapper">
-<div class="form_recherche" data-js-component="RechercheUser"> 
-            <label for="rechercher"></label>
+    <div class="form_recherche" data-js-component="RechercheClient"> 
+        <label for="rechercher"></label>
             <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
             <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
     </div>
@@ -68,7 +59,7 @@
             </thead>
             <tbody class="tbody">
                 @foreach($users as $user)
-                @if($user->privilege_id == 2)
+                @if($user->privilege_id == 1)
                 <tr>
                     <td>{{ $user->nom }}</td>
                     <td>{{ $user->courriel }}</td>

@@ -58,5 +58,4 @@ class User extends Authenticatable
         return $this->belongsTo(Privilege::class);
 
     }
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Privilege;
 use App\Models\Ville;
+use App\Models\Privilege;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $privileges = Privilege::all();
+        $users = User::all(); 
+        return view('user.index', ["users" => $users, "privileges" => $privileges]);
+      
+    }
 
-        return view('user.index', ['users' => $users]);
+    public function indexClient()
+    {
+        $privileges = Privilege::all();
+        $users = User::all(); 
+        return view('user.indexClient', ["users" => $users, "privileges" => $privileges]);
+      
     }
 
     /**
@@ -95,25 +105,45 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $villes = Ville::villes();
+        $privileges = Privilege::all();
+        return view('user.edit', ['user' => $user, 'privileges' => $privileges, 'villes'=> $villes]);
     }
-
+    
+    
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'nom' => 'min:2|max:191',
+            'date_de_naissance' => 'date',
+            'code_postal' => 'size:6',
+            'telephone' => 'min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'ville_id' => 'exists:villes,id',
+        ]);
+
+        $user->update([
+            'nom' => $request->nom,
+            'date_de_naissance' => $request->date_de_naissance,
+            'code_postal' => $request->code_postal,
+            'telephone' => $request->telephone,
+            'ville_id' => $request->ville_id,
+
+        ]);
+        return redirect()->route('user.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('user.index'); 
     }
 
 }
