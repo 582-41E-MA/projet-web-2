@@ -141,8 +141,14 @@
 
     function rechercheUtilisateurs($propriete) {
         return executeRequete("SELECT *
-                                FROM users 
-                                WHERE users.nom LIKE '%$propriete%'");
+                                FROM users
+                                WHERE users.nom LIKE '%$propriete%' AND privilege_id = 2");
+    }
+
+    function rechercheClients($propriete) {
+        return executeRequete("SELECT *
+                                FROM users
+                                WHERE users.nom LIKE '%$propriete%' AND privilege_id = 1");
     }
 
 

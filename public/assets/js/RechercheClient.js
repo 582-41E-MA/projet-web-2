@@ -1,29 +1,28 @@
-export default class RechercheUser {
+export default class RechercheClient {
 
     constructor(el) {
         // Recuperer les champs du formulaire
         this._el = el;
-        this._elRecherche = document.getElementById('recherche');
+        this._elRechercheClient = document.getElementById('recherche');
         this._elTemplateListe = document.querySelector('[data-template-liste]');
         this._elListe = document.querySelector('[data-js-liste]');
-        
+
         this.init();
     }
     init() {
-        
-        this._elRecherche.addEventListener('change', function(){
 
-            let recherche = this._elRecherche.value;
-            this.rechercheUser(recherche);
+        this._elRechercheClient.addEventListener('change', function(){
+
+            let recherche = this._elRechercheClient.value;
+            this.recherche(recherche);
 
         }.bind(this));
-
     }
 
-    rechercheUser(propriete) {
 
+    recherche(propriete) {
         let user = {
-            action: 'rechercheUtilisateurs',
+            action: 'rechercheClients',
             recherche: propriete
         };
     
@@ -82,7 +81,7 @@ export default class RechercheUser {
                             <a href="/edit/user/${data[i].id}">
                                 <img src="assets/img/svg/modifier.svg" alt="icone_modification">
                             </a>
-                            <form method="post" action="/delete/user/${data[i].id}">
+                            <form method="post" action="/user/${data[i].id}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit">
@@ -102,7 +101,6 @@ export default class RechercheUser {
 
         }.bind(this));
     }
-    
-        
-    }
+
+}
 

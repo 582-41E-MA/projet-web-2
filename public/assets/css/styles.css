@@ -21,8 +21,11 @@
 @import url(/assets/css/5-objects/modal.css);
 @import url(/assets/css/5-objects/spacing.css);
 @import url(/assets/css/5-objects/wrapper.css);
+@import url(/assets/css/5-objects/table.css);
 
 /* 6 - PAGES */
 @import url(/assets/css/6-pages/accueil.css);
 @import url(/assets/css/6-pages/parametres.css);
 @import url(/assets/css/6-pages/voiture.css);
+@import url(/assets/css/6-pages/crm.css);
+
