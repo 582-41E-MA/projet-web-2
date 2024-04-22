@@ -10,6 +10,12 @@
 
 
 <main class="wrapper">
+@if(session('success'))
+    <p class="message">
+    {{session('success')}}
+    </p>
+@endif
+
     <div class="container-form">
         <h1>@lang($title)</h1>
         <form method="POST" action="{{ route('user.store') }}" class="form">
@@ -139,7 +145,7 @@
                 </div>
             </div>
             <div class="form-btnContainer">
-                <button class="btn btn-tertiaire">@lang('Submit')</button>
+                <button class="btn btn-primaire">@lang('Submit')</button>
             </div>
         </form>
     </div>

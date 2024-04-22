@@ -28,7 +28,9 @@
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="div-nav">
-                <img src="{{asset('assets/img/svg/logo.svg')}}" alt="logo">
+                <div class="logo">
+                    <img src="{{asset('assets/img/svg/logo.svg')}}" alt="logo">
+                </div>
                 @if($privilege == 'employé' || $privilege == 'administrateur')
                     <div class="div-list-nav">
                         <nav>
@@ -44,7 +46,7 @@
                                     </ul>
                                 </li>
                                 <!-- ajouter l'autres routes -->
-                                <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
+                                <li class="voiture-nav {{ request()->routeIs('voiture.create') ? 'active' : '' }}"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
                                     <ul class="sous-list-nav">
                                         <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('voiture.index') }}">@lang('Cars list')</a></li>
                                         <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="{{ route('voiture.create') }}">@lang('Add car')</a></li>
@@ -77,7 +79,7 @@
                 <div class="div-connexion">
                     <a href="{{ route('logout') }}">@lang('Sign out')</a>
                 </div>
-                <p>@lang('User:') {{ Auth::user()->courriel }}</p>
+                <p class="user-email">{{ Auth::user()->courriel }}</p>
                 @else
                 <div class="div-connexion">
                     <a href="{{ route('user.create') }}">@lang('Registration')</a>

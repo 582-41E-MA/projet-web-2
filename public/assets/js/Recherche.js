@@ -52,11 +52,11 @@ export default class Recherche {
                 if (data.length === 0) {
                     if(currentLocale == "fr"){
                         
-                        this._elVoitures.innerHTML = `<h2 class="ml-xl mt-lg"> Il n'y a pas de résultats pour '${propriete}'</h2>`;
+                        this._elVoitures.innerHTML = `<p class="message"> Il n'y a pas de résultats pour '${propriete}'</p>`;
                     
                     } else {
                 
-                        this._elVoitures.innerHTML = `<h2 class="ml-xl mt-lg">There are no results for '${propriete}'</h2>`;
+                        this._elVoitures.innerHTML = `<p class="message"">There are no results for '${propriete}'</p>`;
                     }
                 } else {
                     const template = document.querySelector('[data-template-voiture]');

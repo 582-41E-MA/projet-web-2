@@ -98,3 +98,8 @@ p {
     text-decoration: underline;
     text-transform: uppercase;
 }
+
+.user-email {
+    font-size: var(--texte-xs);
+
+}

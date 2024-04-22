@@ -38,7 +38,6 @@ export default class Filtrage
      */
     #afficheModal()
     {
-        console.log('click');
         this.#_elModal.classList.remove('modal--ferme');
 		this.#_elHTML.classList.add("overflow-y-hidden");
 		this.#_elBody.classList.add("overflow-y-hidden");

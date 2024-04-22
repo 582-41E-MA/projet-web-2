@@ -3,13 +3,14 @@
 @section('content')
    
 <main class="wrapper">
-   <p class="message">
-      @if(session('success'))
-         {{session('success')}}
-      @endif
-   </p>
+@if(session('success'))
+    <p class="message">
+    {{session('success')}}
+    </p>
+@endif
 
     <div class="container-form">
+        <h1>@lang('Login')</h1>
         <form method="POST" class="form">
             @csrf
             <div class="form-inputContainer">
@@ -35,7 +36,7 @@
                 </div>
             </div>
             <div class="form-btnContainer">
-                <button class="btn btn-tertiaire">@lang('Submit')</button>
+                <button class="btn btn-primaire">@lang('Submit')</button>
             </div>
         </form>
     </div>
