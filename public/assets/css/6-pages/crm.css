@@ -1,0 +1,19 @@
+.div-crm {
+    width: 100%;
+
+    button {
+        background-color: var(--coul-fond-claire);
+        border: none;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 428px) {
+    .div-crm {
+        .table {
+            .privilege {
+                display: none;
+            }
+        }
+    }
+}

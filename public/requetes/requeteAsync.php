@@ -47,6 +47,25 @@
                 
             break;
 
+            case 'rechercheClients':
+                if (isset($data['recherche'])) {
+                    $users = rechercheClients($data['recherche']); 
+                
+                    $data = [];
+                
+                    if (mysqli_num_rows($users) > 0) {
+                        // Récupérer la ligne suivante d'un ensemble de résultats sous forme de tableau associatif
+                        while ($user = mysqli_fetch_assoc($users)) { 
+                            $data[] = $user;
+                        }
+                    }
+                
+                    header('Content-type: application/json; charset=utf-8');
+                    echo json_encode($data);
+                }
+                
+            break;
+
         }
 
         } else {
