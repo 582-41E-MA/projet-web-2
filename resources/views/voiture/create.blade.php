@@ -221,7 +221,7 @@
                 </div>
             </div>
             <div class="form-btnContainer">
-                <button type="submit" class="btn btn-tertiaire">@lang('Add')</button>
+                <button type="submit" class="btn btn-primaire">@lang('Add')</button>
             </div>
         </form>
     </div>

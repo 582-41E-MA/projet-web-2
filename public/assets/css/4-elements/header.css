@@ -1,11 +1,11 @@
 header {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--espace-3);
+    margin: var(--espace-1half);
 }
 
 @media screen and (max-width: 428px) {
-    header {
-        margin: var(--espace-1half);
+    .btn, p {
+        margin: var(--espace-quart) var(--espace-quart) 0 0 ;
     }
 }

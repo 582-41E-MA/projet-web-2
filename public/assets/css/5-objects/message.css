@@ -3,3 +3,9 @@
     margin-bottom: var(--espace-2);
     font-size: var(--texte-xs);
 }
+
+@media screen and (max-width: 834px){
+    .message {
+        margin-bottom: var(--espace-1);
+    }
+}

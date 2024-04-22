@@ -14,7 +14,7 @@
         top: 70px;
         width: 100%;
     }
-
+    
     .line-2 {
         display: none;
     }
@@ -71,7 +71,7 @@
                         border: 2px var(--coul-primaire) solid;
                         display: flex;
                         flex-direction: column;
-                        height: 210px;
+                        height: auto;
                         left: 0;
                         position: absolute;
                         top: 70px;
@@ -143,6 +143,27 @@
             top: 140px;
             width: 100%;
         }
+
+
+        .div-nav {
+            /* width: 100%; */
+
+            .div-list-nav {
+    
+                .list-nav {
+                    font-size: var(--texte-xs);
+
+    
+                    li {
+                        padding: 0 var(--espace-1) 0 var(--espace-1);
+
+                    }
+
+                }
+            }
+        }
+    
+
     }
 }
 
@@ -152,7 +173,8 @@
         flex-direction: column;
         height: fit-content;
         position: relative;
-
+        width: calc(100vw - var(--espace-1half));
+        
         .line-1,
         .line-2 {
             display: none;
@@ -170,7 +192,9 @@
                     li {
                         border-bottom: 2px var(--coul-primaire) solid;
                         justify-content: center;
-                        width: 100%;
+                        width: calc(100vw - var(--espace-3));
+                        font-size: var(--texte-md);
+
                     }
 
                     .voiture-nav:hover {

@@ -7,25 +7,21 @@
 
 
 <main class="wrapper">
-    <div class="form_recherche" data-js-component="Recherche"> 
-            <label for="rechercher"></label>
-            <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
-    </div>
 
+
+    @if(session('success'))
     <p class="message">
-      @if(session('success'))
          {{session('success')}}
-      @endif
     </p>
+    @endif
 
     <!-- Button de filtrage a la version mobile -->
     <div class="filtrage" data-js-component="Filtrage">
-        <button class="btn btn-primaire mt-xl" type="submit">@lang('Filters')</button>
+        <button class="btn btn-primaire" type="submit">@lang('Filters')</button>
     </div>
 
 
-    <div class="container_accueil mt-sm mr-sm ml-sm">
+    <div class="container_accueil">
 
         <!-- Modal pour afficher les filtres a la version mobile -->
         <section class="modal modal--ferme" data-js-modal="exit">
@@ -196,37 +192,46 @@
             </div>
         </template>
 
+        <section class="container-catalogue">
 
-        
-        
-        <!-- Catalogue -->
-        <div class="grid-catalogue" data-js-catalogue>
-            @forelse($voitures as $voiture)
-                <div class="item-catalogue">
-                    <div class="car-image">
-                        <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}" >
-                    </div>
-                    <div class="car-info">
-                        <div class="car-detail">
-                            <a href="{{ route('voiture.show', $voiture['id'] ) }}">
-                                <h2>{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}</h2>
-                            </a>
-                            <p class="mt-xs">@lang('Traction'): {{ $voiture['traction']}}</p>
-                            <p class="mt-xs">@lang('Transmission'): {{ $voiture['transmission']}}</p>
-                            <p class="mt-xs">@lang('Fuel'): {{ $voiture['carburant']}}</p>
-                        </div>
-                        <div class="car-prix">
-                            <p class="p_text_prix mr-sm mb-sm">{{ $voiture['prix_vente']}}$</p>
-                            <a href="{{ route('voiture.show', $voiture['id'] ) }}">
-                                <button class="btn btn-primaire mt-xs mr-sm " type="submit">@lang('More info')</button>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Recherche -->
+            <div class="form_recherche mb-lg" data-js-component="Recherche"> 
+                <div class="div-recherche">
+                    <label for="rechercher"></label>
+                    <input class="input_recherche" type="text" id="recherche" name="rechercher">
                 </div>
-            @empty
-            <h2 class="ml-xl mt-lg">@lang('There are no results for the selected filtres')</h2>
-            @endforelse
-        </div>
+                <button class="btn btn-quatrieme" type="submit">@lang('Search')</button>
+            </div>
+            
+            <!-- Catalogue -->
+            <div class="grid-catalogue" data-js-catalogue>
+                @forelse($voitures as $voiture)
+                    <div class="item-catalogue">
+                        <div class="car-image">
+                            <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}" >
+                        </div>
+                        <div class="car-info">
+                            <div class="car-detail">
+                                <a href="{{ route('voiture.show', $voiture['id'] ) }}">
+                                    <h2>{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}</h2>
+                                </a>
+                                <p class="mt-xs">@lang('Traction'): {{ $voiture['traction']}}</p>
+                                <p class="mt-xs">@lang('Transmission'): {{ $voiture['transmission']}}</p>
+                                <p class="mt-xs">@lang('Fuel'): {{ $voiture['carburant']}}</p>
+                            </div>
+                            <div class="car-prix">
+                                <p class="p_text_prix mr-sm mb-sm">{{ $voiture['prix_vente']}}$</p>
+                                <a href="{{ route('voiture.show', $voiture['id'] ) }}">
+                                    <button class="btn btn-primaire mt-xs mr-sm " type="submit">@lang('More info')</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                <p class="message">@lang('There are no results for the selected filtres')</p>
+                @endforelse
+            </div>
+        </section>
 
     </div> 
 </main>

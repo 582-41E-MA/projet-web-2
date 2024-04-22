@@ -1,9 +1,18 @@
 .wrapper {
-    padding: 3vw;
+    padding: 1vw 3vw;
+}
+
+@media screen and (max-width: 834px){
+    .wrapper {
+        padding: 8vw var(--espace-3);
+    }
 }
 
 @media screen and (max-width: 428px) {
     .wrapper {
-        padding: 10vw 0vw;
+        padding: 5vw var(--espace-1half) 10vw var(--espace-1half);
+        display: flex;
+        flex-direction: column;
+        gap: var(--espace-2);
     }
 }
