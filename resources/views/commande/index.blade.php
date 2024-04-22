@@ -23,6 +23,10 @@
                         <h3>{{ $voiture->annee->annee }} 
                             {{ $voiture->marque->nom }} 
                             {{ $voiture->modele->nom }}
+
+                            <!-- temporaire -->
+                            {{ $commande->date }}
+                            
                         </h3>
                     </div>
                     <div class="prix">

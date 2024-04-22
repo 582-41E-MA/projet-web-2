@@ -270,7 +270,21 @@ class CommandeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $id = Auth::user()->id;
+        $marques = Marque::all();
+        $annees = Annee::all();
+        $transmissions = Transmission::all();
+        $tractions = Traction::all();
+        $carburants = Carburant::all();
+        $carrosseries = Carrosserie::all();
+        $photos = Photo::select()->where('principal', 1)->get();
+        
+        $commandes = Commande::select()->where('user_id', $id)->get();
+        $voitures = Voiture::all();
+    
+        return view('commande.index', compact('commandes', 'voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+
+        return view('commande.show');
     }
 
     /**
