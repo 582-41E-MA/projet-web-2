@@ -67,6 +67,8 @@ export default class Recherche {
                     for (let i = 0; i < data.length; i++) {
                         const voitureData = data[i];
 
+                        console.log(voitureData);
+
                         // Vérifiez si la voiture a déjà été ajoutée
                         if (!vehiculesImpresses[voitureData.id]) { 
 
@@ -76,19 +78,25 @@ export default class Recherche {
                             const carDetail = voitureTemplate.querySelector('.car-detail');
                             const carImage = voitureTemplate.querySelector('.car-image img');
                             const carPrix = voitureTemplate.querySelector('.p_text_prix');
-    
+                            const carBtn = voitureTemplate.querySelector('.car-btn');
                             
                             carImage.src = `http://${host}/assets/img/voitures/${voitureData.photo_nom}`;
+                            carDetail.querySelector('a').href = `http://${host}/voiture/${voitureData.id}`;
+
                             carDetail.querySelector('h2').textContent = `${voitureData.marque_nom} ${voitureData.modele_nom} ${voitureData.annee_valor}`;
 
+                            let tractionData = JSON.parse(voitureData.traction_nom);
+                            carDetail.querySelectorAll('span')[0].textContent += `${currentLocale !== 'en' ? tractionData.fr : tractionData.en}`;
+
                             let transmissionData = JSON.parse(voitureData.transmission_nom);
-                            carDetail.querySelectorAll('p')[1].textContent += `${currentLocale !== 'en' ? transmissionData.fr : transmissionData.en}`;
+                            carDetail.querySelectorAll('span')[1].textContent += `${currentLocale !== 'en' ? transmissionData.fr : transmissionData.en}`;
 
                             let carburantData = JSON.parse(voitureData.carburant_nom);
-                            carDetail.querySelectorAll('p')[2].textContent += `${currentLocale !== 'en' ? carburantData.fr : carburantData.en}`;
+                            carDetail.querySelectorAll('span')[2].textContent += `${currentLocale !== 'en' ? carburantData.fr : carburantData.en}`;
                             
                             carPrix.textContent = voitureData.prix_vente;
-    
+                            carBtn.href = `http://${host}/voiture/${voitureData.id}`;
+                            
                             this._elVoitures.appendChild(voitureTemplate);
                         }
                     }

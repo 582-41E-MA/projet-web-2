@@ -91,12 +91,14 @@
                                 modeles.nom AS modele_nom,
                                 annees.annee AS annee_valor,
                                 carburants.nom AS carburant_nom,
+                                tractions.nom AS traction_nom,
                                 transmissions.nom AS transmission_nom,
                                 photos.nom AS photo_nom
                                 FROM voitures 
                                 JOIN marques ON voitures.marque_id = marques.id
                                 JOIN modeles ON voitures.modele_id = modeles.id
                                 JOIN annees ON voitures.annee_id = annees.id
+                                JOIN tractions ON voitures.traction_id = tractions.id
                                 JOIN carburants ON voitures.carburant_id = carburants.id
                                 JOIN transmissions ON voitures.transmission_id = transmissions.id
                                 LEFT JOIN photos ON voitures.id = photos.voiture_id
