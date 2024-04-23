@@ -86,7 +86,7 @@
                 <p class="user-email">{{ Auth::user()->courriel }}</p>
                 @else
                 <div class="div-connexion">
-                    <a href="{{ route('user.create') }}">@lang('Registration')</a>
+                    <a href="{{ route('user.createClient') }}">@lang('Registration')</a>
                 </div>
                 <div class="div-connexion">
                     <a href="{{ route('login') }}">@lang('Sign in')</a>
