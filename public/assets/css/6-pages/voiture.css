@@ -77,6 +77,18 @@
             .icons {
                 display: flex;
                 gap: var(--espace-2);
+
+                .icon {
+                    form {
+                        .suppression {
+                            background-color: var(--coul-fond-claire);
+                            border: none;
+                            cursor: pointer;
+                            padding: 0;
+                            width: 50px;
+                        }
+                    }
+                }
             }
         }
     }

@@ -29,15 +29,25 @@
                 @if($privilege == 2 || $privilege == 3)
                 <div class="icons">
                     <div class="icon">
-                        <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="modifier">
+                        <a href="{{ route('voiture.edit', $voiture['id']) }}">
+                            <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="modifier">
+                        </a>
                     </div>
                     <div class="icon">
-                        <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="supprimer">
+                        <form action="{{ route('voiture.delete', $voiture['id']) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="suppression" type="submit">
+                                <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
+                            </button>
+                        </form>
                     </div>
                 </div>
 
                 @else
-                <button class="btn btn-primaire">@lang('Add to cart')</button>
+                <button class="btn btn-primaire">
+                    <a href="{{ route('commande.panier', $voiture['id']) }}">@lang('Add to cart')</a>
+                </button>
                 <button class="btn btn-primaire">@lang('Contact us')</button>
                 @endif
 
