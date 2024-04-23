@@ -72,6 +72,8 @@ export default class Recherche {
                     for (let i = 0; i < data.length; i++) {
                         const voitureData = data[i];
 
+                        console.log(voitureData);
+
                         // Vérifiez si la voiture a déjà été ajoutée
                         if (!vehiculesImpresses[voitureData.id]) { 
 
