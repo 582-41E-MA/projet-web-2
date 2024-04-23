@@ -21,12 +21,18 @@ Route::get('/accueil', function () {
 });
 
 
-Route::get('/registration', [UserController::class, 'create'])->name('user.create');
-Route::get('/create/employee', [UserController::class, 'employee'])->name('user.employee');
-Route::post('/registration', [UserController::class, 'store'])->name('user.store');
-
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
-Route::get('/users/{privilege}', [UserController::class, 'privilege'])->name('user.privilege');
+Route::get('/clients', [UserController::class, 'indexClient'])->name('user.indexClient');
+
+Route::get('/create/user', [UserController::class, 'create'])->name('user.create');
+Route::get('/create/client', [UserController::class, 'createClient'])->name('user.createClient');
+Route::post('/create/user', [UserController::class, 'store'])->name('user.store');
+
+Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
+Route::get('/edit/client/{user}', [UserController::class, 'editClient'])->name('user.editClient');
+Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
+
+Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
@@ -81,11 +87,6 @@ Route::put('/edit/carburant/{carburant}', [CarburantController::class, 'update']
 Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])->name('carburant.delete');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
-Route::get('/clients', [UserController::class, 'indexClient'])->name('userClient.index');
-Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

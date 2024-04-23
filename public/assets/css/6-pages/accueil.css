@@ -18,13 +18,6 @@
     gap: 10px;
 }
 
-.form_recherche {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: var(--espace-1);
-    justify-content: flex-end;
-
-}
 
 .filtres-catalogue {
     display: flex;
@@ -86,27 +79,6 @@ h2 {
     text-transform: uppercase;
 }
 
-.div-recherche{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-
-}
-
-.input_recherche {
-    border-radius: 0.3rem;
-    background-color: var(--coul-fond-pale);
-    border: 1px solid var(--coul-primaire);
-    color: var(--coul-primaire);
-    font-family: "Roboto";
-    font-size: var(--texte-sm);
-    padding: var(--espace-quart) var(--espace-3quarts);
-    width: 100%;
-    height: 100%;
-}
-
 .grid_carrosserie {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -153,10 +125,6 @@ h2 {
     }
 
 
-    .div-recherche{
-        width: 100%;
-    }
-
     @media screen and (max-width: 428px) {
         .filtres-catalogue {
             display: none;
@@ -168,12 +136,7 @@ h2 {
             text-align: center;
         }
 
-        .form_recherche {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
+
 
     }
 }

@@ -47,12 +47,9 @@
                     <select class="input input-placeholder" name="ville_id" id="ville">
                         <option value="">@lang('Choose one')</option>
                         @foreach($villes as $ville)
-                        <option value="{{$ville['id']}}" 
-                            @if($ville['id'] == old('ville_id'))
-                            selected
-                            @endif 
-                            >{{$ville['nom']}}
-                        </option>
+
+                        <option value="{{ $ville['id'] }}" {{ old('ville_id', $user->ville_id) == $ville['id'] ? 'selected' : '' }}>{{ $ville['nom'] }}</option>
+
                         @endforeach
                     </select>
                 </div>

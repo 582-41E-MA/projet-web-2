@@ -2,23 +2,24 @@
 @section('title', trans('Users'))
 @section('content')
    
-<main class="wrapper">
-   <p class="message">
-      @if(session('success'))
-         {{session('success')}}
-      @endif
-   </p>
 
-    <!-- form -->
+<!-- form -->
 <script>
     var currentLocale = "<?php print app()->getLocale(); ?>";
 </script>
 
 <main class="wrapper">
-<div class="form_recherche" data-js-component="RechercheUser"> 
+@if(session('success'))
+    <p class="message">
+        {{session('success')}}
+    </p>
+@endif
+    <div class="form_recherche mb-lg" data-js-component="RechercheUser"> 
+        <div class="div-recherche div-recherche-long">
             <label for="rechercher"></label>
-            <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
+            <input class="input_recherche" type="text" id="recherche" name="rechercher">
+        </div>
+        <button class="btn btn-quatrieme" type="submit">@lang('Search')</button>
     </div>
 
     <!-- template -->
