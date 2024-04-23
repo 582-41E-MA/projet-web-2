@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Privilege;
 use App\Models\Ville;
-use App\Models\Privilege;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +26,8 @@ class UserController extends Controller
     {
         $privileges = Privilege::all();
         $users = User::all(); 
+
+
         return view('user.indexClient', ["users" => $users, "privileges" => $privileges]);
       
     }
@@ -42,9 +43,9 @@ class UserController extends Controller
     }
 
     /**
-     * creer un nouvel employe ou admin (pour afficher le style active du menu 'Ajouter Employé' dans layouts.app)
+     * Show the form for creating a new resource.
      */
-    public function employee()
+    public function createClient()
     {
         $villes = Ville::villes();
 
@@ -67,6 +68,8 @@ class UserController extends Controller
             'privilege_id' => 'required',
             'ville_id' => 'required|exists:villes,id',
         ]);
+        
+        // return $request;
 
         $user = new User;
         $user->fill($request->all());
@@ -81,16 +84,20 @@ class UserController extends Controller
         $user->timestamps = false;
         $user->save();
 
-        if(Auth::user()) $privilege = Auth::user()->privilege->nom;
-        else $privilege = 'client';
+        if(Auth::user()) $privilegeCreator = Auth::user()->privilege->nom;
+        else $privilegeCreator = 'client';
 
-        if($privilege == 'client') 
+        $privilegeIdNewUser = Privilege::select()->where('id', $request->privilege_id)->first();
+        $privilegeNewUser = $privilegeIdNewUser->nom;
+
+        if($privilegeCreator == 'client') 
         {
             return redirect()->route('login')->with('success', trans('You\'re registered successfully'));
         }
         else 
         {
-            return redirect()->route('user.index')->with('success', trans('User created successfully'));
+            if($privilegeNewUser == 'client' ) return redirect()->route('user.indexClient')->with('success', trans('User created successfully'));
+            else return redirect()->route('user.index')->with('success', trans('User created successfully'));
         }
     }
 
@@ -109,6 +116,21 @@ class UserController extends Controller
     {
         $villes = Ville::villes();
         $privileges = Privilege::all();
+        // return $user;
+
+        return view('user.edit', ['user' => $user, 'privileges' => $privileges, 'villes'=> $villes]);
+    }
+    
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function editClient(User $user)
+    {
+        $villes = Ville::villes();
+        $privileges = Privilege::all();
+        // return $user;
+
         return view('user.edit', ['user' => $user, 'privileges' => $privileges, 'villes'=> $villes]);
     }
     
@@ -134,16 +156,26 @@ class UserController extends Controller
             'ville_id' => $request->ville_id,
 
         ]);
-        return redirect()->route('user.index');
+
+        
+        $privilegeIdNewUser = Privilege::select()->where('id', $user->privilege_id)->first();
+        $privilegeNewUser = $privilegeIdNewUser->nom;
+        // return $privilegeNewUser;
+
+        if($privilegeNewUser == 'client' ) return redirect()->route('user.indexClient')->with('success', trans('User modified successfully'));
+        else return redirect()->route('user.index')->with('success', trans('User modified successfully'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user, Request $request)
     {
+        $type_user = $request->type_user;
         $user->delete();
-        return redirect()->route('user.index'); 
+        
+        if($type_user == 'client') return redirect()->route('user.indexClient')->with('success', trans('User deleted successfully'));
+        else return redirect()->route('user.index')->with('success', trans('User deleted successfully'));
     }
 
 }

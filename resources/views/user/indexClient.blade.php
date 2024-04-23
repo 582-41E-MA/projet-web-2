@@ -1,16 +1,25 @@
 @extends('layouts.app')
-@section('title', trans('Users'))
+@section('title', trans('Clients'))
 @section('content')
 <script>
     var currentLocale = "<?php print app()->getLocale(); ?>";
 </script>
 
 <main class="wrapper">
-    <div class="form_recherche" data-js-component="RechercheClient"> 
-        <label for="rechercher"></label>
-            <input class="input_recherche mt-xl" type="text" id="recherche" name="rechercher">
-            <button class="btn btn-quatrieme mr-sm" type="submit">@lang('Search')</button>
+@if(session('success'))
+    <p class="message">
+        {{session('success')}}
+    </p>
+@endif
+
+    <div class="form_recherche mb-lg" data-js-component="RechercheClient"> 
+        <div class="div-recherche div-recherche-long">
+            <label for="rechercher"></label>
+            <input class="input_recherche" type="text" id="recherche" name="rechercher">
+        </div>
+        <button class="btn btn-quatrieme" type="submit">@lang('Search')</button>
     </div>
+    
 
     <!-- template -->
 
@@ -65,7 +74,7 @@
                     <td>{{ $user->courriel }}</td>
                     <td class="privilege">{{ $user->privilege->nom }}</td>
                     <td> 
-                        <a href="{{route('user.edit', $user->id)}}">
+                        <a href="{{route('user.editClient', $user->id)}}">
                             <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="icone_modification">
                         </a>
                         <form method="post" action="{{ route('user.delete', $user->id) }}">
@@ -73,6 +82,7 @@
                             @method('delete')
                             <!-- <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <button type="submit">@lang('Delete')</button> -->
+                            <input type="hidden" name="type_user" value="client">
                             <button type="submit">
                                 <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
                             </button>

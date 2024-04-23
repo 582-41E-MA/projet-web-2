@@ -35,21 +35,22 @@
                     <div class="div-list-nav">
                         <nav>
                             <ul class="list-nav">
-                            <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Employee')</a>                          
+                                <li class="voiture-nav"><span class="{{ request()->routeIs('user.index') || request()->routeIs('user.create') || request()->routeIs('user.edit') ? 'active' : '' }}"href="">@lang('Employee')</span>                          
                                     <ul class="sous-list-nav">
-                                        <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('user.index') }}">@lang('Employee list')</a></li>
-                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Add an employee')</a></li>
+                                        <li><a class="{{ request()->routeIs('user.index') ? 'active' : '' }}" href="{{ route('user.index') }}">@lang('Employee list')</a></li>
+                                        <li><a class="{{ request()->routeIs('user.create') ? 'active' : '' }}" href="{{ route('user.create') }}">@lang('Add employee')</a></li>
                                     </ul>
                                 </li>
 
-                                <li class="voiture-nav"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Client')</a>                          
+                                <li class="voiture-nav"><span class="{{ request()->routeIs('user.indexClient') ||  request()->routeIs('user.createClient') ||  request()->routeIs('user.editClient') ? 'active' : '' }}"href="">@lang('Client')</span>                          
                                     <ul class="sous-list-nav">
-                                        <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('userClient.index') }}">@lang('Client list')</a></li>
-                                        <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Add a client')</a></li>
+                                        <li><a class="{{ request()->routeIs('user.indexClient') ? 'active' : '' }}" href="{{ route('user.indexClient') }}">@lang('Client list')</a></li>
+                                        <li><a class="{{ request()->routeIs('user.createClient') ? 'active' : '' }}" href="{{ route('user.createClient') }}">@lang('Add Client')</a></li>
                                     </ul>
                                 </li>
+
                                 <!-- ajouter l'autres routes -->
-                                <li class="voiture-nav {{ request()->routeIs('voiture.create') ? 'active' : '' }}"><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="">@lang('Car')</a>                          
+                                <li class="voiture-nav"><span class=" {{ request()->routeIs('voiture.index') || request()->routeIs('voiture.create') || request()->routeIs('voiture.edit') || request()->routeIs('voiture.parametres') ? 'active' : '' }}" href="">@lang('Car')</span>                          
                                     <ul class="sous-list-nav">
                                         <li><a class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}" href="{{ route('voiture.index') }}">@lang('Cars list')</a></li>
                                         <li><a class="{{ request()->routeIs('voiture.create') ? 'active' : '' }}" href="{{ route('voiture.create') }}">@lang('Add car')</a></li>

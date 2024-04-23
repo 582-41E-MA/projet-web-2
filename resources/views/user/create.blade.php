@@ -32,9 +32,9 @@
                 </div>
             </div>
 
-            @if(request()->routeIs('user.create'))
+            @if(request()->routeIs('user.createClient'))
             <input type="hidden" name="privilege_id" value="1">
-            @elseif(request()->routeIs('user.employee'))
+            @elseif(request()->routeIs('user.create'))
             <div class="form-inputContainer">
                 <div class="control-input">
                     <label class="label" for="privilege" >@lang('Privilege')*</label>

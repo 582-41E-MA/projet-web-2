@@ -42,7 +42,7 @@
                     padding: 0 var(--espace-2) 0 var(--espace-2);
                     position: relative;
 
-                    a {
+                    a, span {
                         text-decoration: none;
                         color: var(--coul-primaire);
                     }
@@ -52,12 +52,22 @@
                         font-weight: 700;
                         font-style: normal;
                     }
+                    span {
+                        text-decoration: none;
+                        color: var(--coul-primaire);
+                    }
+    
+                    span:hover {
+                        color: var(--coul-texte-claire);
+    
+                    }
                 }
+
 
                 li:hover {
                     background-color: var(--coul-primaire);
 
-                    a {
+                    a, span {
                         color: var(--coul-texte-claire);
                     }
                 }
