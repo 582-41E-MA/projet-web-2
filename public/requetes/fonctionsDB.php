@@ -8,49 +8,49 @@
 
         // WAMP et XAMMP
 
-		// define('DB_HOST', '127.0.0.1');
-		// define('DB_USER', 'root');
-		// define('DB_PASSWORD', '');			
+		define('DB_HOST', '127.0.0.1');
+		define('DB_USER', 'root');
+		define('DB_PASSWORD', '');			
 
-		// $laConnexion = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+		$laConnexion = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 				
-		// if (!$laConnexion) {
-		// 	// La connexion n'a pas fonctionné
-		// 	die('Erreur de connexion à la base de données. ' . mysqli_connect_error());
-		// }
+		if (!$laConnexion) {
+			// La connexion n'a pas fonctionné
+			die('Erreur de connexion à la base de données. ' . mysqli_connect_error());
+		}
 		
-		// $db = mysqli_select_db($laConnexion, 'projet-web-2');
+		$db = mysqli_select_db($laConnexion, 'projet-web-2');
 
-		// if (!$db) {
-		// 	die ('La base de données n\'existe pas.');
-		// }
+		if (!$db) {
+			die ('La base de données n\'existe pas.');
+		}
 		
-		// mysqli_query($laConnexion, 'SET NAMES "utf8"');
-		// return $laConnexion;
+		mysqli_query($laConnexion, 'SET NAMES "utf8"');
+		return $laConnexion;
 
         // MAMP
-        $db_host = '127.0.0.1';
-        $db_user = 'root';
-        $db_password = 'root';
-        $db_db = 'projet-web-2';
-        $db_port = 8889;
+        // $db_host = '127.0.0.1';
+        // $db_user = 'root';
+        // $db_password = 'root';
+        // $db_db = 'projet-web-2';
+        // $db_port = 8889;
       
-        $mysqli = new mysqli(
-          $db_host,
-          $db_user,
-          $db_password,
-          $db_db,
-          $db_port
-        );
+        // $mysqli = new mysqli(
+        //   $db_host,
+        //   $db_user,
+        //   $db_password,
+        //   $db_db,
+        //   $db_port
+        // );
           
-        if ($mysqli->connect_error) {
-          echo 'Errno: '.$mysqli->connect_errno;
-          echo '<br>';
-          echo 'Error: '.$mysqli->connect_error;
-          exit();
-        }
+        // if ($mysqli->connect_error) {
+        //   echo 'Errno: '.$mysqli->connect_errno;
+        //   echo '<br>';
+        //   echo 'Error: '.$mysqli->connect_error;
+        //   exit();
+        // }
 
-        return $mysqli;
+        // return $mysqli;
 	}
 
 
@@ -91,12 +91,14 @@
                                 modeles.nom AS modele_nom,
                                 annees.annee AS annee_valor,
                                 carburants.nom AS carburant_nom,
+                                tractions.nom AS traction_nom,
                                 transmissions.nom AS transmission_nom,
                                 photos.nom AS photo_nom
                                 FROM voitures 
                                 JOIN marques ON voitures.marque_id = marques.id
                                 JOIN modeles ON voitures.modele_id = modeles.id
                                 JOIN annees ON voitures.annee_id = annees.id
+                                JOIN tractions ON voitures.traction_id = tractions.id
                                 JOIN carburants ON voitures.carburant_id = carburants.id
                                 JOIN transmissions ON voitures.transmission_id = transmissions.id
                                 LEFT JOIN photos ON voitures.id = photos.voiture_id

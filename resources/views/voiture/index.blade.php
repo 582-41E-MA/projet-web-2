@@ -180,15 +180,21 @@
                 </div>
                 <div class="car-info">
                 <div class="car-detail">
-                    <h2></h2>
-                    <p class="mt-xs">Km : 10,000</p>
-                    <p class="mt-xs">Transmission : </p>
-                    <p class="mt-xs">Fuel: </p>
+                    <a href="">
+                        <h2></h2>
+                    </a>
+                    <p class="mt-xs">@lang('Traction'): <span></span></p>
+                    <p class="mt-xs">@lang('Transmission'): <span></span></p>
+                    <p class="mt-xs">@lang('Fuel'):<span></span></p>
                 </div>
+
                 <div class="car-prix">
                     <p class="p_text_prix mr-sm mb-sm"></p>
-                    <button class="btn btn-primaire mt-xs mr-sm" type="submit">Plus d‘info</button>
+                    <a class="car-btn" href="">
+                        <button class="btn btn-primaire mt-xs mr-sm " type="submit">@lang('More info')</button>
+                    </a>
                 </div>
+
             </div>
         </template>
 

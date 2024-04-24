@@ -46,7 +46,7 @@
 
                 @else
                 <button class="btn btn-primaire">
-                    <a href="{{ route('commande.panier', $voiture['id']) }}">@lang('Add to cart')</a>
+                    @lang('Add to cart')
                 </button>
                 <button class="btn btn-primaire">@lang('Contact us')</button>
                 @endif
