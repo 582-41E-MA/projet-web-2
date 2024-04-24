@@ -196,33 +196,6 @@
             </div>
             <div class="form-inputContainer">
                 <div class="control-input">
-                    <label for="photo_principale" class="label">@lang('Main photo')</label>
-                    <input type="file" name="photo_principale" class="input" id="photo_principale">
-                </div>
-                <div class="control-erreur">
-                    @if($errors->has('photo_principale'))
-                        {{ $errors->first('photo_principale')}}
-                    @endif
-                </div>
-            </div>
-            <div class="form-inputContainer">
-                <div class="control-input">
-                    <label for="photo_secundaire" class="label">@lang('Secondary photos - 3 photos')</label>
-                    <input type="file" name="photo_secundaire[]" class="input" id="photo_secundaire" multiple>
-                </div>
-                <div class="control-erreur">
-                @if($errors->has('photo_secundaire'))
-                    {{ $errors->first('photo_secundaire')}}
-                @endif
-                @foreach($errors->all() as $error)
-                    @if(strpos($error, 'photo_secundaire') !== false)
-                        {{ $error }}
-                    @endif
-                @endforeach
-                </div>
-            </div>
-            <div class="form-inputContainer">
-                <div class="control-input">
                     <input type="hidden" name="disponible" class="input" id="disponible" value="1">
                 </div>
             </div>

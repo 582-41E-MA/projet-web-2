@@ -13,9 +13,9 @@
             <img src="{{asset('assets/img/voitures/').'/'. $photoPrincipale->nom}}" alt="{{$photoPrincipale->nom}}">
         </div>
         <div class="thumbnails">
-            @forelse($photosSecondaires as $photoSecondaire)
-            <div class="thumbnail " data-js-thumbnail="{{ $photoSecondaire->nom }}">
-                <img src="{{asset('assets/img/voitures/').'/'. $photoSecondaire->nom}}" alt="{{$photoSecondaire->nom}}">
+            @forelse($photos as $photo)
+            <div class="thumbnail " data-js-thumbnail="{{ $photo->nom }}">
+                <img src="{{asset('assets/img/voitures/').'/'. $photo->nom}}" alt="{{$photo->nom}}">
             </div>
             @empty
             @endforelse
@@ -26,30 +26,26 @@
 
         <div class="voiture-actions">
             <span class="prix">${{$voiture['prix']}}</span>
-                @if($privilege == 2 || $privilege == 3)
-                <div class="icons">
-                    <div class="icon">
-                        <a href="{{ route('voiture.edit', $voiture['id']) }}">
-                            <img src="{{asset('assets/img/svg/modifier.svg')}}" alt="modifier">
-                        </a>
-                    </div>
-                    <div class="icon">
-                        <form action="{{ route('voiture.delete', $voiture['id']) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button class="suppression" type="submit">
-                                <img src="{{asset('assets/img/svg/supprimer.svg')}}" alt="icone_suppression">
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            @if($privilege == 2 || $privilege == 3)
 
-                @else
-                <button class="btn btn-primaire">
-                    @lang('Add to cart')
-                </button>
-                <button class="btn btn-primaire">@lang('Contact us')</button>
-                @endif
+                <a href="{{ route('voiture.edit', $voiture['id']) }}">
+                    <button class="btn btn-tertiaire">@lang('Modify infos')</button>
+                </a>
+
+                <a href="{{ route('photo.voiture', $voiture['id']) }}">
+                    <button class="btn btn-tertiaire">@lang('Modify photos')</button>
+                </a>
+
+                <form action="{{ route('voiture.delete', $voiture['id']) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-tertiaire">@lang('Delete')</button>
+                </form>
+
+            @else
+            <button class="btn btn-primaire">@lang('Add to cart')</button>
+            <button class="btn btn-primaire">@lang('Contact us')</button>
+            @endif
 
         </div>
 
