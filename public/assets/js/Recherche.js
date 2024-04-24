@@ -15,9 +15,6 @@ export default class Recherche {
     
         if (marque) {
             this.rechercheVoiture(marque);
-        } else {
-            
-            this.rechercheVoiture('');
         }
 
         this.init();
@@ -76,7 +73,7 @@ export default class Recherche {
                     for (let i = 0; i < data.length; i++) {
                         const voitureData = data[i];
 
-                        console.log(voitureData);
+                        // console.log(voitureData);
 
                         // Vérifiez si la voiture a déjà été ajoutée
                         if (!vehiculesImpresses[voitureData.id]) { 
@@ -119,15 +116,18 @@ export default class Recherche {
     }
 
     actualiserURL(recherche) {
-     
         if (recherche.includes('%')) {
-            
             recherche = decodeURIComponent(recherche);
         }
-        
+    
         let url = new URL(window.location.href);
+    
+        // Eliminar todos los parámetros de la URL
+        url.search = '';
+    
+        // Agregar el nuevo parámetro
         url.searchParams.set('marque', recherche);
-       
+    
         window.history.replaceState({}, '', url);
     }
     
