@@ -31,6 +31,9 @@ Route::get('/create/user', [UserController::class, 'create'])->name('user.create
 Route::get('/create/client', [UserController::class, 'createClient'])->name('user.createClient');
 Route::post('/create/user', [UserController::class, 'store'])->name('user.store');
 
+// route pour creer un guest (guest checkout)
+Route::post('/create/guest', [UserController::class, 'storeGuest'])->name('user.storeGuest');
+
 Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::get('/edit/client/{user}', [UserController::class, 'editClient'])->name('user.editClient');
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
@@ -106,6 +109,12 @@ Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmat
 // Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
+// route qui redirige vers la page de connexion ou de continuer comme guest avant d'accéder au panier
+Route::post('/panier/inscription', [CommandeController::class, 'inscriptionPanier'])->name('commande.inscriptionPanier');
+
+Route::get('/panier/voiture/{voiture}', [CommandeController::class, 'panier'])->name('commande.panier');
+Route::get('/panier/{user}', [CommandeController::class, 'showPanier'])->name('commande.showPanier');
+Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePanier'])->name('commande.deleteVoiturePanier');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

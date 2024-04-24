@@ -12,8 +12,15 @@ class AuthController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        $voiture_id = $request->query('voiture_id');
+
+        // Armazene o voiture_id na sessão para uso posterior
+        if ($voiture_id) {
+            $request->session()->put('voiture_id', $voiture_id);
+        }
+
         return view('auth.create');
     }
 
@@ -38,6 +45,12 @@ class AuthController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
+
+        // Recupere o voiture_id da sessão
+        $voiture_id = $request->session()->get('voiture_id');
+        if ($voiture_id) {
+            return redirect()->route('commande.panier', ['voiture' => $voiture_id]);
+        }
 
         return redirect()->intended(route('voiture.index'))->withSuccess(trans('Welcome back'));
     }

@@ -11,6 +11,7 @@ use App\Models\Annee;
 use App\Models\Marque;
 use App\Models\Modele;
 use Dompdf\Dompdf;
+use App\Models\Ville;
 use App\Models\Transmission;
 use App\Models\Traction;
 use App\Models\Carburant;
@@ -22,48 +23,97 @@ use Illuminate\Support\Facades\Cookie;
 
 class CommandeController extends Controller
 {
-    public function panier(Voiture $voiture)
-    {
-        if (!Auth::user()) {
-            $id = 0;
+    /**
+     * Display page that allows user to continue as a guest or sign in to see their cart
+     */
+    public function inscriptionPanier(Request $request) {
+        // Vérifiez si l'utilisateur existe déjà avec un login activé et un id
+        $user = Auth::user();
+        $guest = $request->session()->get('id');
+
+        if ($user) {
+            $id = Auth::user()->id;
+            $idUserExist = true;
+        } elseif ($guest) {
+            $id = $guest;
+            $idUserExist = true;
         } else {
+            $idUserExist = false;
+        }
+        
+        // Voiture qui sera ajoutée au panier d'achat
+        $voiture_id = $request->voiture_id;
+
+        // Si l'utilisateur est déjà connecté, il sera redirigé vers sa page de panier
+        if ($idUserExist) {
+            return redirect()->route('commande.panier', ['voiture' => $voiture_id, 'id' => $id]);
+        } else {
+            // Si l'utilisateur n'est pas connecté, il sera dirigé vers une page où il pourra se connecter ou continuer en tant qu'invité
+            $villes = Ville::villes();
+    
+            return view('commande.inscription', ['voiture_id' => $voiture_id, 'villes'=>$villes]);
+        }
+    }
+
+    /**
+     * Set up items on the cart with cookies
+     */    
+
+    //public function panier(Voiture $voiture)
+    public function panier(Request $request)
+    {
+        $panier = $request->session()->put('panier', true);
+
+        // Voiture qui a été cliquée pour être ajoutée au panier
+        $voitureId = $request->voiture;
+
+        // Configurez l'id en fonction de l'action de la personne
+        // 1. Si l'utilisateur s'est inscrite et a décidé de continuer en tant qu'invité
+        if ($request->id) {
+            $id = $request->id;
+        } else {
+        // 2. Si l'utilisateur est connecté et est un membre enregistré
             $id = Auth::user()->id;
         }
 
-        // Obter o cookie existente com o nome 'voiture_id' ou iniciar com uma lista vazia
+        // Obtenir le cookie existant nommé 'voiture_id' ou commencer avec une liste vide
         $existingCookie = Cookie::get('voiture_id_' . $id, '');
 
-        // Separar a lista de IDs existentes em um array
+        // Séparer la liste des ID des voitures existants dans le cookie d'utilisateur en un tableau
         $voitureIds = $existingCookie ? explode(',', $existingCookie) : [];
     
-        // Adicionar o novo ID do carro à lista se ainda não estiver presente
-        if (!in_array($voiture->id, $voitureIds)) {
-            $voitureIds[] = $voiture->id;
+        // Ajouter le nouvel ID de voiture à la liste s'il n'est pas encore présent
+        //if (!in_array($voiture->id, $voitureIds)) {
+        if (!in_array($voitureId, $voitureIds)) {
+            $voitureIds[] = $voitureId;
         }
     
-        // Converter a lista de IDs de volta para uma string separada por vírgulas
+        // Convertir la liste d'ID en une chaîne séparée par des virgules
         $updatedCookieValue = implode(',', $voitureIds);
     
-        // Criar ou atualizar o cookie com a lista de IDs
+        // Créer ou mettre à jour le cookie avec la liste des ID par 60 minutes
         $cookie = Cookie::make('voiture_id_' . $id, $updatedCookieValue, 60);
     
-        // Redirecionar para a rota 'commande.show' com o cookie atualizado
-        return redirect()->route('commande.show', $id)->withCookie($cookie);
+        // Rediriger vers la route 'commande.show' avec le cookie mis à jour
+        return redirect()->route('commande.showPanier', $id)->withCookie($cookie);
     }
     
+    /**
+     * Display the cart of user
+     */
     public function showPanier($id)
     {
-        // return $id;
-        // Obter o cookie com a lista de IDs de carros
+        // Obtenir le cookie avec la liste des ID de voitures
         $cookieValue = Cookie::get('voiture_id_' . $id, '');
     
         if ($cookieValue) {
-            // Converter a string separada por vírgulas em um array de IDs
-            //$voitureIds = explode(',', $cookieValue);
+            // Convertir la chaîne séparée par des virgules en un tableau d'ID
             $voitureIds = explode(',', $cookieValue);
     
+            //Récupérer toutes les voitures
             $voitures = Voiture::all();
 
+            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
             $voitureAfficher = [];
 
             foreach ($voitures as $voiture) {                
@@ -83,13 +133,83 @@ class CommandeController extends Controller
             $carrosseries = Carrosserie::all();
             $photos = Photo::select()->where('principal', 1)->get();
 
-            return view('commande.index', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+            return view('commande.panier', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
         } else {
-            return view('voiture.index');
+            return redirect()->route('voiture.index');
         }
     }
     
+    public function deleteVoiturePanier(Request $request) {
+        
+        $user = Auth::user();
+        $guest = $request->session()->get('id');
+        $voiture_supprimer = $request->voiture;
+        // return $voiture_supprimer;
 
+        if ($user) {
+            $id = Auth::user()->id;
+        } elseif ($guest) {
+            $id = $guest;
+        } else {
+            return view('voiture.index');
+        }
+
+        $cookieValue = Cookie::get('voiture_id_' . $id, '');
+        
+        if ($cookieValue) {
+            // Convertir la chaîne séparée par des virgules en un tableau d'ID
+            $voitureIds = explode(',', $cookieValue);
+            
+            $voitureIds = array_diff($voitureIds, [$voiture_supprimer]);
+            
+            // Converter o array de volta para uma string separada por vírgulas
+            $updatedCookieValue = implode(',', $voitureIds);
+            
+            if (empty($voitureIds)) {
+                // Se a lista de IDs estiver vazia, exclua o cookie
+                Cookie::queue(Cookie::forget('voiture_id_' . $id));
+                $panier = $request->session()->put('panier', false);
+                return redirect()->route('voiture.index');
+            } else {
+                // Atualize o cookie com o novo valor da lista
+                Cookie::queue('voiture_id_' . $id, $updatedCookieValue);
+                
+                //Récupérer toutes les voitures
+                $voitures = Voiture::all();
+                
+                // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+                $voitureAfficher = [];
+                
+                foreach ($voitures as $voiture) {                
+                    foreach ($voitureIds as $voitureId) {
+                        if ($voiture->id == $voitureId) {
+                            $voitureAfficher[] = $voiture;
+                        }
+                    }
+                }
+                
+                // Convertir la liste d'ID en une chaîne séparée par des virgules
+                $updatedCookieValue = implode(',', $voitureIds);
+        
+                // Créer ou mettre à jour le cookie avec la liste des ID par 60 minutes
+                $cookie = Cookie::make('voiture_id_' . $id, $updatedCookieValue, 60);
+                
+                $voitures = $voitureAfficher;
+                $marques = Marque::all();
+                $annees = Annee::all();
+                $transmissions = Transmission::all();
+                $tractions = Traction::all();
+                $carburants = Carburant::all();
+                $carrosseries = Carrosserie::all();
+                $photos = Photo::select()->where('principal', 1)->get();
+            
+                return view('commande.panier', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+            }
+        }
+    }
+    
+    
+    
     /**
      * Display a listing of the resource.
      */
@@ -150,21 +270,21 @@ class CommandeController extends Controller
      */
     public function show(string $id)
     {
-        $id = Auth::user()->id;
-        $marques = Marque::all();
-        $annees = Annee::all();
-        $transmissions = Transmission::all();
-        $tractions = Traction::all();
-        $carburants = Carburant::all();
-        $carrosseries = Carrosserie::all();
-        $photos = Photo::select()->where('principal', 1)->get();
+        // $id = Auth::user()->id;
+        // $marques = Marque::all();
+        // $annees = Annee::all();
+        // $transmissions = Transmission::all();
+        // $tractions = Traction::all();
+        // $carburants = Carburant::all();
+        // $carrosseries = Carrosserie::all();
+        // $photos = Photo::select()->where('principal', 1)->get();
         
-        $commandes = Commande::select()->where('user_id', $id)->get();
-        $voitures = Voiture::all();
+        // $commandes = Commande::select()->where('user_id', $id)->get();
+        // $voitures = Voiture::all();
     
-        return view('commande.index', compact('commandes', 'voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+        // return view('commande.index', compact('commandes', 'voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
 
-        return view('commande.show');
+        // return view('commande.show');
     }
 
     /**
