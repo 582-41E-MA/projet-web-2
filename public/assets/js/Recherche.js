@@ -1,26 +1,38 @@
 export default class Recherche {
 
     constructor(el) {
-        // Recuperer les champs du formulaire
+
         this._el = el;
         this._elRecherche = document.getElementById('recherche');
 
         this._elTemplateVoiture = document.querySelector('[data-template-voiture]');
         this._elVoitures = document.querySelector('[data-js-catalogue]');
         this._elsCheckbox = document.querySelectorAll('input[type=checkbox]');
-        // console.log(currentLocale)
+
         
+        const params = new URLSearchParams(window.location.search);
+        const marque = params.get('marque');
+    
+        if (marque) {
+            this.rechercheVoiture(marque);
+        } else {
+            
+            this.rechercheVoiture('');
+        }
+
         this.init();
     }
-    init() {
-        
-        this._elRecherche.addEventListener('change', function(){
 
+    init() {
+    
+        this._elRecherche.addEventListener('change', () => {
             let recherche = this._elRecherche.value;
             this.rechercheVoiture(recherche);
             this.supprimeFiltre();
 
-        }.bind(this));
+            
+            this.actualiserURL(recherche);
+        });
     }
 
     rechercheVoiture(propriete) {
@@ -28,7 +40,7 @@ export default class Recherche {
             action: 'rechercheVoitures',
             recherche: propriete
         };
-    
+
         let oOptions = {
             method: 'POST',
             headers: {
@@ -51,11 +63,8 @@ export default class Recherche {
             .then(data => {
                 if (data.length === 0) {
                     if(currentLocale == "fr"){
-                        
                         this._elVoitures.innerHTML = `<p class="message"> Il n'y a pas de résultats pour '${propriete}'</p>`;
-                    
                     } else {
-                
                         this._elVoitures.innerHTML = `<p class="message"">There are no results for '${propriete}'</p>`;
                     }
                 } else {
@@ -89,6 +98,8 @@ export default class Recherche {
                             carPrix.textContent = voitureData.prix_vente;
     
                             this._elVoitures.appendChild(voitureTemplate);
+                          
+                            
                         }
                     }
                 }
@@ -98,10 +109,21 @@ export default class Recherche {
             });
     }
 
-    /**
-     * enlever les filtres selectionnes si'l y en a
-     */
-    supprimeFiltre()
+    actualiserURL(recherche) {
+     
+        if (recherche.includes('%')) {
+            
+            recherche = decodeURIComponent(recherche);
+        }
+        
+        let url = new URL(window.location.href);
+        url.searchParams.set('marque', recherche);
+       
+        window.history.replaceState({}, '', url);
+    }
+    
+
+    supprimeFiltre() {
     {
         for (let i = 0, l = this._elsCheckbox.length; i < l; i++) 
         {
@@ -113,4 +135,4 @@ export default class Recherche {
     }
         
 }
-
+}
