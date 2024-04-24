@@ -29,17 +29,20 @@
             img {
                 aspect-ratio: 1.4 /1;
                 border: 3px solid var(--coul-primaire);
+                object-fit: contain;
             }
         }
 
         .thumbnails {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: var(--espace-1);
-            width: 14%;
+            width: 40%;
 
             & .thumbnail {
                 cursor: pointer;
+                width: 40%;
             }
 
             & .thumbnail--active {
@@ -120,6 +123,22 @@
         margin-top: var(--espace-8);
         gap: var(--espace-2);
 
+        .voiture-photos {
+            .thumbnails {
+                flex-direction: row;
+                /* flex-wrap: wrap; */
+                gap: var(--espace-1);
+                width: 100%;
+                align-content: space-between;
+                /* justify-content: space-between; */
+
+                & .thumbnail {
+                    cursor: pointer;
+                    width: 21.7%;
+                }
+            }
+        }
+
         .voiture-details {
             flex: 100%;
             flex-direction: row;
@@ -160,6 +179,13 @@
                 /* flex-wrap: wrap; */
                 gap: var(--espace-1);
                 width: 100%;
+                align-content: space-between;
+                /* justify-content: space-between; */
+
+                & .thumbnail {
+                    cursor: pointer;
+                    width: 21.7%;
+                }
             }
         }
 

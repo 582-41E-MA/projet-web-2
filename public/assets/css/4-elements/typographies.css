@@ -74,7 +74,7 @@ h1 {
     font-size: var(--texte-xxl);
     color: var(--coul-texte-default);
     font-weight: bold;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     line-height: 135%;
 }
 
@@ -85,13 +85,13 @@ p {
     font-weight: normal;
 }
 
-.p_text_prix{
+.p_text_prix {
     color: var(--coul-primaire);
     font-family: "Roboto Slab";
     font-size: 2.5rem;
 }
 
-.p_titre_filtre{
+.p_titre_filtre {
     color: var(--coul-primaire);
     font-family: "Roboto Slab";
     font-size: 1rem;
@@ -101,5 +101,4 @@ p {
 
 .user-email {
     font-size: var(--texte-xs);
-
 }
