@@ -9,7 +9,6 @@ export default class Recherche {
         this._elVoitures = document.querySelector('[data-js-catalogue]');
         this._elsCheckbox = document.querySelectorAll('input[type=checkbox]');
 
-        
         const params = new URLSearchParams(window.location.search);
         const marque = params.get('marque');
     
@@ -73,8 +72,6 @@ export default class Recherche {
                     for (let i = 0; i < data.length; i++) {
                         const voitureData = data[i];
 
-                        // console.log(voitureData);
-
                         // Vérifiez si la voiture a déjà été ajoutée
                         if (!vehiculesImpresses[voitureData.id]) { 
 
@@ -121,13 +118,10 @@ export default class Recherche {
         }
     
         let url = new URL(window.location.href);
-    
-        // Eliminar todos los parámetros de la URL
+         // Supprimer tous les paramètres de l'URL
         url.search = '';
-    
-        // Agregar el nuevo parámetro
+        // Ajouter le nouveau paramètre
         url.searchParams.set('marque', recherche);
-    
         window.history.replaceState({}, '', url);
     }
     
