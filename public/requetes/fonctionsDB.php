@@ -87,6 +87,7 @@
 		
 		return executeRequete("SELECT voitures.id,
                                 voitures.prix_vente,
+                                voitures.marque_id,
                                 marques.nom AS marque_nom,
                                 modeles.nom AS modele_nom,
                                 annees.annee AS annee_valor,
@@ -139,6 +140,7 @@
                                 ' ', 
                                 modeles.nom
                             ) LIKE '%$propriete%')");
+    
 	}
 
     function rechercheUtilisateurs($propriete) {
