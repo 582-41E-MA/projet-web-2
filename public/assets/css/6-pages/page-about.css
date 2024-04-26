@@ -1,0 +1,14 @@
+.page-about{
+    position: relative;
+    width: 100%; /* 最大化宽度 */
+    height: 400px; /* 设置高度为400px */
+    overflow: hidden; /* 隐藏超出部分 */
+
+    img{
+        position: absolute;
+        top: 0; /* 图片顶端与父容器顶部对齐 */
+        left: 0; /* 图片左边与父容器左边对齐 */
+        width: 100%; /* 图片宽度最大化 */
+        height: 400px; /* 图片高度自适应 */
+    }
+}

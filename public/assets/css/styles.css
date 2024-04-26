@@ -22,3 +22,6 @@
 /* 6 - PAGES */
 @import url(/assets/css/6-pages/page-panier.css);
 @import url(/assets/css/6-pages/page-commande.css);
+@import url(/assets/css/6-pages/page-404.css);
+@import url(/assets/css/6-pages/page-about.css);
+@import url(/assets/css/6-pages/page-policy.css);
