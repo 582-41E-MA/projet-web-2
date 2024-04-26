@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SetLocaleController;
 
 Route::get('/', function () {
@@ -22,6 +23,8 @@ Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.inde
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
 Route::get('/panier/{panier}', [PanierController::class, 'show'])->name('panier.show');
+
+Route::get('/commande/{commande}', [CommandeController::class, 'show'])->name('commande.show');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

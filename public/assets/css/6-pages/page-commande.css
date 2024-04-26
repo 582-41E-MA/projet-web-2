@@ -1,0 +1,191 @@
+.page-commande{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .liste-commande{
+        box-shadow: 5px 5px 10px var(--coul-tertiaire);
+        border: 1px solid;
+    }
+
+    .nom-page, .paiement-reussi {
+        margin: 20px 0;
+        h3{
+            color: var(--coul-primaire);
+        }
+    }
+    
+    hr{
+        margin: 30px;
+        background-color: var(--coul-primaire);
+        height: 1px;
+        border: none; 
+    }
+
+    h1{
+        font-family: "Roboto Slab";
+        font-size: var(--texte-xl);
+        color: var(--coul-primaire);
+    }
+
+    h3{
+        font-family: "Roboto";
+        font-size: var(--texte-sm);
+        color: var(--coul-texte-default);
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 135%;
+    }
+
+    p{
+        font-family: "Roboto";
+        font-size: var(--texte-xxs);
+        color: var(--coul-texte-fonce);
+        font-weight: normal;
+        line-height: 1.5;
+    }
+
+    b{
+        font-weight: 700;
+    }
+
+    .chaque-voiture{
+        display: flex;
+        flex-direction: row;
+        min-width: 834px;
+        height: auto;
+        padding: 30px 30px 0 30px;
+
+        .detail-prix{
+            display: flex;
+            flex-direction: row;
+            padding: 0 20px;
+            flex: 1;
+            background-color: var(--coul-cinquieme);
+
+            .detail{
+                display: flex;
+                margin: 0 20px;
+                align-items: center;
+                flex: 1;
+            }
+        }
+
+        .photo{
+            img{
+                width: 150px;
+                height: 100px;
+                aspect-ratio: 1/1;
+                object-position: center;
+                object-fit: cover;
+            }
+        }
+
+        .prix{
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .user{
+        height: auto;
+        margin: 30px;
+        padding: 30px;
+        background-color: var(--coul-cinquieme);
+    }
+
+    .expedition{
+        height: auto;
+        padding: 0 30px;
+        display: flex;
+        flex-direction: row;
+
+        label{
+            display: flex;
+            font-family: "Roboto";
+            font-size: var(--texte-xxs);
+            color: var(--coul-texte-fonce);
+            font-weight: 700;
+            align-self: center;
+        }
+
+        select{
+            display: flex;
+            margin-left: 30px;
+            width: 100%;
+            height: 2rem;
+        }
+
+        option{
+            padding: 0 10px;
+        }
+    }
+
+    .prix-total{
+        margin: 30px 30px 50px 30px;
+    }
+
+    .buttons{
+        margin: 20px;
+        text-align: center; 
+
+        .btn{
+            width: 250px;
+            height: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 834px) {
+.page-commande{
+    .chaque-voiture{
+        display: flex;
+        min-width: 428px;
+
+        .photo{
+            img{
+                height: 100%;
+            }
+        }
+
+        .detail-prix{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .detail{
+                margin: 0;
+            }
+
+            .prix{
+                margin-bottom: 20px;
+            }
+        }
+    }
+}}
+
+@media screen and (max-width: 428px) {
+.page-commande{
+    padding: 0;
+    margin: 0;
+
+    .liste-commande{
+        max-width: 400px;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .chaque-voiture{
+            flex-direction: column;
+
+            .detail-prix{
+                display: flex;
+                flex-direction: column;
+                margin: 20px 0;
+                flex: 1;
+                background-color: var(--coul-fond-claire);
+                padding: 0;
+            }
+        }
+    }
+}}
