@@ -17,6 +17,8 @@ class Commande extends Model
     'expedition_id',
     'date',
     'quantite',
-    'prix'
+    'prix',
+    'create_at',
+    'update_at'
     ];
 }
