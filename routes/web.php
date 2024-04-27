@@ -12,10 +12,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{any}', function () {
-    return view('404'); 
-})->where('any', '.*')->name('404');
-
 Route::get('/registration', [UserController::class, 'create'])->name('user.create');
 Route::post('/registration', [UserController::class, 'store'])->name('user.store');
 
@@ -32,4 +28,6 @@ Route::get('/commande/{commande}', [CommandeController::class, 'show'])->name('c
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
-
+Route::get('/{any}', function () {
+    return view('404'); 
+})->where('any', '.*')->name('404');
