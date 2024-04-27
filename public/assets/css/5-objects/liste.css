@@ -50,11 +50,27 @@
         align-content: flex-end;
         justify-content: flex-end;
         gap: var(--espace-1);
+    }
+    .photoEtTitre {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--espace-1);
+    }
 
-        .btn 
-        {
-            margin-top: 0;
-        }
+    .btn {
+        margin-top: 0;
+    }
+    p {
+        font-size: var(--texte-sm);
+    }
+
+    .prix {
+        font-family: "Roboto Slab";
+        font-weight: 700;
+        color: var(--coul-primaire);
+        font-size: var(--texte-md);
     }
     .photoEtTitre {
         flex: 1;
