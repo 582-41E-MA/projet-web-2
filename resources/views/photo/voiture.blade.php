@@ -2,13 +2,13 @@
 @section('title', __('Modify Photos'))
 @section('content')
 
-<main class="wrapper page-photos">
+<main class="wrapper liste">
     @if(session('success'))
     <p class="message">
          {{session('success')}}
     </p>
     @endif
-    <h1 class="nom-page">@lang('Modify photos') - @lang('car number') {{$voiture['id']}}</h1>
+    <h1 class="nom-liste">@lang('Modify photos') - @lang('car number') {{$voiture['id']}}</h1>
     <div class="buttons">
 
         <a class="btn btn-tertiaire" href="{{ route('photo.create', $voiture['id'] ) }}"> @lang('Add a photo')</a>

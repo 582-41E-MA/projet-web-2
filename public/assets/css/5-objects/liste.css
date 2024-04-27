@@ -1,4 +1,4 @@
-.page-photos {
+.liste {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,7 @@
         width: 50vw;
     }
 
-    .nom-page {
+    .nom-liste {
         font-family: "Roboto Slab";
         font-size: var(--texte-xl);
         color: var(--coul-primaire);
@@ -49,15 +49,29 @@
         align-items: center;
         align-content: flex-start;
         gap: var(--espace-1);
+    }
+    .photoEtTitre {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--espace-1);
+    }
 
-        p {
-            font-size: var(--texte-sm);
-        }
+    p {
+        font-size: var(--texte-sm);
+    }
+
+    .prix {
+        font-family: "Roboto Slab";
+        font-weight: 700;
+        color: var(--coul-primaire);
+        font-size: var(--texte-md);
     }
 }
 
 @media screen and (max-width: 834px) {
-    .page-photos {
+    .liste {
         .liste-photos {
             width: calc(100vw - var(--espace-3));
         }
@@ -65,7 +79,7 @@
 }
 
 @media screen and (max-width: 428px) {
-    .page-photos {
+    .liste {
         /* padding: 0;
         margin: 0; */
 
