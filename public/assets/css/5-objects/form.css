@@ -47,6 +47,32 @@
     }
 }
 
+.form-panier {
+    .suppression {
+        background-color: var(--coul-fond-clair);
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.form-commande {
+    border: none;
+    box-shadow: none;
+}
+
+.line-form {
+    background-color: var(--coul-primaire);
+    height: 2px;
+    top: 70px;
+    width: 100%;
+}
+
+.form-inscription {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 @media screen and (max-width: 834px) {
     .form {
         margin: 0 auto;

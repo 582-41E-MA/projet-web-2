@@ -123,5 +123,15 @@
     "Download the order": "Télécharger la commande",
     "Check Out": "Commander",
     "Reserve": "Réserver",
-    "Cart": "Panier"
+    "Cart": "Panier",
+    "Inscription" : "Inscription",
+    "Are you already a member ?" : "Êtes-vous déjà membre ?",
+    "If you wish to checkout as a visitor, please fill in the following information :" : "Se vous souhaitez passer à la caisse en tant que visiteur, veuillez remplir les informations suivantes :",
+    "Order": "Commande",
+    "Select an expedition": "Sélectionnez une expédition",
+    "Expedition" : "Expédition",
+    "Price": "Prix",
+    "Expedition tax": "Taxe d'expédition",
+    "Total": "Total",
+    "Pay": "Payer"
 }

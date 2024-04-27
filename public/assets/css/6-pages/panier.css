@@ -1,35 +1,35 @@
-.page-panier{
+.page-panier {
     padding: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .liste-panier{
+    .liste-panier {
         box-shadow: 5px 5px 10px var(--coul-tertiaire);
         border: 1px solid;
     }
 
     .nom-page {
         margin: 20px 0;
-        h3{
+        h3 {
             color: var(--coul-primaire);
         }
     }
 
-    hr{
+    hr {
         margin: 0 30px;
         background-color: var(--coul-primaire);
         height: 1px;
-        border: none; 
+        border: none;
     }
 
-    h1{
+    h1 {
         font-family: "Roboto Slab";
         font-size: var(--texte-xl);
         color: var(--coul-primaire);
     }
 
-    h3{
+    h3 {
         font-family: "Roboto";
         font-size: var(--texte-sm);
         color: var(--coul-texte-default);
@@ -38,20 +38,20 @@
         line-height: 135%;
     }
 
-    .chaque-voiture{
+    .chaque-voiture {
         display: flex;
         flex-direction: row;
         min-width: 834px;
         height: auto;
         padding: 30px;
 
-        .detail-prix{
+        .detail-prix {
             display: flex;
             flex-direction: row;
             margin: 0 20px;
             flex: 1;
 
-            .detail{
+            .detail {
                 display: flex;
                 margin: 0 20px;
                 align-items: center;
@@ -59,7 +59,7 @@
             }
         }
 
-        .photo{
+        .photo {
             width: 150px;
             height: 100px;
             aspect-ratio: 1/1;
@@ -67,76 +67,86 @@
             object-fit: cover;
         }
 
-        .prix{
+        .prix {
             display: flex;
             align-items: center;
         }
     }
 
-    .buttons{
+    .buttons {
         margin: 20px;
         display: flex;
-        justify-content: center; 
+        justify-content: center;
 
-        .btn{
+        .btn {
             width: 150px;
             margin: 15px 50px;
+        }
+
+        a {
+            color: var(--coul-texte-claire);
+        }
+
+        a:hover {
+            color: var(--coul-primaire);
         }
     }
 }
 
 @media screen and (max-width: 834px) {
-.page-panier{
-    .chaque-voiture{
-        display: flex;
-        min-width: 428px;
-
-        .detail-prix{
+    .page-panier {
+        .chaque-voiture {
             display: flex;
-            flex-direction: column;
-            margin: 0 20px;
-            flex: 1;
+            min-width: 428px;
 
-            .detail{
-                margin: 0;
-            }
-        }
-
-        .buttons{
-            margin: 10px 0;
-
-            .btn{
-                margin: 15px;
-            }
-        }
-    }
-}}
-
-@media screen and (max-width: 428px) {
-.page-panier{
-    padding: 0;
-    margin: 0;
-
-    .liste-panier{
-        max-width: 400px;
-        margin-left: 10px;
-        margin-right: 10px;
-
-        .chaque-voiture{
-            flex-direction: column;
-
-            .detail-prix{
+            .detail-prix {
                 display: flex;
                 flex-direction: column;
-                margin: 20px 0;
+                margin: 0 20px;
                 flex: 1;
-            }
-        }
 
-        .buttons{
-            .btn{
-                margin: 15px;
+                .detail {
+                    margin: 0;
+                }
+            }
+
+            .buttons {
+                margin: 10px 0;
+
+                .btn {
+                    margin: 15px;
+                }
             }
         }
     }
-}}
+}
+
+@media screen and (max-width: 428px) {
+    .page-panier {
+        padding: 0;
+        margin: 0;
+
+        .liste-panier {
+            max-width: 400px;
+            margin-left: 10px;
+            margin-right: 10px;
+
+            .chaque-voiture {
+                flex-direction: column;
+
+                .detail-prix {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 20px 0;
+                    flex: 1;
+                }
+            }
+
+            .buttons {
+                .btn {
+                    margin: 15px;
+                }
+            }
+        }
+    }
+}

@@ -16,3 +16,8 @@
     width: 100%;
     height: 2rem;
 }
+
+.input-simple {
+    border: none;
+    border-bottom: 1.5px solid var(--coul-tertiaire);
+}

@@ -118,6 +118,10 @@ Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePan
 // Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
+Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
+
+// route temporaire
+Route::post('/commande/user/{user}', [CommandeController::class, 'paiementCommande'])->name('commande.paiement');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

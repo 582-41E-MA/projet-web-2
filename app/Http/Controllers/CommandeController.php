@@ -203,12 +203,116 @@ class CommandeController extends Controller
                 $carrosseries = Carrosserie::all();
                 $photos = Photo::select()->where('principal', 1)->get();
             
-                return view('commande.panier', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries'));
+                return view('commande.panier', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries', 'id'));
             }
         }
     }
     
+    /**
+     * Show user's cart and prepare commande
+     */
+    public function show($id) {
+        // Obtenir le cookie avec la liste des ID de voitures
+        $cookieValue = Cookie::get('voiture_id_' . $id, '');
+        
+        // Convertir la chaîne séparée par des virgules en un tableau d'ID
+        $voitureIds = explode(',', $cookieValue);
+
+        // Verificar se ja existe uma comanda na conta deste usuario
+        //$commandes = Commande::all();
+
+        $commande = Commande::select()->where('user_id', $id)->first();
+        //return $commande;
+
+        if ($commande) {
+            // Récupérer toutes les voitures
+            $voitures = Voiture::all();
+            
+            $voituresAcheter = [];
+
+            //$prix = 0;
+            $quantite = 0;
+
+            foreach ($voitures as $voiture) {                
+                foreach ($voitureIds as $voitureId) {
+                    if ($voiture->id == $voitureId) {
+                        $voiture->commande_id = $commande->id;
+                        $voiture->disponible = false;
+                        $voiture->save();
     
+                        //$prix += $voiture->prix_vente;
+                        $quantite += 1;
+                        $voituresAcheter[] = $voiture;
+                    }
+                }
+            }
+            
+            $voitures = $voituresAcheter;
+
+            $expeditions = Expedition::all();
+            $userInfo = User::select()->where('id', $id)->first();
+            $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
+            $villeUserId = $villeUser->id;
+            $provenceUserId = $villeUser->provence_id;
+            $photos = Photo::select()->where('principal', 1)->get();
+            $commande_id = $commande->id;
+
+            return view('commande.show', ['user' => $id, 'expeditions' => $expeditions, 'provence_user' => $provenceUserId, 'voitures' => $voitures, 'photos' => $photos, 'commande_id' => $commande_id]);
+        } else {
+            // Criar comanda e recuperar o id da comanda
+            $commande = new Commande;
+            $commande->user_id = $id;
+            $commande->statut_id = 1;
+            $commande->date = now();
+            $commande->save();
+            $commande_id = $commande->id;
+
+            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+            $voituresAcheter = [];
+    
+            //$prix = 0;
+            $quantite = 0;
+
+            // Récupérer toutes les voitures
+            $voitures = Voiture::all();
+            
+            // Atualizar o valor de comanda dos carros que estavam no cart
+            foreach ($voitures as $voiture) { 
+                //return 'entrei aqui';               
+                foreach ($voitureIds as $voitureId) {
+                    if ($voiture->id == $voitureId) {
+                        $voiture->commande_id = $commande_id;
+                        $voiture->disponible = false;
+                        $voiture->save();
+    
+                        //$prix += $voiture->prix_vente;
+                        $quantite += 1;
+                        $voituresAcheter[] = $voiture;
+                    }
+                }
+            }
+    
+            //$commande->prix = $prix;
+            $commande->quantite = $quantite;
+            $commande->save();
+
+            $expeditions = Expedition::all();
+            $userInfo = User::select()->where('id', $id)->first();
+            $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
+            $villeUserId = $villeUser->id;
+            $provenceUserId = $villeUser->provence_id;
+            $photos = Photo::select()->where('principal', 1)->get();
+
+            return view('commande.show', ['user' => $id, 'voitures' => $voituresAcheter, 'provence_user' => $provenceUserId, 'expeditions' => $expeditions, 'photos' => $photos, 'commande_id' => $commande_id]);
+        }
+    }
+
+    public function paiementCommande(Request $request) {
+        
+        return $request;
+
+        
+    }
     
     /**
      * Display a listing of the resource.

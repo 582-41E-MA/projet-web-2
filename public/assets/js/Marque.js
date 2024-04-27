@@ -1,28 +1,33 @@
 export default class Marque {
+    #_el;
+    #_elChampSelect;
+    #_elChampSelectionne;
+    #_elChampSelectionneIndex;
 
     constructor(el) {
         // Recuperer les champs du formulaire
-        this._el = el;
-        this._elChampSelect = this._el.querySelector('[data-js-select]');
-        this._elChampSelectionne = this._elChampSelect.options[this._elChampSelect.selectedIndex];
-        this._elChampSelectionneIndex = this._elChampSelectionne.dataset.jsMarque;
-        // Si le formulaire contient des erreurs, il conservera les champs précédemment sélectionnés
-        if (this._elChampSelectionneIndex != undefined) this.afficheModeles(this._elChampSelectionneIndex);
+        this.#_el = el;
+        this.#_elChampSelect = this.#_el.querySelector('[data-js-select]');
+        this.#_elChampSelectionne = this.#_elChampSelect.options[this.#_elChampSelect.selectedIndex];
+        this.#_elChampSelectionneIndex = this.#_elChampSelectionne.dataset.jsMarque;
         
-        this.init();
+        // Si le formulaire contient des erreurs, il conservera les champs précédemment sélectionnés
+        if (this.#_elChampSelectionneIndex != undefined) this.#afficheModeles(this.#_elChampSelectionneIndex);
+        
+        this.#init();
     }
     
 
     /**
      * Initialiser les comportements
      */
-    init() {
-        this._elChampSelect.addEventListener('change', function() {
-            let elMarque = this._elChampSelect.options[this._elChampSelect.selectedIndex];
+    #init() {
+        this.#_elChampSelect.addEventListener('change', function() {
+            let elMarque = this.#_elChampSelect.options[this.#_elChampSelect.selectedIndex];
             let elMarqueId = elMarque.dataset.jsMarque;
 
             // Appel la fonction que gere l'affichage des modèles appartenant à une marque
-            this.afficheModeles(elMarqueId);
+            this.#afficheModeles(elMarqueId);
         }.bind(this));
     }
 
@@ -31,7 +36,7 @@ export default class Marque {
      * @param {*} id marque_id
      * Afficher les modèles que la marque sélectionnée possède
      */
-    afficheModeles(id) {
+    #afficheModeles(id) {
 
         let oOptions = {
             method: 'POST',
@@ -41,7 +46,7 @@ export default class Marque {
             body: JSON.stringify({marqueId: id, action: 'affichageModeles'})
         }
 
-        fetch('/requetes/requeteFetch.php', oOptions)
+        fetch('/requetes/requeteAsync.php', oOptions)
             .then(function(response) {
                 if (response.ok) return response.json();
                 else throw new Error('La réponse n\'est pas OK');
