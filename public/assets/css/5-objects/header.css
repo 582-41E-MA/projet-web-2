@@ -2,10 +2,11 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    height: 70px;
+    width: 100%;
+    height: 100%;
+    min-height: 70px;
     justify-content: space-between;
     position: relative;
-    width: 100%;
 
     .line-1 {
         background-color: var(--coul-primaire);
@@ -49,9 +50,10 @@
 
                     .active {
                         font-family: "Palanquin Dark";
-                        font-weight: 700;
+                        font-weight: 500;
                         font-style: normal;
                     }
+
                     span {
                         text-decoration: none;
                         color: var(--coul-primaire);
@@ -59,7 +61,6 @@
     
                     span:hover {
                         color: var(--coul-texte-claire);
-    
                     }
                 }
 
@@ -111,13 +112,16 @@
     .div-lang {
         align-items: center;
         display: flex;
-        gap: var(--espace-1);
+        gap: var(--espace-half);
         height: 100%;
 
         button {
             align-items: center;
-            display: flex;
-            height: 50%;
+            height: 25px;
+            width: 25px;
+            padding: 0 0 0 1px;
+            border-radius: 0.15rem;
+            font-size: medium;
 
             a {
                 color: var(--coul-texte-claire);
@@ -127,11 +131,13 @@
         }
 
         .div-connexion {
+            font-family: "Palanquin";
             align-items: center;
             display: flex;
             border: 1px var(--coul-primaire) solid;
             padding: var(--espace-quart) var(--espace-3quarts);
             height: 50%;
+            background-color: var(--coul-fond-claire);
 
             a {
                 color: var(--coul-primaire);

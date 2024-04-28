@@ -5,21 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Commande extends Model
+class Panier extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
     'id',
-    'voiture_id',
     'user_id',
-    'payment_id',
-    'statut_id',
-    'expedition_id',
-    'date',
-    'quantite',
-    'prix',
-    'create_at',
-    'update_at'
+    'voiture_id',
     ];
 }

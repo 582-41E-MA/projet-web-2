@@ -22,10 +22,38 @@
 }
 
 @font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-Medium.ttf");
+    font-weight: 300;
+    font-style: medium;
+}
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-Light.ttf");
+    font-weight: 200;
+    font-style: light;
+}
+
+@font-face {
+    font-family: "Palanquin";
+    src: url("/assets/fonts/Palanquin/Palanquin-ExtraLight.ttf");
+    font-weight: 100;
+    font-style: extralight;
+}
+
+@font-face {
     font-family: "Palanquin Dark";
     src: url("/assets/fonts/Palanquin_Dark/PalanquinDark-Bold.ttf");
     font-weight: 700;
     font-style: bold;
+}
+
+@font-face {
+    font-family: "Palanquin Dark";
+    src: url("/assets/fonts/Palanquin_Dark/PalanquinDark-Medium.ttf");
+    font-weight: 500;
+    font-style: medium;
 }
 
 @font-face {
@@ -53,6 +81,13 @@
     src: url("/assets/fonts/Roboto/Roboto-Bold.ttf");
     font-weight: 700;
     font-style: bold;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/assets/fonts/Roboto/Roboto-Medium.ttf");
+    font-weight: 500;
+    font-style: medium;
 }
 
 @font-face {

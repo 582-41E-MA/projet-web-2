@@ -1,7 +1,10 @@
 header {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--espace-1half);
+    padding: var(--espace-2);
+    margin-bottom: var(--espace-half);
+    background-color: rgba(255, 255, 255, 0.7); 
+    position: relative;
 }
 
 @media screen and (max-width: 428px) {

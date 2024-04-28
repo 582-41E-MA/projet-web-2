@@ -11,6 +11,8 @@ use App\Http\Controllers\TransmissionController;
 use App\Http\Controllers\TractionController;
 use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\SetLocaleController;
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CommandeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +22,13 @@ Route::get('/accueil', function () {
     return view('accueil');
 });
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/policy', function () {
+    return view('policy');
+})->name('policy');
 
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/clients', [UserController::class, 'indexClient'])->name('user.indexClient');
@@ -87,6 +96,12 @@ Route::put('/edit/carburant/{carburant}', [CarburantController::class, 'update']
 Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])->name('carburant.delete');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
+Route::get('/panier/{panier}', [PanierController::class, 'show'])->name('panier.show');
+
+Route::get('/commande/{commande}', [CommandeController::class, 'show'])->name('commande.show');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
+Route::get('/{any}', function () {
+    return view('404'); 
+})->where('any', '.*')->name('404');
