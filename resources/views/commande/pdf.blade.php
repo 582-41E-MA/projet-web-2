@@ -48,7 +48,7 @@
         <table class="liste-panier">
             <tr>
                 <td>
-                    <img class="photo" src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('assets/img/voitures/1713844923_1.jpg'))) }}" alt="">
+                    <img class="photo" src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('assets/img/voitures/1714414702_0.jpg'))) }}" alt="">
                 </td>
                 <td>
                     <h3>BMW X5 2022</h3>

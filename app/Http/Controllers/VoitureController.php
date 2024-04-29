@@ -482,6 +482,7 @@ class VoitureController extends Controller
             $transmission = Transmission::transmissionParId($voiture['transmission_id']);
 
             $donneesVoiture[$key]['id'] = $voiture['id'];
+            $donneesVoiture[$key]['disponible'] = $voiture->disponible;
             $donneesVoiture[$key]['photoPrincipale'] = $photoPrincipale->nom;
             $donneesVoiture[$key]['annee'] = $annee->annee;
             $donneesVoiture[$key]['marque'] = $marque->nom;

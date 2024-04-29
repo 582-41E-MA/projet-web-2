@@ -9,11 +9,11 @@
     <div class="liste-panier">
         <div class="chaque-voiture">
             <div>
-                <img class="photo" src="{{asset('assets/img/voitures/1713844923_1.jpg') }}" alt="">
+                <img class="photo" src="{{asset('assets/img/voitures/1714414702_0.jpg') }}" alt="">
             </div>
         <div class="detail-prix">
             <div class="detail">
-                <h3>BMW X5 2022    
+                <h3>Hyundai Tucson 2022    
                 </h3>
             </div>
             <div class="prix">
