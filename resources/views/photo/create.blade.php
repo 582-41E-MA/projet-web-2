@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title', __('Add photo'))
 @section('content')
-<main class="wrapper">
+<main class="wrapper liste">
     <div class="container-form">
-        <h1>@lang('Add car')</h1>
+        <h1>@lang('Add photo')</h1>
         <form method="POST" class="form" enctype="multipart/form-data">
             @csrf
             <div class="form-inputContainer">
@@ -23,7 +23,8 @@
                 </div>
             </div>
 
-            <div class="form-btnContainer">
+            <div class="buttons">
+                <a class="btn btn-tertiaire" href="{{ route('photo.voiture', $voiture['id'] ) }}"> @lang('Cancel')</a>
                 <button type="submit" class="btn btn-primaire">@lang('Add')</button>
             </div>
         </form>
