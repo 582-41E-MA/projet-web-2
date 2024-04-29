@@ -29,7 +29,8 @@ class Voiture extends Model
         'prix_paye',
         'prix_vente',
         'kilometrage',
-        'disponible'
+        'disponible',
+        'commande_id'
     ];
 
 

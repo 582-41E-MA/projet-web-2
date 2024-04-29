@@ -25,6 +25,8 @@ return new class extends Migration
             $table->decimal('prix_paye', 10, 2);
             $table->decimal('prix_vente', 10, 2);
             $table->boolean('disponible')->default(true);
+            $table->unsignedBigInteger('commande_id')->nullable();
+            $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('set null');
             $table->foreign('marque_id')->references('id')->on('marques')->onDelete('cascade');
             $table->foreign('modele_id')->references('id')->on('modeles')->onDelete('cascade');
             $table->foreign('annee_id')->references('id')->on('annees')->onDelete('cascade');
