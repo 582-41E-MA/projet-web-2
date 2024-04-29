@@ -11,6 +11,7 @@ use App\Http\Controllers\TransmissionController;
 use App\Http\Controllers\TractionController;
 use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\SetLocaleController;
+use App\Http\Controllers\PhotoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,6 +87,12 @@ Route::get('/edit/carburant/{carburant}', [CarburantController::class, 'edit'])-
 Route::put('/edit/carburant/{carburant}', [CarburantController::class, 'update'])->name('carburant.update');
 Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])->name('carburant.delete');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
+
+Route::get('/photos/{voiture}', [PhotoController::class, 'voiture'])->name('photo.voiture');
+Route::get('/create/photo/{voiture}', [PhotoController::class, 'create'])->name('photo.create');
+Route::post('/create/photo/{voiture}', [PhotoController::class, 'store'])->name('photo.store');
+Route::delete('/photo/{photo}', [PhotoController::class, 'destroy'])->name('photo.delete');
+Route::put('/photo/{photo}', [PhotoController::class, 'principal'])->name('photo.principal');
 
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');

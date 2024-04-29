@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Voiture;
 use App\Models\Marque;
 use App\Models\Modele;
@@ -14,7 +15,9 @@ use App\Models\Carrosserie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class VoitureController extends Controller
 {
@@ -128,9 +131,8 @@ class VoitureController extends Controller
             'carburant_id' => 'required|exists:carburants,id',
             'carrosserie_id' => 'required|exists:carrosseries,id',
             'date_arrive' => 'required|date|before_or_equal:today',
-            'photo_principale' => 'required|image',
-            'photo_secundaire' => 'required|array|size:3',
-            'photo_secundaire.*' => 'required|image',
+            'photo' => 'required|array|max:10',
+            'photo.*' => 'required|file|mimes:jpeg,jpg,png,gif,svg|max:5120|dimensions:min_width=1024',
             'prix_paye' => 'required|numeric|decimal:0,2',
             'prix_vente' => 'required|numeric|decimal:0,2',
             'kilometrage' => 'required|numeric|decimal:0,2',
@@ -141,27 +143,30 @@ class VoitureController extends Controller
         $voiture->proprietaire = Auth::user()->id;
         $voiture->fill($request->all());
         $voiture->save();
-
-        // Création photo principale
-        $photo = new Photo();
-        $file = $request->file('photo_principale');
-        $filename = time() . "." . $file->getClientOriginalExtension();
-        $request->photo_principale->move('assets/img/voitures', $filename);
-
-        $photo->nom = $filename;
-        $photo->principal = 1;
-        $photo->voiture_id = $voiture->id;
-        $photo->save();
         
-        // Création photos secundaires
-        $filesSecundaires = $request->file('photo_secundaire');
+        // Création photos
+        $photos = $request->file('photo');
 
-        foreach ($filesSecundaires as $i => $fileSecundaire) {
-            $fileSecundaireName = time() . "_$i." . $fileSecundaire->getClientOriginalExtension();
-            $fileSecundaire->move('assets/img/voitures', $fileSecundaireName);
+        foreach ($photos as $i => $photo) 
+        {
+            //Compresser images, ref: https://www.prashantwebdeveloper.in/laravel-image-compression-project/
+            $photoName = time() . "_$i." . $photo->getClientOriginalExtension();
+            $imagepath = public_path('/assets/img/');
+            $pathToOutput = public_path('/assets/img/voitures/');
+
+            $photo->move($imagepath, $photoName);
+            $optimizerChain = OptimizerChainFactory::create();
+            $optimizerChain->optimize($imagepath.$photoName,$pathToOutput.$photoName);
+            unlink($imagepath.$photoName);
+
+            // Redimensionner images ref: https://image.intervention.io/v3
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($pathToOutput.$photoName);
+            $image->scale(width: 1024); // resize image proportionally to 1024px width
+            $image->save($pathToOutput.$photoName);
 
             $photo = new Photo();
-            $photo->nom = $fileSecundaireName;
+            $photo->nom = $photoName;
             $photo->principal = 0;
             $photo->voiture_id = $voiture->id;
             $photo->save();    
@@ -176,8 +181,8 @@ class VoitureController extends Controller
      */
     public function show(Voiture $voiture)
     {
-        $photoPrincipale = Photo::select()->where('voiture_id', $voiture['id'])->where('principal', 1)->first();
-        $photosSecondaires = Photo::select()->where('voiture_id', $voiture['id'])->orderBy('principal', 'desc')->get();
+        $photoPrincipale = Photo::select()->where('voiture_id', $voiture['id'])->orderBy('principal','DESC')->first(); 
+        $photos = Photo::select()->where('voiture_id', $voiture['id'])->orderBy('principal', 'DESC')->get();
 
         $annee = Annee::select()->where('id', $voiture['annee_id'])->first()->annee;
         $marque = Marque::select()->where('id', $voiture['marque_id'])->first()->nom;
@@ -199,8 +204,8 @@ class VoitureController extends Controller
         $data['traction'] = $traction[0]['nom'];
         $data['carburant'] = $carburant[0]['nom'];
         $data['carrosserie'] = $carrosserie[0]['nom'];
-
-        return view('voiture.show', ['voiture' => $data, 'photosSecondaires'=>$photosSecondaires, 'photoPrincipale' => $photoPrincipale]);
+        
+        return view('voiture.show', ['voiture' => $data, 'photos'=>$photos, 'photoPrincipale' => $photoPrincipale]);
     }
 
     /**
@@ -232,9 +237,6 @@ class VoitureController extends Controller
             'carburant_id' => 'required|exists:carburants,id',
             'carrosserie_id' => 'required|exists:carrosseries,id',
             'date_arrive' => 'required|date|before_or_equal:today',
-            'photo_principale' => 'image',
-            'photo_secundaire' => 'array|size:3',
-            'photo_secundaire.*' => 'image',
             'prix_paye' => 'required|numeric|decimal:0,2',
             'prix_vente' => 'required|numeric|decimal:0,2',
             'kilometrage' => 'required|numeric|decimal:0,2',
@@ -243,43 +245,6 @@ class VoitureController extends Controller
         $voiture->proprietaire = Auth::user()->id;
         $voiture->fill($request->all());
         $voiture->save();
-
-        // Si l'utilisateur essaie d'envoyer une nouvelle photo principale, la base de données mettra à jour l'image
-        if ($request->photo_principale) {
-            $photo = Photo::select()->where('voiture_id', $voiture->id)->where('principal', '1')->first();
-            $photo->delete();
-
-            $photo = new Photo();
-            $file = $request->file('photo_principale');
-            $filename = time() . "." . $file->getClientOriginalExtension();
-            $request->photo_principale->move('assets/img/voitures', $filename);
-
-            $photo->nom = $filename;
-            $photo->principal = 1;
-            $photo->voiture_id = $voiture->id;
-            $photo->save();
-        }
-
-        // Si l'utilisateur essaie d'envoyer des nouvelles photos secundaires, la base de données mettra à jour les images
-        $filesSecundaires = $request->file('photo_secundaire');
-        if ($filesSecundaires) {
-            $photos = Photo::select()->where('voiture_id', $voiture->id)->where('principal', '0')->get();
-
-            foreach ($photos as $photo) {
-                $photo->delete();
-            }
-
-            foreach ($filesSecundaires as $i => $fileSecundaire) {
-                $fileSecundaireName = time() . "_$i." . $fileSecundaire->getClientOriginalExtension();
-                $fileSecundaire->move('assets/img/voitures', $fileSecundaireName);
-    
-                $photo = new Photo();
-                $photo->nom = $fileSecundaireName;
-                $photo->principal = 0;
-                $photo->voiture_id = $voiture->id;
-                $photo->save();    
-            }        
-        }
 
         return redirect()->route('voiture.index')->with('success', trans('You\'ve modified a new car successfully'));
     }
