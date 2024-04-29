@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -14,9 +15,9 @@ class AuthController extends Controller
      */
     public function create(Request $request)
     {
+        // Si la connexion est effectuée après que l'utilisateur a ajouté une voiture au panier, une variable sera créée dans la session pour une utilisation ultérieure
         $voiture_id = $request->query('voiture_id');
 
-        // Armazene o voiture_id na sessão para uso posterior
         if ($voiture_id) {
             $request->session()->put('voiture_id', $voiture_id);
         }
@@ -46,8 +47,20 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        // Recupere o voiture_id da sessão
+        // Récupérez l'id de l'utilisatuer
+        $id = Auth::user()->id;
+        
+        // Récupérez le cookie avec l'id (s'il existe)
+        $cookieValue = Cookie::get('voiture_id_' . $id, '');
+        
+        // Créer une variable panier dans la session pour aider à gérer l'icône du panier
+        if ($cookieValue) {
+            $panier = $request->session()->put('panier', true);
+        }
+        
+        // Récupérez le voiture_id de la session (si elle existe)
         $voiture_id = $request->session()->get('voiture_id');
+        
         if ($voiture_id) {
             return redirect()->route('commande.panier', ['voiture' => $voiture_id]);
         }

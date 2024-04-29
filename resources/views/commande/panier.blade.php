@@ -25,7 +25,7 @@
                         </h3>
 
                         <div>
-                            <form action="{{ route('commande.deleteVoiturePanier', $voiture['id']) }}" method="post">
+                            <form action="{{ route('commande.deleteVoiturePanier', $voiture['id']) }}" method="post" class="form-panier">
                                 @csrf
                                 @method('delete')
                                 <button class="suppression" type="submit">
@@ -42,10 +42,13 @@
             <hr>
         @endforeach
 
-
     </div>
     <div class="buttons">
-        <button class="btn btn-primaire">@lang('Check Out')</button>
+        <button class="btn btn-primaire">
+            <a href="{{ route('commande.show', $id) }}">
+                @lang('Check Out')
+            </a>
+        </button>
         <button class="btn btn-primaire">@lang('Reserve')</button>
     </div>
 </main>

@@ -101,7 +101,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Store a new user as a guest
+     */
     public function storeGuest(Request $request) {
+        // Récupérez le voiture_id de la session
         $voiture_id = $request->query('voiture_id');
 
         $request->validate([
@@ -117,9 +121,11 @@ class UserController extends Controller
         $user->ville_id = $request->ville_id;
         $user->save();
 
+        // Récupérer l'ID qui vient d'être créé
         $id = $user->id;
+        // Créer une variable dans la session avec l'ID de l'invité
         $guest_id = $request->session()->put('id', $id);
-        //return $id;
+
         return redirect()->route('commande.panier', ['voiture' => $voiture_id, 'id' => $id]);
     }
 

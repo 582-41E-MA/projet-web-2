@@ -96,6 +96,7 @@
         </div>
         <div data-js-infos>
             <input type="hidden" name="commande_id" value="{{ $commande_id }}">
+            <input type="hidden" name="user_id" value="{{ $user }}">
         </div>
         <div class="buttons">
             <button class="btn btn-primaire">

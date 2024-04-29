@@ -111,17 +111,13 @@ Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->nam
 Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
 // route qui redirige vers la page de connexion ou de continuer comme guest avant d'accéder au panier
 Route::post('/panier/inscription', [CommandeController::class, 'inscriptionPanier'])->name('commande.inscriptionPanier');
-
 Route::get('/panier/voiture/{voiture}', [CommandeController::class, 'panier'])->name('commande.panier');
 Route::get('/panier/{user}', [CommandeController::class, 'showPanier'])->name('commande.showPanier');
 Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePanier'])->name('commande.deleteVoiturePanier');
-// Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
-Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
-Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
 Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
 
 // route temporaire
-Route::post('/commande/user/{user}', [CommandeController::class, 'paiementCommande'])->name('commande.paiement');
+Route::post('/commande/user/{user}', [CommandeController::class, 'paiement'])->name('commande.paiement');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
