@@ -10,7 +10,7 @@
 
     .line-1 {
         background-color: var(--coul-primaire);
-        height: 2px;
+        height: 1px;
         position: absolute;
         top: 70px;
         width: 100%;
@@ -79,7 +79,7 @@
 
                 .voiture-nav:hover {
                     .sous-list-nav {
-                        border: 2px var(--coul-primaire) solid;
+                        border: 1px var(--coul-primaire) solid;
                         display: flex;
                         flex-direction: column;
                         height: auto;
@@ -135,7 +135,7 @@
             align-items: center;
             display: flex;
             border: 1px var(--coul-primaire) solid;
-            padding: var(--espace-quart) var(--espace-3quarts);
+            padding: var(--espace-quart) var(--espace-quart);
             height: 50%;
             background-color: var(--coul-fond-claire);
 
@@ -154,7 +154,7 @@
         .line-2 {
             background-color: var(--coul-primaire);
             display: block;
-            height: 2px;
+            height: 1px;
             position: absolute;
             top: 140px;
             width: 100%;
@@ -185,7 +185,7 @@
 
 @media screen and (max-width: 428px) {
     .div-header {
-        border: 2px var(--coul-primaire) solid;
+        border: 1px var(--coul-primaire) solid;
         flex-direction: column;
         height: fit-content;
         position: relative;
@@ -206,7 +206,7 @@
             .div-list-nav {
                 .list-nav {
                     li {
-                        border-bottom: 2px var(--coul-primaire) solid;
+                        border-bottom: 1px var(--coul-primaire) solid;
                         justify-content: center;
                         width: calc(100vw - var(--espace-3));
                         font-size: var(--texte-md);

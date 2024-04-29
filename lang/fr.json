@@ -139,5 +139,18 @@
     "policy-p-4" : "Ces éléments ne sont pas inclus dans la garantie :",
     "policy-ul4-li1" : "l'entretien normal de la voiture",
     "policy-ul4-li2" : "le revêtement intérieur ou les éléments décoratifs extérieurs",
-    "policy-ul4-li3" : "les dommages causés par l'utilisation abusive de la voiture ou de la moto par l'acheteur après sa livraison"
+    "policy-ul4-li3" : "les dommages causés par l'utilisation abusive de la voiture ou de la moto par l'acheteur après sa livraison",
+  
+    "Name" : "Nom",
+    "Email" : "Adresse courrier",
+    "Message" : "Message",
+    "Contact us" : "Contactez nous",
+    "Privacy Policy" : "Politique de confidentialité",
+    "Find a car" : "Trouver une voiture",
+    "Get approved" : "Obtenir un accord",
+    "Sell your car" : "Vendre votre voiture",
+    "Career" : "Carrière",
+    "Humanity" : "L'humanité",
+    "Newsroom" : "Salle de presse",
+    "Blog" : "Blog"
   }

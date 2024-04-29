@@ -8,6 +8,7 @@
 @import url(/assets/css/4-elements/typographies.css);
 @import url(/assets/css/4-elements/header.css);
 @import url(/assets/css/4-elements/nav.css);
+@import url(/assets/css/4-elements/footer.css);
 
 /* 5 - OBJETCS */
 @import url(/assets/css/5-objects/button.css);
@@ -23,6 +24,7 @@
 @import url(/assets/css/5-objects/wrapper.css);
 @import url(/assets/css/5-objects/table.css);
 @import url(/assets/css/5-objects/recherche.css);
+@import url(/assets/css/5-objects/footer.css);
 
 /* 6 - PAGES */
 @import url(/assets/css/6-pages/accueil.css);
@@ -34,3 +36,4 @@
 @import url(/assets/css/6-pages/page-404.css);
 @import url(/assets/css/6-pages/page-about.css);
 @import url(/assets/css/6-pages/page-policy.css);
+@import url(/assets/css/6-pages/footer.css);

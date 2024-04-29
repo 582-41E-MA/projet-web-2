@@ -1,0 +1,13 @@
+footer {
+    padding: var(--espace-2);
+    padding-bottom: 5px;
+    background-color: var(--coul-fond-pale); 
+    height: 250px;
+    width: 100%;
+}
+
+@media screen and (max-width: 834px) {
+footer {
+    height: auto;
+}}
+

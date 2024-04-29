@@ -13,7 +13,7 @@
     }
 
     .text {
-        margin: 300px 100px; 
+        margin: 300px 100px 100px 100px; 
 
         h3{
             color: var(--coul-primaire);
@@ -45,7 +45,7 @@
 @media screen and (max-width: 834px) {
 .policy{
     .text {
-        margin: 250px 40px; 
+        margin: 250px 40px 40px 40px; 
     }
 }}
 
