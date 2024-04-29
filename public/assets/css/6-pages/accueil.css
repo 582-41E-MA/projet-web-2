@@ -79,6 +79,14 @@ h2 {
     text-transform: uppercase;
 }
 
+.reserved{
+    font-family: "Roboto";
+    font-size: var(--texte-md);
+    color: var(--coul-primaire);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 .grid_carrosserie {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

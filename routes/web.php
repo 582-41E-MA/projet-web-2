@@ -9,6 +9,8 @@ use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\CarrosserieController;
 use App\Http\Controllers\TransmissionController;
 use App\Http\Controllers\TractionController;
+
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
@@ -94,6 +96,8 @@ Route::post('/create/photo/{voiture}', [PhotoController::class, 'store'])->name(
 Route::delete('/photo/{photo}', [PhotoController::class, 'destroy'])->name('photo.delete');
 Route::put('/photo/{photo}', [PhotoController::class, 'principal'])->name('photo.principal');
 
+Route::get('/reservation', [CommandeController::class, 'indexReservation'])->name('reservation.index');
+Route::get('/reservationPdf', [CommandeController::class, 'pdf'])->name('reservation.index');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

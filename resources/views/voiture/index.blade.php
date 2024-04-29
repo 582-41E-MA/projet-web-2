@@ -227,9 +227,13 @@
                             </div>
                             <div class="car-prix">
                                 <p class="p_text_prix mr-sm mb-sm">{{ $voiture['prix_vente']}}$</p>
+                                @if($voiture['disponible'] == 1)
                                 <a href="{{ route('voiture.show', $voiture['id'] ) }}">
                                     <button class="btn btn-primaire mt-xs mr-sm " type="submit">@lang('More info')</button>
                                 </a>
+                                @else
+                                <h2 class="reserved mr-sm">@lang('Reserved car')</h2>
+                                @endif
                             </div>
                         </div>
                     </div>
