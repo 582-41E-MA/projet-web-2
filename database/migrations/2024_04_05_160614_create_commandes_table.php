@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('voiture_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('payment_id');
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->unsignedBigInteger('statut_id');
-            $table->unsignedBigInteger('expedition_id');
+            $table->unsignedBigInteger('expedition_id')->nullable();
             $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('quantite');
             $table->decimal('prix', 10, 2);
-            $table->foreign('voiture_id')->references('id')->on('voitures')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->foreign('statut_id')->references('id')->on('statuts')->onDelete('cascade');
