@@ -13,7 +13,6 @@
     
     <!-- Scripts -->
     <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
-    @stack('page-scripts')
 
 </head>
 <body>
