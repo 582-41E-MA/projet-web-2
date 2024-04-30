@@ -10,18 +10,12 @@ use App\Http\Controllers\CarrosserieController;
 use App\Http\Controllers\TransmissionController;
 use App\Http\Controllers\TractionController;
 use App\Http\Controllers\CarburantController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\CommandeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/accueil', function () {
-    return view('accueil');
-});
-
+Route::get('/', [VoitureController::class, 'index'])->name('voiture.index');
 
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/clients', [UserController::class, 'indexClient'])->name('user.indexClient');
@@ -29,11 +23,10 @@ Route::get('/clients', [UserController::class, 'indexClient'])->name('user.index
 Route::get('/create/user', [UserController::class, 'create'])->name('user.create');
 Route::get('/create/client', [UserController::class, 'createClient'])->name('user.createClient');
 Route::post('/create/user', [UserController::class, 'store'])->name('user.store');
-
+Route::post('/create/guest', [UserController::class, 'storeGuest'])->name('user.storeGuest');
 Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::get('/edit/client/{user}', [UserController::class, 'editClient'])->name('user.editClient');
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
-
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
@@ -42,14 +35,12 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
 Route::get('/voitures/select', [VoitureController::class, 'select'])->name('voitures.select');
-
 Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
 Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');
 Route::put('/edit/voiture/{voiture}', [VoitureController::class, 'update'])->name('voiture.update');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name('voiture.delete');
-
 Route::get('/parametres', [VoitureController::class, 'parametres'])->name('voiture.parametres');
 
 Route::get('/create/marque', [MarqueController::class, 'create'])->name('marque.create');
@@ -87,7 +78,6 @@ Route::post('/create/carburant', [CarburantController::class, 'store'])->name('c
 Route::get('/edit/carburant/{carburant}', [CarburantController::class, 'edit'])->name('carburant.edit');
 Route::put('/edit/carburant/{carburant}', [CarburantController::class, 'update'])->name('carburant.update');
 Route::delete('/carburant/{carburant}', [CarburantController::class, 'destroy'])->name('carburant.delete');
-Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
 Route::get('/photos/{voiture}', [PhotoController::class, 'voiture'])->name('photo.voiture');
 Route::get('/create/photo/{voiture}', [PhotoController::class, 'create'])->name('photo.create');
@@ -95,13 +85,16 @@ Route::post('/create/photo/{voiture}', [PhotoController::class, 'store'])->name(
 Route::delete('/photo/{photo}', [PhotoController::class, 'destroy'])->name('photo.delete');
 Route::put('/photo/{photo}', [PhotoController::class, 'principal'])->name('photo.principal');
 
+Route::post('/panier/inscription', [CommandeController::class, 'inscriptionPanier'])->name('commande.inscriptionPanier');
+Route::get('/panier/voiture/{voiture}', [CommandeController::class, 'panier'])->name('commande.panier');
+Route::get('/panier/{user}', [CommandeController::class, 'showPanier'])->name('commande.showPanier');
+Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePanier'])->name('commande.deleteVoiturePanier');
+Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
+Route::post('/commande/user/{user}', [CommandeController::class, 'paiement'])->name('commande.paiement');
+Route::get('/commande/reservation/{user}', [CommandeController::class, 'reservation'])->name('commande.reservation');
 Route::get('/checkout/{commande}', [CommandeController::class, 'checkout'])->name('commande.checkout');
-Route::post('/checkout/{commande}', [CommandeController::class, 'paiement'])->name('commande.paiement');
 Route::get('/success/{commande}', [CommandeController::class, 'success'])->name('commande.success');
-
 Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
-
-
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

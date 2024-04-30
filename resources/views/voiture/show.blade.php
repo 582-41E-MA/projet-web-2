@@ -43,8 +43,11 @@
                 </form>
 
             @else
-            <button class="btn btn-primaire">@lang('Add to cart')</button>
-            <button class="btn btn-primaire">@lang('Contact us')</button>
+            <form action="{{ route('commande.inscriptionPanier') }}" method="post">
+                @csrf
+                <input type="hidden" name="voiture_id" value="{{ $voiture['id'] }}">
+                <button class="btn btn-primaire" type="submit">@lang('Add to cart')</button>
+            </form>
             @endif
 
         </div>

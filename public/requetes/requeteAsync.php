@@ -65,7 +65,40 @@
                 }
                 
             break;
+            
+            case 'affichageTaxProvince':
+                if (isset($data['provence_id'])) {
+                    $taxes = getTaxes($data['provence_id']);
+            
+                    $data = [];
 
+                    if (mysqli_num_rows($taxes) > 0) {
+                        while ($tax = mysqli_fetch_assoc($taxes)) {
+                            $data[] = $tax;
+                        }
+                    }
+
+                    header('Content-type: application/json; charset=utf-8');
+                    echo json_encode($data);
+                }
+            break;
+
+            case 'affichageModeles':
+                if (isset($data['marqueId'])) {
+                    $modeles = getModeles($data['marqueId']);
+            
+                    $data = [];
+
+                    if (mysqli_num_rows($modeles) > 0) {
+                        while ($modele = mysqli_fetch_assoc($modeles)) {
+                            $data[] = $modele;
+                        }
+                    }
+
+                    header('Content-type: application/json; charset=utf-8');
+                    echo json_encode($data);
+                }
+            break;
         }
 
         } else {

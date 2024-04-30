@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name') }} - @yield('title')</title>
+    <title>{{ config('app.name') }} - Véhicules D*Occasion</title>
 
     <style>
-        /* Estilos para el cuerpo del documento */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -14,25 +13,20 @@
             padding: 0;
         }
 
-        /* Estilos para la sección de la página */
         .page-panier {
             padding: 50px;
         }
 
-        /* Estilos para la tabla */
         table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        /* Estilos para las celdas de la tabla */
         th, td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-
-        /* Estilos para la imagen del producto */
         
         .photo {
             width: 150px;
@@ -43,7 +37,11 @@
 <body>
     <main class="page-panier">
         <div class="nom-page">
-            <h3>Confirmation</h3>
+            @if ($commande->statut_id == 3)
+                <h1>Confirmation</h1>
+            @else
+                <h1>Reservation</h1>
+            @endif
         </div>
         <table class="liste-panier">
         @foreach($voitures as $voiture)
@@ -55,12 +53,12 @@
                     <h3>{{$voiture['annee']}} {{$voiture['marque']}} {{$voiture['modele']}}</h3>
                 </td>
                 <td>
-                    <h1>${{$voiture['prix']}}</h1>
+                    <p>${{$voiture['prix']}}</p>
                 </td>
             </tr>
-            @endforeach
-
+        @endforeach
         </table>
+            <h3><span class="prix">@lang('Total price') : ${{$commande->prix}}</span></h3>
     </main>
 </body>
 </html>

@@ -80,11 +80,34 @@
                     <button class="btn btn-primaire"><a href="{{ route('lang', 'en') }}">EN</a></button>
                 @endif
                 @auth
+
+                @php
+                    $panier = session('panier');
+                @endphp
+                @if ($panier)
+                <a href="{{ route('commande.showPanier', Auth::user()->id) }}">
+                    <img src="{{ asset('assets/img/svg/panier.svg') }}" alt="icone_panier">
+                </a>
+                @endif
+
                 <div class="div-connexion">
                     <a href="{{ route('logout') }}">@lang('Sign out')</a>
                 </div>
                 <p class="user-email">{{ Auth::user()->courriel }}</p>
+
                 @else
+
+                @php
+                    $sessionId = session('id');
+                    $panier = session('panier');
+                @endphp
+
+                @if ($sessionId && $panier) 
+                    <a href="{{ route('commande.showPanier', ['user' => $sessionId]) }}">
+                        <img src="{{ asset('assets/img/svg/panier.svg') }}" alt="icone_panier">
+                    </a>
+                @endif
+                
                 <div class="div-connexion">
                     <a href="{{ route('user.createClient') }}">@lang('Registration')</a>
                 </div>

@@ -155,10 +155,15 @@
                                 WHERE users.nom LIKE '%$propriete%' AND privilege_id = 1");
     }
 
-
-	
-
-
+    /**
+	 * Retourne Retourne les taxes de la province
+	 */
+	function getTaxes($id) {
+        global $connexion;
+        $provence_id = mysqli_real_escape_string($connexion, $id);
+        
+		return executeRequete("SELECT * FROM taxes WHERE provence_id = " . $provence_id);
+	}
 
 
 	

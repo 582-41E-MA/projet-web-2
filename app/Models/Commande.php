@@ -9,14 +9,13 @@ class Commande extends Model
 {
     use HasFactory;
 
-            /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'id',
-        'voiture_id',
         'user_id',
         'payment_id',
         'statut_id',

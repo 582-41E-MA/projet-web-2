@@ -23,11 +23,12 @@
             </div>
             <div class="photoEtTitre">
                 <p>{{$voiture['annee']}} {{$voiture['marque']}} {{$voiture['modele']}}</p>
-                <span class="prix">${{$voiture['prix']}}</span>
+                <p>${{$voiture['prix']}}</p>
             </div>
         </div>
         
         @endforeach
     </div>
+    <span class="prix">@lang('Total price') : ${{$commande->prix}}</span>
 </main>
 @endsection
