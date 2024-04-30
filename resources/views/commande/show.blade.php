@@ -38,7 +38,6 @@
             </div>
             <hr>
         @endforeach
-
     </div>
 
     <form method="POST" class="form form-commande">

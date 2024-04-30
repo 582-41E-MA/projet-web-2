@@ -23,7 +23,7 @@
             </div>
             <div class="photoEtTitre">
                 <p>{{$voiture['annee']}} {{$voiture['marque']}} {{$voiture['modele']}}</p>
-                <span class="prix">${{$voiture['prix']}}</span>
+                <span class="prix">${{$commande->prix}}</span>
             </div>
         </div>
         

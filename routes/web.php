@@ -13,7 +13,6 @@ use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\CommandeController;
 
 
 Route::get('/', [VoitureController::class, 'index'])->name('voiture.index');
@@ -93,25 +92,17 @@ Route::post('/create/photo/{voiture}', [PhotoController::class, 'store'])->name(
 Route::delete('/photo/{photo}', [PhotoController::class, 'destroy'])->name('photo.delete');
 Route::put('/photo/{photo}', [PhotoController::class, 'principal'])->name('photo.principal');
 
-Route::get('/checkout/{commande}', [CommandeController::class, 'checkout'])->name('commande.checkout');
-Route::post('/checkout/{commande}', [CommandeController::class, 'paiement'])->name('commande.paiement');
-Route::get('/success/{commande}', [CommandeController::class, 'success'])->name('commande.success');
-
-Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
-
-
-// Route::get('/commande/voiture/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
-Route::get('/panier/ajout/{voiture}', [CommandeController::class, 'index'])->name('commande.index');
-Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
-// route qui redirige vers la page de connexion ou de continuer comme guest avant d'accéder au panier
 Route::post('/panier/inscription', [CommandeController::class, 'inscriptionPanier'])->name('commande.inscriptionPanier');
 Route::get('/panier/voiture/{voiture}', [CommandeController::class, 'panier'])->name('commande.panier');
 Route::get('/panier/{user}', [CommandeController::class, 'showPanier'])->name('commande.showPanier');
 Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePanier'])->name('commande.deleteVoiturePanier');
 Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
+Route::post('/commande/user/{user}', [CommandeController::class, 'paiement'])->name('commande.paiement');
+Route::get('/commande/reservation/{user}', [CommandeController::class, 'reservation'])->name('commande.reservation');
+Route::get('/checkout/{commande}', [CommandeController::class, 'checkout'])->name('commande.checkout');
+Route::get('/success/{commande}', [CommandeController::class, 'success'])->name('commande.success');
+Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
 
-// route temporaire
-Route::post('/commande/user/{user}', [CommandeController::class, 'paiementCommande'])->name('commande.paiement');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

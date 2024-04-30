@@ -134,5 +134,12 @@
     "Expedition tax": "Taxe d'expédition",
     "Total": "Total",
     "Pay": "Payer",
-    "You've selected a car that is not available": "Vous avez sélectionné une voiture qui n'est pas disponible"
+    "You've selected a car that is not available": "Vous avez sélectionné une voiture qui n'est pas disponible",
+    "Reservation" : "Réservation",
+    "Reserved car" : "Voiture réservée",
+    "Modify infos": "Modifier les informations",
+    "Modify photos": "Modifier les photos",
+    "Add a photo": "Ajouter une photo",
+    "Return to the product": "Retour au produit",
+    "Set as main photo": "Définir comme photo principale"
 }

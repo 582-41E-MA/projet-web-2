@@ -91,6 +91,15 @@
             color: var(--coul-primaire);
         }
     }
+
+    .liste-reservation {
+        font-family: "Palanquin";
+        font-size: var(--texte-xs);
+
+        strong {
+            font-weight: bold;
+        }
+    }
 }
 
 @media screen and (max-width: 834px) {
