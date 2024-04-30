@@ -133,5 +133,6 @@
     "Price": "Prix",
     "Expedition tax": "Taxe d'expédition",
     "Total": "Total",
-    "Pay": "Payer"
+    "Pay": "Payer",
+    "You've selected a car that is not available": "Vous avez sélectionné une voiture qui n'est pas disponible"
 }

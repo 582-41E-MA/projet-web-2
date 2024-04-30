@@ -15,14 +15,8 @@ use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\CommandeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/accueil', function () {
-    return view('accueil');
-});
-
+Route::get('/', [VoitureController::class, 'index'])->name('voiture.index');
 
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/clients', [UserController::class, 'indexClient'])->name('user.indexClient');
@@ -117,7 +111,7 @@ Route::delete('/delete/{voiture}', [CommandeController::class, 'deleteVoiturePan
 Route::get('/commande/user/{user}', [CommandeController::class, 'show'])->name('commande.show');
 
 // route temporaire
-Route::post('/commande/user/{user}', [CommandeController::class, 'paiement'])->name('commande.paiement');
+Route::post('/commande/user/{user}', [CommandeController::class, 'paiementCommande'])->name('commande.paiement');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

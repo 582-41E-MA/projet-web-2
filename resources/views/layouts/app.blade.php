@@ -102,9 +102,6 @@
                     $panier = session('panier');
                 @endphp
 
-                <!-- temporaire -->
-                <!-- Exemplo de como usar sessionId para uma rota -->
-                {{$sessionId}}
                 @if ($sessionId && $panier) 
                     <a href="{{ route('commande.showPanier', ['user' => $sessionId]) }}">
                         <img src="{{ asset('assets/img/svg/panier.svg') }}" alt="icone_panier">

@@ -48,15 +48,25 @@ class CommandeController extends Controller
         // Voiture qui sera ajoutée au panier d'achat
         $voiture_id = $request->voiture_id;
 
-        // Si l'utilisateur est déjà connecté, il sera redirigé vers sa page de panier
-        if ($idUserExist) {
-            return redirect()->route('commande.panier', ['voiture' => $voiture_id, 'id' => $id]);
-        } else {
-            // Si l'utilisateur n'est pas connecté, il sera dirigé vers une page où il pourra se connecter ou continuer en tant qu'invité
-            $villes = Ville::villes();
-    
-            return view('commande.inscription', ['voiture_id' => $voiture_id, 'villes'=>$villes]);
+        if ($voiture_id) {
+            $voitureSelectionnee = Voiture::select()->where('id', $voiture_id)->first();
+            $estDisponible = $voitureSelectionnee->disponible;
+
+            if ($estDisponible) {
+                // Si l'utilisateur est déjà connecté, il sera redirigé vers sa page de panier
+                if ($idUserExist) {
+                    return redirect()->route('commande.panier', ['voiture' => $voiture_id, 'id' => $id]);
+                } else {
+                    // Si l'utilisateur n'est pas connecté, il sera dirigé vers une page où il pourra se connecter ou continuer en tant qu'invité
+                    $villes = Ville::villes();
+            
+                    return view('commande.inscription', ['voiture_id' => $voiture_id, 'villes'=>$villes]);
+                }
+            } else {
+                return redirect()->route('voiture.index')->with('success', trans('You\'ve selected a car that is not available'));
+            }
         }
+
     }
 
     /**
@@ -118,10 +128,19 @@ class CommandeController extends Controller
             // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
             $voitureAfficher = [];
 
+            $photoAfficher = [];
+
             foreach ($voitures as $voiture) {                
                 foreach ($voitureIds as $voitureId) {
                     if ($voiture->id == $voitureId) {
                         $voitureAfficher[] = $voiture;
+
+                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                        if ($photoPrincipale) {
+                            $photoAfficher[] = $photoPrincipale;   
+                        } else {
+                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                        }
                     }
                 }
             }
@@ -133,7 +152,7 @@ class CommandeController extends Controller
             $tractions = Traction::all();
             $carburants = Carburant::all();
             $carrosseries = Carrosserie::all();
-            $photos = Photo::select()->where('principal', 1)->get();
+            $photos = $photoAfficher;
 
             return view('commande.panier', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries', 'id'));
         } else {
@@ -174,7 +193,6 @@ class CommandeController extends Controller
             if (empty($voitureIds)) {
                 // Si la liste d'ID est vide, supprimez le cookie
                 Cookie::queue(Cookie::forget('voiture_id_' . $id));
-                // Cookie::forget('voiture_id_' . $id);
 
                 // Si la liste d'ID est vide, supprimez la variable panier dans la session
                 $panier = $request->session()->put('panier', false);
@@ -194,6 +212,13 @@ class CommandeController extends Controller
                     foreach ($voitureIds as $voitureId) {
                         if ($voiture->id == $voitureId) {
                             $voitureAfficher[] = $voiture;
+
+                            $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                            if ($photoPrincipale) {
+                                $photoAfficher[] = $photoPrincipale;   
+                            } else {
+                                $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                            }
                         }
                     }
                 }
@@ -211,7 +236,7 @@ class CommandeController extends Controller
                 $tractions = Traction::all();
                 $carburants = Carburant::all();
                 $carrosseries = Carrosserie::all();
-                $photos = Photo::select()->where('principal', 1)->get();
+                $photos = $photoAfficher;
             
                 return view('commande.panier', compact('voitures', 'marques', 'annees', 'transmissions', 'tractions', 'carburants', 'photos', 'carrosseries', 'id'));
             }
@@ -232,17 +257,16 @@ class CommandeController extends Controller
         //$commandes = Commande::all();
 
         $commande = Commande::select()->where('user_id', $id)->first();
-        //return $commande;
 
-        if ($commande) {
-            // Récupérer toutes les voitures
-            $voitures = Voiture::all();
-            
+        // Si la commande existe déjà et n'a pas encore été facturée
+        if ($commande && ($commande->statut_id == 1 || $commande->statut_id == 2)) {
+            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
             $voituresAcheter = [];
 
-            //$prix = 0;
             $quantite = 0;
+            $voitures = Voiture::all();
 
+            // Récupérer les voitures du cookie
             foreach ($voitures as $voiture) {                
                 foreach ($voitureIds as $voitureId) {
                     if ($voiture->id == $voitureId) {
@@ -250,21 +274,29 @@ class CommandeController extends Controller
                         $voiture->disponible = false;
                         $voiture->save();
     
-                        //$prix += $voiture->prix_vente;
                         $quantite += 1;
                         $voituresAcheter[] = $voiture;
+
+                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                        if ($photoPrincipale) {
+                            $photoAfficher[] = $photoPrincipale;   
+                        } else {
+                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                        }
                     }
                 }
             }
+
+            $commande->quantite = $quantite;
+            $commande->save();
             
             $voitures = $voituresAcheter;
-
             $expeditions = Expedition::all();
             $userInfo = User::select()->where('id', $id)->first();
             $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
             $villeUserId = $villeUser->id;
             $provenceUserId = $villeUser->provence_id;
-            $photos = Photo::select()->where('principal', 1)->get();
+            $photos = $photoAfficher;
             $commande_id = $commande->id;
 
             return view('commande.show', ['user' => $id, 'expeditions' => $expeditions, 'provence_user' => $provenceUserId, 'voitures' => $voitures, 'photos' => $photos, 'commande_id' => $commande_id]);
@@ -281,30 +313,30 @@ class CommandeController extends Controller
 
             // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
             $voituresAcheter = [];
-    
-            //$prix = 0;
-            $quantite = 0;
 
-            // Récupérer toutes les voitures
+            $quantite = 0;
             $voitures = Voiture::all();
             
-            // Atualizar o valor de comanda dos carros que estavam no cart
-            foreach ($voitures as $voiture) { 
-                //return 'entrei aqui';               
+            foreach ($voitures as $voiture) {              
                 foreach ($voitureIds as $voitureId) {
                     if ($voiture->id == $voitureId) {
                         $voiture->commande_id = $commande_id;
                         $voiture->disponible = false;
                         $voiture->save();
     
-                        //$prix += $voiture->prix_vente;
                         $quantite += 1;
                         $voituresAcheter[] = $voiture;
+
+                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                        if ($photoPrincipale) {
+                            $photoAfficher[] = $photoPrincipale;   
+                        } else {
+                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                        }                        
                     }
                 }
             }
     
-            //$commande->prix = $prix;
             $commande->quantite = $quantite;
             $commande->save();
 
@@ -313,17 +345,14 @@ class CommandeController extends Controller
             $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
             $villeUserId = $villeUser->id;
             $provenceUserId = $villeUser->provence_id;
-            $photos = Photo::select()->where('principal', 1)->get();
+            $photos = $photoAfficher;
 
             return view('commande.show', ['user' => $id, 'voitures' => $voituresAcheter, 'provence_user' => $provenceUserId, 'expeditions' => $expeditions, 'photos' => $photos, 'commande_id' => $commande_id]);
         }
     }
 
-    public function paiement(Request $request) {
-        //return $request;
-        // !!!!!!!!!!! Se for necessario atualizar status aqui
-
-        // Supprimer le cookie
+    public function paiementCommande(Request $request) {
+        // Supprimer le cookie car la commande sera facturée
         Cookie::queue(Cookie::forget('voiture_id_' . $request->user_id));
 
         // Mettre à jour le mode d'expédition de la commande et le prix total
@@ -332,6 +361,7 @@ class CommandeController extends Controller
         if ($commande) {
             $commande->expedition_id = $request->expedition_id;
             $commande->prix = $request->prix_finale;
+            $commande->statut_id = 3;
             $commande->save();
             
             // Création de commande_tax dans la table commande_taxes pour qu'il soit possible de suivre quelles sont les taxes appliquées à cette commande en fonction du mode d'expédition choisi
