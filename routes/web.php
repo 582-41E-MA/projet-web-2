@@ -99,7 +99,7 @@ Route::get('/checkout/{commande}', [CommandeController::class, 'checkout'])->nam
 Route::post('/checkout/{commande}', [CommandeController::class, 'paiement'])->name('commande.paiement');
 Route::get('/success/{commande}', [CommandeController::class, 'success'])->name('commande.success');
 
-Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdf'])->name('commande.pdf');
+Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
 
 
 

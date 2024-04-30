@@ -76,7 +76,6 @@ class CommandeController extends Controller
      */
     public function checkout(Commande $commande)
     {
-        // return $commande;
         return view('commande.checkout', ['commande' => $commande]);
     }
 
@@ -111,8 +110,6 @@ class CommandeController extends Controller
         $commande->statut_id = 3;
         $commande->save();
 
-        // Todo: Changer la disponibilité des voitures
-
         return redirect()->away($session->url)->with('success', trans('You\'ve paid the order successfully'));     
     }
 
@@ -121,8 +118,7 @@ class CommandeController extends Controller
      */
     public function success(Commande $commande)
     {
-        // Todo: Afficher les voitures de la commande
-        $voitures = Voiture::select()->where('id', $commande->voiture_id)->get();
+        $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
 
         // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
         $voitureAfficher = [];
@@ -133,18 +129,18 @@ class CommandeController extends Controller
             $voitureAfficher[$key]['annee'] = Annee::select()->where('id', $voiture['annee_id'])->first()->annee;
             $voitureAfficher[$key]['marque'] = Marque::select()->where('id', $voiture['marque_id'])->first()->nom;
             $voitureAfficher[$key]['modele'] = Modele::select()->where('id', $voiture['modele_id'])->first()->nom;
+            $voitureAfficher[$key]['prix'] = $voiture->prix_vente;
         }
-        // return $voitureAfficher;
 
-        return view('commande.success', ['commande'=>$commande, 'voitures'=> $voitureAfficher, 'photo' => $photo]);
+        return view('commande.success', ['commande'=>$commande, 'voitures'=> $voitureAfficher]);
     }
 
     /**
      * Télécharger la confirmation en pdf
      */
-    public function pdf(Commande $commande)
+    public function pdfConfirmation(Commande $commande)
     {
-        $voitures = Voiture::select()->where('id', $commande->voiture_id)->get();
+        $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
 
         // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
         $voitureAfficher = [];
@@ -155,12 +151,12 @@ class CommandeController extends Controller
             $voitureAfficher[$key]['annee'] = Annee::select()->where('id', $voiture['annee_id'])->first()->annee;
             $voitureAfficher[$key]['marque'] = Marque::select()->where('id', $voiture['marque_id'])->first()->nom;
             $voitureAfficher[$key]['modele'] = Modele::select()->where('id', $voiture['modele_id'])->first()->nom;
+            $voitureAfficher[$key]['prix'] = $voiture->prix_vente;
         }
 
         $pdf = new Dompdf;
         $pdf->setPaper('letter', 'portrait');
-        
-        $pdf->loadHTML(view('commande.pdf', ['commande' => $commande, 'voitures'=> $voitureAfficher, 'photo' => $photo]));
+        $pdf->loadHTML(view('commande.pdf-confirmation', ['commande' => $commande, 'voitures'=> $voitureAfficher, 'photo' => $photo]));
         $pdf->render();
 
         return $pdf->stream('commande-'.$commande->id. '.pdf'); // definir le nom du fichier pdf

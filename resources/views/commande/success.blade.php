@@ -19,11 +19,11 @@
         @foreach($voitures as $voiture)
         <div class="chaque-photo">
             <div class="photo" >
-                <img src="{{asset('assets/img/voitures/' . $photo->nom) }}" alt="{{$photo->nom}}">
+                <img src="{{asset('assets/img/voitures/' . $voiture['photo']) }}" alt="{{$voiture['photo']}}">
             </div>
             <div class="photoEtTitre">
                 <p>{{$voiture['annee']}} {{$voiture['marque']}} {{$voiture['modele']}}</p>
-                <span class="prix">${{$commande->prix}}</span>
+                <span class="prix">${{$voiture['prix']}}</span>
             </div>
         </div>
         
