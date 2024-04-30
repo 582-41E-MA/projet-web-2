@@ -12,6 +12,7 @@ use App\Http\Controllers\TractionController;
 use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\CommandeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -93,6 +94,13 @@ Route::get('/create/photo/{voiture}', [PhotoController::class, 'create'])->name(
 Route::post('/create/photo/{voiture}', [PhotoController::class, 'store'])->name('photo.store');
 Route::delete('/photo/{photo}', [PhotoController::class, 'destroy'])->name('photo.delete');
 Route::put('/photo/{photo}', [PhotoController::class, 'principal'])->name('photo.principal');
+
+Route::get('/checkout/{commande}', [CommandeController::class, 'checkout'])->name('commande.checkout');
+Route::post('/checkout/{commande}', [CommandeController::class, 'paiement'])->name('commande.paiement');
+Route::get('/success/{commande}', [CommandeController::class, 'success'])->name('commande.success');
+
+Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
+
 
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');

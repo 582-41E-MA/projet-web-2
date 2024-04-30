@@ -7,10 +7,10 @@
 
     <!-- Styles supplémentaire -->
     @yield('styles')
-
+    
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" media="screen">
-
+    
     <!-- Scripts -->
     <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
 
