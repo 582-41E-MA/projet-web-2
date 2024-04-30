@@ -48,7 +48,6 @@
                 <input type="hidden" name="voiture_id" value="{{ $voiture['id'] }}">
                 <button class="btn btn-primaire" type="submit">@lang('Add to cart')</button>
             </form>
-            <button class="btn btn-primaire">@lang('Contact us')</button>
             @endif
 
         </div>

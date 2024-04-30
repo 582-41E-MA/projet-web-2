@@ -3,9 +3,6 @@
 @section('content')
 
 <main class="page-panier">
-    user id : {{ $user }}
-    <br>
-    provence id : {{ $provence_user }}
     <script>
         // Envoyer le user id vers le JS
         var user_id = {{ $user }}
@@ -38,7 +35,6 @@
             </div>
             <hr>
         @endforeach
-
     </div>
 
     <form method="POST" class="form form-commande">

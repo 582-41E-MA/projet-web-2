@@ -18,6 +18,7 @@ use App\Models\Carburant;
 use App\Models\Carrosserie;
 use App\Models\Expedition;
 use App\Models\CommandeTax;
+use App\Models\Tax;
 use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\Response;
 use Illuminate\Support\Facades\Auth;
@@ -254,8 +255,6 @@ class CommandeController extends Controller
         $voitureIds = explode(',', $cookieValue);
 
         // Verificar se ja existe uma comanda na conta deste usuario
-        //$commandes = Commande::all();
-
         $commande = Commande::select()->where('user_id', $id)->first();
 
         // Si la commande existe déjà et n'a pas encore été facturée
@@ -301,7 +300,7 @@ class CommandeController extends Controller
 
             return view('commande.show', ['user' => $id, 'expeditions' => $expeditions, 'provence_user' => $provenceUserId, 'voitures' => $voitures, 'photos' => $photos, 'commande_id' => $commande_id]);
         } else {
-            // Criar comanda e recuperar o id da comanda
+            // Créer une commande et récupérer l'ID de la commande
             $commande = new Commande;
             $commande->user_id = $id;
             $commande->statut_id = 1;
@@ -351,7 +350,10 @@ class CommandeController extends Controller
         }
     }
 
-    public function paiementCommande(Request $request) {
+    /**
+     * Redirect to payment page and update commandes' information
+     */
+    public function paiement(Request $request) {
         // Supprimer le cookie car la commande sera facturée
         Cookie::queue(Cookie::forget('voiture_id_' . $request->user_id));
 
@@ -378,102 +380,181 @@ class CommandeController extends Controller
                 $provincial_tax->tax_id = $request->provincial_tax_id;
                 $provincial_tax->save();
             }
-   
-            return "iuhu!";
+
+            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+            $session = \Stripe\Checkout\Session::create([
+                'line_items' =>
+                [
+                    [
+                        'price_data' => 
+                        [
+                            'currency' => 'cad',
+                            'product_data' => [
+                                'name' => 'car'
+                            ],
+                            'unit_amount' => intval($commande->prix) * 100,
+                        ],
+                        'quantity' => 1,
+                    ]
+                ],
+                'mode' => 'payment',
+                'success_url' => route(('commande.success'), ['commande'=>$commande]),
+                'cancel_url' => route(('commande.checkout'), ['commande'=>$commande]),
+            ]);
+
+            return redirect()->away($session->url)->with('success', trans('You\'ve paid the order successfully'));
         } else {
             return view('voiture.index');
         }
         
     }
+
+    /**
+     * Show user's reservation and prepare commande
+     */
+    public function reservation($id) {
+        // Obtenir le cookie avec la liste des ID de voitures
+        $cookieValue = Cookie::get('voiture_id_' . $id, '');
+        
+        // Convertir la chaîne séparée par des virgules en un tableau d'ID
+        $voitureIds = explode(',', $cookieValue);
+
+        // Verificar se ja existe uma comanda na conta deste usuario
+        $commande = Commande::select()->where('user_id', $id)->first();
+
+        if ($commande && $commande->statut_id == 2) {
+            $commande_id = $commande->id;
+
+            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+            $voituresAcheter = [];
+
+            $quantite = 0;
+            $prixSansTaxes = 0;
+            $voitures = Voiture::all();
+
+            foreach ($voitures as $voiture) {              
+                foreach ($voitureIds as $voitureId) {
+                    if ($voiture->id == $voitureId) {
+                        $voiture->commande_id = $commande_id;
+                        $voiture->disponible = false;
+                        $voiture->save();
     
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+                        $quantite += 1;
+                        $prixSansTaxes += $voiture->prix_vente;
+                        $voituresAcheter[] = $voiture;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                        if ($photoPrincipale) {
+                            $photoAfficher[] = $photoPrincipale;   
+                        } else {
+                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                        }                        
+                    }
+                }
+            }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $commande->quantite = $quantite;
+            $commande->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+            $voitures = $voituresAcheter;
+            $photos = $photoAfficher;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+            $provence_quebec = 9;
+            $federal_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'GST/HST')->first();
+            $prixFederalTax = round($prixSansTaxes * ($federal_tax_id->valeur / 100), 2);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+            $provincial_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'PST/RST/QST')->first();
+            $prixProvincialTax = round($prixSansTaxes * ($provincial_tax_id->valeur / 100), 2);
 
+            $prixFinale = round($prixSansTaxes + $prixFederalTax + $prixProvincialTax, 2);
+            $commande->prix = $prixFinale;
+            $commande->save();
+
+            Cookie::queue(Cookie::forget('voiture_id_' . $id));
+
+            return view('commande.reservation', ['voitures' => $voitures, 'photos' => $photos, 'commande' => $commande, 'federal_tax' => $federal_tax_id, 'federal_tax_valeur' => $prixFederalTax, 'provincial_tax' => $provincial_tax_id, 'provincial_tax_valeur' => $prixProvincialTax]);
+        } else {
+            // Créer une commande et récupérer l'ID de la commande
+            $commande = new Commande;
+            $commande->user_id = $id;
+            $commande->statut_id = 2;
+            $commande->date = now();
+            $commande->quantite = 0;
+            $commande->prix = 0;
+            $commande->save();
+            $commande_id = $commande->id;
+
+            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+            $voituresAcheter = [];
+
+            $quantite = 0;
+            $prixSansTaxes = 0;
+            $voitures = Voiture::all();
+
+            foreach ($voitures as $voiture) {              
+                foreach ($voitureIds as $voitureId) {
+                    if ($voiture->id == $voitureId) {
+                        $voiture->commande_id = $commande_id;
+                        $voiture->disponible = false;
+                        $voiture->save();
+    
+                        $quantite += 1;
+                        $prixSansTaxes += $voiture->prix_vente;
+                        $voituresAcheter[] = $voiture;
+
+                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                        if ($photoPrincipale) {
+                            $photoAfficher[] = $photoPrincipale;   
+                        } else {
+                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                        }                        
+                    }
+                }
+            }
+
+            $commande->quantite = $quantite;
+            $commande->expedition_id = 2;
+            $commande->save();
+
+            $voitures = $voituresAcheter;
+            $photos = $photoAfficher;
+
+            $provence_quebec = 9;
+            $federal_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'GST/HST')->first();
+
+            $federal_tax = new CommandeTax;
+            $federal_tax->commande_id = $commande_id;
+            $federal_tax->tax_id = $federal_tax_id->id;
+            $federal_tax->save();
+
+            $prixFederalTax = round($prixSansTaxes * ($federal_tax_id->valeur / 100), 2);
+
+            $provincial_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'PST/RST/QST')->first();
+
+            $provincial_tax = new CommandeTax;
+            $provincial_tax->commande_id = $commande_id;
+            $provincial_tax->tax_id = $provincial_tax_id->id;
+            $provincial_tax->save();
+
+            $prixProvincialTax = round($prixSansTaxes * ($provincial_tax_id->valeur / 100), 2);
+
+            $prixFinale = round(($prixSansTaxes + $prixFederalTax + $prixProvincialTax), 2);
+            $commande->prix = $prixFinale;
+            $commande->save();
+
+            Cookie::queue(Cookie::forget('voiture_id_' . $id));
+
+            return view('commande.reservation', ['voitures' => $voitures, 'photos' => $photos, 'commande' => $commande, 'federal_tax' => $federal_tax_id, 'federal_tax_valeur' => $prixFederalTax, 'provincial_tax' => $provincial_tax_id, 'provincial_tax_valeur' => $prixProvincialTax]);
+        }
+    }
+    
     /**
      * Effectuer le process de checkout
      */
     public function checkout(Commande $commande)
     {
         return view('commande.checkout', ['commande' => $commande]);
-    }
-
-    /**
-     * Rédiriger vers stripe pour finalizer le paiement
-     */
-    public function paiement(Request $request, Commande $commande)
-    {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        $session = \Stripe\Checkout\Session::create([
-            'line_items' =>
-            [
-                [
-                    'price_data' => 
-                    [
-                        'currency' => 'cad',
-                        'product_data' => [
-                            'name' => 'car'
-                        ],
-                        'unit_amount' => intval($commande->prix) * 100,
-                    ],
-                    'quantity' => 1,
-                ]
-            ],
-            'mode' => 'payment',
-            'success_url' => route(('commande.success'), ['commande'=>$commande]),
-            'cancel_url' => route(('commande.checkout'), ['commande'=>$commande]),
-        ]);
-
-        // Changer l'état de la commande
-        $commande->statut_id = 3;
-        $commande->save();
-
-        return redirect()->away($session->url)->with('success', trans('You\'ve paid the order successfully'));     
     }
 
     /**
@@ -524,5 +605,6 @@ class CommandeController extends Controller
 
         return $pdf->stream('commande-'.$commande->id. '.pdf'); // definir le nom du fichier pdf
     }
+
 }
  
