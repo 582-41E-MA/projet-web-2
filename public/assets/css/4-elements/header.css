@@ -1,9 +1,22 @@
 header {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--espace-1half);
+    padding: var(--espace-2);
+    margin-bottom: var(--espace-half);
+    background-color: rgba(255, 255, 255, 0.7); 
+    position: relative;
 }
 
+@media screen and (max-width: 1180px) {
+header {
+    padding: var(--espace-2) var(--espace-2) var(--espace-5) var(--espace-2);
+}}
+
+@media screen and (max-width: 680px) {
+header {
+    padding: var(--espace-2) var(--espace-2) var(--espace-9) var(--espace-2);
+}}
+    
 @media screen and (max-width: 428px) {
     .btn, p {
         margin: var(--espace-quart) var(--espace-quart) 0 0 ;

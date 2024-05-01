@@ -126,6 +126,26 @@
     }
 }
 
+.div-pagination {
+    display: flex;
+
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+
+        .page-item {
+            --bs-pagination-active-bg: var(--coul-secondaire);
+            --bs-pagination-active-border-color: var(--coul-secondaire);
+            --bs-pagination-color: var(--coul-secondaire);
+            --bs-pagination-focus-box-shadow: 0 0 0 0.25rem
+                var(--coul-primaire);
+            --bs-pagination-focus-color: var(--coul-primaire);
+            --bs-pagination-hover-color: var(--coul-primaire);
+        }
+    }
+}
+
 @media screen and (max-width: 834px) {
     .div-header {
         .line-2 {
