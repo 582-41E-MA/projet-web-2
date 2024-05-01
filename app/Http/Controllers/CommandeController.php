@@ -44,6 +44,7 @@ class CommandeController extends Controller
             $idUserExist = true;
         } else {
             $idUserExist = false;
+            return redirect()->route('voiture.index');
         }
         
         // Voiture qui sera ajoutée au panier d'achat
@@ -165,6 +166,8 @@ class CommandeController extends Controller
      * Delete car from cart
      */
     public function deleteVoiturePanier(Request $request) {
+        $user = Auth::user();
+        $guest = $request->session()->get('id');
 
         // Récupérer voiture a supprimer
         $voiture_supprimer = $request->voiture;
@@ -246,106 +249,129 @@ class CommandeController extends Controller
      * Show user's cart and prepare commande
      */
     public function show($id) {
+
+        // Vérifiez si l'utilisateur existe déjà avec un login activé et un id
+        $user = Auth::user();
+
+        // Si l'utilisateur est un invité qui a déjà ajouté quelque chose à son panier, il sera récupéré par la variable ci-dessous
+        $guest = session()->get('id');
         
-        // Obtenir le cookie avec la liste des ID de voitures
-        $cookieValue = Cookie::get('voiture_id_' . $id, '');
-        
-        // Convertir la chaîne séparée par des virgules en un tableau d'ID
-        $voitureIds = explode(',', $cookieValue);
+        //return $id;
+        if ($user) {
+            $idUser = Auth::user()->id;
+            $idUserExist = true;
+        } elseif ($guest) {
+            $idUser = $guest;
+            $idUserExist = true;
+        } else {
+            $idUserExist = false;
+        }
 
-        // Verificar se ja existe uma comanda na conta deste usuario
-        $commande = Commande::select()->where('user_id', $id)->first();
-
-        // Si la commande existe déjà et n'a pas encore été facturée
-        if ($commande && ($commande->statut_id == 1 || $commande->statut_id == 2)) {
-            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
-            $voituresAcheter = [];
-
-            $quantite = 0;
-            $voitures = Voiture::all();
-
-            // Récupérer les voitures du cookie
-            foreach ($voitures as $voiture) {                
-                foreach ($voitureIds as $voitureId) {
-                    if ($voiture->id == $voitureId) {
-                        $voiture->commande_id = $commande->id;
-                        $voiture->disponible = false;
-                        $voiture->save();
+        if ($idUser == $id) {
+            // Obtenir le cookie avec la liste des ID de voitures
+            $cookieValue = Cookie::get('voiture_id_' . $id, '');
+            
+            // Convertir la chaîne séparée par des virgules en un tableau d'ID
+            $voitureIds = explode(',', $cookieValue);
     
-                        $quantite += 1;
-                        $voituresAcheter[] = $voiture;
-
-                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
-                        if ($photoPrincipale) {
-                            $photoAfficher[] = $photoPrincipale;   
-                        } else {
-                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+            // Verificar se ja existe uma comanda na conta deste usuario
+            $commande = Commande::select()->where('user_id', $id)->first();
+    
+            // Si la commande existe déjà et n'a pas encore été facturée
+            if ($commande && ($commande->statut_id == 1 || $commande->statut_id == 2) && ($commande->user_id == $id)) {
+    
+                // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+                $voituresAcheter = [];
+    
+                $quantite = 0;
+                $voitures = Voiture::all();
+    
+                // Récupérer les voitures du cookie
+                foreach ($voitures as $voiture) {                
+                    foreach ($voitureIds as $voitureId) {
+                        if ($voiture->id == $voitureId) {
+                            $voiture->commande_id = $commande->id;
+                            $voiture->disponible = false;
+                            $voiture->save();
+        
+                            $quantite += 1;
+                            $voituresAcheter[] = $voiture;
+    
+                            $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                            if ($photoPrincipale) {
+                                $photoAfficher[] = $photoPrincipale;   
+                            } else {
+                                $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                            }
                         }
                     }
                 }
-            }
-
-            $commande->quantite = $quantite;
-            $commande->save();
-            
-            $voitures = $voituresAcheter;
-            $expeditions = Expedition::all();
-            $userInfo = User::select()->where('id', $id)->first();
-            $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
-            $villeUserId = $villeUser->id;
-            $provenceUserId = $villeUser->provence_id;
-            $photos = $photoAfficher;
-            $commande_id = $commande->id;
-
-            return view('commande.show', ['user' => $id, 'expeditions' => $expeditions, 'provence_user' => $provenceUserId, 'voitures' => $voitures, 'photos' => $photos, 'commande_id' => $commande_id]);
-        } else {
-            // Créer une commande et récupérer l'ID de la commande
-            $commande = new Commande;
-            $commande->user_id = $id;
-            $commande->statut_id = 1;
-            $commande->date = now();
-            $commande->quantite = 0;
-            $commande->prix = 0;
-            $commande->save();
-            $commande_id = $commande->id;
-
-            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
-            $voituresAcheter = [];
-
-            $quantite = 0;
-            $voitures = Voiture::all();
-            
-            foreach ($voitures as $voiture) {              
-                foreach ($voitureIds as $voitureId) {
-                    if ($voiture->id == $voitureId) {
-                        $voiture->commande_id = $commande_id;
-                        $voiture->disponible = false;
-                        $voiture->save();
     
-                        $quantite += 1;
-                        $voituresAcheter[] = $voiture;
-
-                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
-                        if ($photoPrincipale) {
-                            $photoAfficher[] = $photoPrincipale;   
-                        } else {
-                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
-                        }                        
+                $commande->quantite = $quantite;
+                $commande->save();
+                
+                $voitures = $voituresAcheter;
+                $expeditions = Expedition::all();
+                $userInfo = User::select()->where('id', $id)->first();
+                $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
+                $villeUserId = $villeUser->id;
+                $provenceUserId = $villeUser->provence_id;
+                $photos = $photoAfficher;
+                $commande_id = $commande->id;
+    
+                return view('commande.show', ['user' => $id, 'expeditions' => $expeditions, 'provence_user' => $provenceUserId, 'voitures' => $voitures, 'photos' => $photos, 'commande_id' => $commande_id]);
+    
+            } else {
+                // Créer une commande et récupérer l'ID de la commande
+                $commande = new Commande;
+                $commande->user_id = $id;
+                $commande->statut_id = 1;
+                $commande->date = now();
+                $commande->quantite = 0;
+                $commande->prix = 0;
+                $commande->save();
+                $commande_id = $commande->id;
+    
+                // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+                $voituresAcheter = [];
+    
+                $quantite = 0;
+                $voitures = Voiture::all();
+                
+                foreach ($voitures as $voiture) {              
+                    foreach ($voitureIds as $voitureId) {
+                        if ($voiture->id == $voitureId) {
+                            $voiture->commande_id = $commande_id;
+                            $voiture->disponible = false;
+                            $voiture->save();
+        
+                            $quantite += 1;
+                            $voituresAcheter[] = $voiture;
+    
+                            $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                            if ($photoPrincipale) {
+                                $photoAfficher[] = $photoPrincipale;   
+                            } else {
+                                $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                            }                        
+                        }
                     }
                 }
-            }
+        
+                $commande->quantite = $quantite;
+                $commande->save();
     
-            $commande->quantite = $quantite;
-            $commande->save();
-
-            $expeditions = Expedition::all();
-            $userInfo = User::select()->where('id', $id)->first();
-            $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
-            $villeUserId = $villeUser->id;
-            $provenceUserId = $villeUser->provence_id;
-            $photos = $photoAfficher;
-
-            return view('commande.show', ['user' => $id, 'voitures' => $voituresAcheter, 'provence_user' => $provenceUserId, 'expeditions' => $expeditions, 'photos' => $photos, 'commande_id' => $commande_id]);
+                $expeditions = Expedition::all();
+                $userInfo = User::select()->where('id', $id)->first();
+                $villeUser = Ville::select()->where('id', $userInfo->ville_id)->first();
+                $villeUserId = $villeUser->id;
+                $provenceUserId = $villeUser->provence_id;
+                $photos = $photoAfficher;
+    
+                return view('commande.show', ['user' => $id, 'voitures' => $voituresAcheter, 'provence_user' => $provenceUserId, 'expeditions' => $expeditions, 'photos' => $photos, 'commande_id' => $commande_id]);
+            }
+        } else {
+            return redirect()->route('voiture.index');
         }
     }
 
@@ -353,8 +379,6 @@ class CommandeController extends Controller
      * Redirect to payment page and update commandes' information
      */
     public function paiement(Request $request) {
-
-
         // Supprimer le cookie car la commande sera facturée
         Cookie::queue(Cookie::forget('voiture_id_' . $request->user_id));
 
@@ -416,139 +440,158 @@ class CommandeController extends Controller
      */
     public function reservation($id) {
 
+        // Vérifiez si l'utilisateur existe déjà avec un login activé et un id
+        $user = Auth::user();
+
+        // Si l'utilisateur est un invité qui a déjà ajouté quelque chose à son panier, il sera récupéré par la variable ci-dessous
+        $guest = session()->get('id');
         
-        // Obtenir le cookie avec la liste des ID de voitures
-        $cookieValue = Cookie::get('voiture_id_' . $id, '');
-        
-        // Convertir la chaîne séparée par des virgules en un tableau d'ID
-        $voitureIds = explode(',', $cookieValue);
-
-        // Verificar se ja existe uma comanda na conta deste usuario
-        $commande = Commande::select()->where('user_id', $id)->first();
-
-        if ($commande && $commande->statut_id == 2) {
-            $commande_id = $commande->id;
-
-            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
-            $voituresAcheter = [];
-
-            $quantite = 0;
-            $prixSansTaxes = 0;
-            $voitures = Voiture::all();
-
-            foreach ($voitures as $voiture) {              
-                foreach ($voitureIds as $voitureId) {
-                    if ($voiture->id == $voitureId) {
-                        $voiture->commande_id = $commande_id;
-                        $voiture->disponible = false;
-                        $voiture->save();
-    
-                        $quantite += 1;
-                        $prixSansTaxes += $voiture->prix_vente;
-                        $voituresAcheter[] = $voiture;
-
-                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
-                        if ($photoPrincipale) {
-                            $photoAfficher[] = $photoPrincipale;   
-                        } else {
-                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
-                        }                        
-                    }
-                }
-            }
-
-            $commande->quantite = $quantite;
-            $commande->save();
-
-            $voitures = $voituresAcheter;
-            $photos = $photoAfficher;
-
-            $provence_quebec = 9;
-            $federal_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'GST/HST')->first();
-            $prixFederalTax = round($prixSansTaxes * ($federal_tax_id->valeur / 100), 2);
-
-            $provincial_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'PST/RST/QST')->first();
-            $prixProvincialTax = round($prixSansTaxes * ($provincial_tax_id->valeur / 100), 2);
-
-            $prixFinale = round($prixSansTaxes + $prixFederalTax + $prixProvincialTax, 2);
-            $commande->prix = $prixFinale;
-            $commande->save();
-
-            Cookie::queue(Cookie::forget('voiture_id_' . $id));
-
-            return view('commande.reservation', ['voitures' => $voitures, 'photos' => $photos, 'commande' => $commande, 'federal_tax' => $federal_tax_id, 'federal_tax_valeur' => $prixFederalTax, 'provincial_tax' => $provincial_tax_id, 'provincial_tax_valeur' => $prixProvincialTax]);
+        //return $id;
+        if ($user) {
+            $idUser = Auth::user()->id;
+            $idUserExist = true;
+        } elseif ($guest) {
+            $idUser = $guest;
+            $idUserExist = true;
         } else {
-            // Créer une commande et récupérer l'ID de la commande
-            $commande = new Commande;
-            $commande->user_id = $id;
-            $commande->statut_id = 2;
-            $commande->date = now();
-            $commande->quantite = 0;
-            $commande->prix = 0;
-            $commande->save();
-            $commande_id = $commande->id;
+            $idUserExist = false;
+            return redirect()->route('voiture.index');
+        }
 
-            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
-            $voituresAcheter = [];
 
-            $quantite = 0;
-            $prixSansTaxes = 0;
-            $voitures = Voiture::all();
+        if ($idUser == $id) {
 
-            foreach ($voitures as $voiture) {              
-                foreach ($voitureIds as $voitureId) {
-                    if ($voiture->id == $voitureId) {
-                        $voiture->commande_id = $commande_id;
-                        $voiture->disponible = false;
-                        $voiture->save();
-    
-                        $quantite += 1;
-                        $prixSansTaxes += $voiture->prix_vente;
-                        $voituresAcheter[] = $voiture;
+            // Obtenir le cookie avec la liste des ID de voitures
+            $cookieValue = Cookie::get('voiture_id_' . $id, '');
+            
+            // Convertir la chaîne séparée par des virgules en un tableau d'ID
+            $voitureIds = explode(',', $cookieValue);
 
-                        $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
-                        if ($photoPrincipale) {
-                            $photoAfficher[] = $photoPrincipale;   
-                        } else {
-                            $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
-                        }                        
+            // Verificar se ja existe uma comanda na conta deste usuario
+            $commande = Commande::select()->where('user_id', $id)->first();
+
+            if ($commande && $commande->statut_id == 2) {
+                $commande_id = $commande->id;
+
+                // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+                $voituresAcheter = [];
+                
+                $quantite = 0;
+                $prixSansTaxes = 0;
+                $voitures = Voiture::all();
+
+                foreach ($voitures as $voiture) {              
+                    foreach ($voitureIds as $voitureId) {
+                        if ($voiture->id == $voitureId) {
+                            $voiture->commande_id = $commande_id;
+                            $voiture->disponible = false;
+                            $voiture->save();
+        
+                            $quantite += 1;
+                            $prixSansTaxes += $voiture->prix_vente;
+                            $voituresAcheter[] = $voiture;
+
+                            $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                            if ($photoPrincipale) {
+                                $photoAfficher[] = $photoPrincipale;   
+                            } else {
+                                $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                            }                        
+                        }
                     }
                 }
+
+                $commande->quantite = $quantite;
+                $commande->save();
+
+                $voitures = $voituresAcheter;
+                $photos = $photoAfficher;
+
+                $provence_quebec = 9;
+                $federal_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'GST/HST')->first();
+                $prixFederalTax = round($prixSansTaxes * ($federal_tax_id->valeur / 100), 2);
+
+                $provincial_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'PST/RST/QST')->first();
+                $prixProvincialTax = round($prixSansTaxes * ($provincial_tax_id->valeur / 100), 2);
+
+                $prixFinale = round($prixSansTaxes + $prixFederalTax + $prixProvincialTax, 2);
+                $commande->prix = $prixFinale;
+                $commande->save();
+
+                return view('commande.reservation', ['voitures' => $voitures, 'photos' => $photos, 'commande' => $commande, 'federal_tax' => $federal_tax_id, 'federal_tax_valeur' => $prixFederalTax, 'provincial_tax' => $provincial_tax_id, 'provincial_tax_valeur' => $prixProvincialTax]);
+            } else {
+                // Créer une commande et récupérer l'ID de la commande
+                $commande = new Commande;
+                $commande->user_id = $id;
+                $commande->statut_id = 2;
+                $commande->date = now();
+                $commande->quantite = 0;
+                $commande->prix = 0;
+                $commande->save();
+                $commande_id = $commande->id;
+
+                // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+                $voituresAcheter = [];
+
+                $quantite = 0;
+                $prixSansTaxes = 0;
+                $voitures = Voiture::all();
+
+                foreach ($voitures as $voiture) {              
+                    foreach ($voitureIds as $voitureId) {
+                        if ($voiture->id == $voitureId) {
+                            $voiture->commande_id = $commande_id;
+                            $voiture->disponible = false;
+                            $voiture->save();
+        
+                            $quantite += 1;
+                            $prixSansTaxes += $voiture->prix_vente;
+                            $voituresAcheter[] = $voiture;
+
+                            $photoPrincipale = Photo::select()->where('voiture_id', $voitureId)->where('principal', 1)->first();
+                            if ($photoPrincipale) {
+                                $photoAfficher[] = $photoPrincipale;   
+                            } else {
+                                $photoAfficher[] = Photo::select()->where('voiture_id', $voitureId)->first();
+                            }                        
+                        }
+                    }
+                }
+
+                $commande->quantite = $quantite;
+                $commande->expedition_id = 2;
+                $commande->save();
+
+                $voitures = $voituresAcheter;
+                $photos = $photoAfficher;
+
+                $provence_quebec = 9;
+                $federal_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'GST/HST')->first();
+
+                $federal_tax = new CommandeTax;
+                $federal_tax->commande_id = $commande_id;
+                $federal_tax->tax_id = $federal_tax_id->id;
+                $federal_tax->save();
+
+                $prixFederalTax = round($prixSansTaxes * ($federal_tax_id->valeur / 100), 2);
+
+                $provincial_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'PST/RST/QST')->first();
+
+                $provincial_tax = new CommandeTax;
+                $provincial_tax->commande_id = $commande_id;
+                $provincial_tax->tax_id = $provincial_tax_id->id;
+                $provincial_tax->save();
+
+                $prixProvincialTax = round($prixSansTaxes * ($provincial_tax_id->valeur / 100), 2);
+
+                $prixFinale = round(($prixSansTaxes + $prixFederalTax + $prixProvincialTax), 2);
+                $commande->prix = $prixFinale;
+                $commande->save();
+
+                return view('commande.reservation', ['voitures' => $voitures, 'photos' => $photos, 'commande' => $commande, 'federal_tax' => $federal_tax_id, 'federal_tax_valeur' => $prixFederalTax, 'provincial_tax' => $provincial_tax_id, 'provincial_tax_valeur' => $prixProvincialTax]);
             }
-
-            $commande->quantite = $quantite;
-            $commande->expedition_id = 2;
-            $commande->save();
-
-            $voitures = $voituresAcheter;
-            $photos = $photoAfficher;
-
-            $provence_quebec = 9;
-            $federal_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'GST/HST')->first();
-
-            $federal_tax = new CommandeTax;
-            $federal_tax->commande_id = $commande_id;
-            $federal_tax->tax_id = $federal_tax_id->id;
-            $federal_tax->save();
-
-            $prixFederalTax = round($prixSansTaxes * ($federal_tax_id->valeur / 100), 2);
-
-            $provincial_tax_id = Tax::select()->where('provence_id', $provence_quebec)->where('nom', 'PST/RST/QST')->first();
-
-            $provincial_tax = new CommandeTax;
-            $provincial_tax->commande_id = $commande_id;
-            $provincial_tax->tax_id = $provincial_tax_id->id;
-            $provincial_tax->save();
-
-            $prixProvincialTax = round($prixSansTaxes * ($provincial_tax_id->valeur / 100), 2);
-
-            $prixFinale = round(($prixSansTaxes + $prixFederalTax + $prixProvincialTax), 2);
-            $commande->prix = $prixFinale;
-            $commande->save();
-
-            Cookie::queue(Cookie::forget('voiture_id_' . $id));
-
-            return view('commande.reservation', ['voitures' => $voitures, 'photos' => $photos, 'commande' => $commande, 'federal_tax' => $federal_tax_id, 'federal_tax_valeur' => $prixFederalTax, 'provincial_tax' => $provincial_tax_id, 'provincial_tax_valeur' => $prixProvincialTax]);
+        } else {
+            return redirect()->route('voiture.index');
         }
     }
     
@@ -565,28 +608,52 @@ class CommandeController extends Controller
      */
     public function success(Commande $commande)
     {
-        $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
-
-        // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
-        $voitureAfficher = [];
-
-        foreach ($voitures as $key => $voiture) {                
-            $photo = Photo::select()->where('voiture_id', $voiture->id)->orderBy('principal','DESC')->first(); 
-            $voitureAfficher[$key]['photo'] = $photo->nom;
-            $voitureAfficher[$key]['annee'] = Annee::select()->where('id', $voiture['annee_id'])->first()->annee;
-            $voitureAfficher[$key]['marque'] = Marque::select()->where('id', $voiture['marque_id'])->first()->nom;
-            $voitureAfficher[$key]['modele'] = Modele::select()->where('id', $voiture['modele_id'])->first()->nom;
-            $voitureAfficher[$key]['prix'] = $voiture->prix_vente;
+        
+        $user = Auth::user();
+        
+        // Si l'utilisateur est un invité qui a déjà ajouté quelque chose à son panier, il sera récupéré par la variable ci-dessous
+        $guest = session()->get('id');
+        
+        //return $id;
+        if ($user) {
+            $idUser = Auth::user()->id;
+            $idUserExist = true;
+        } elseif ($guest) {
+            $idUser = $guest;
+            $idUserExist = true;
+        } else {
+            $idUserExist = false;
+            return redirect()->route('voiture.index');
         }
+        
+        if ($idUser == $commande->user_id) {
 
-        return view('commande.success', ['commande'=>$commande, 'voitures'=> $voitureAfficher]);
+            $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
+
+            // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
+            $voitureAfficher = [];
+
+            foreach ($voitures as $key => $voiture) {                
+                $photo = Photo::select()->where('voiture_id', $voiture->id)->orderBy('principal','DESC')->first(); 
+                $voitureAfficher[$key]['photo'] = $photo->nom;
+                $voitureAfficher[$key]['annee'] = Annee::select()->where('id', $voiture['annee_id'])->first()->annee;
+                $voitureAfficher[$key]['marque'] = Marque::select()->where('id', $voiture['marque_id'])->first()->nom;
+                $voitureAfficher[$key]['modele'] = Modele::select()->where('id', $voiture['modele_id'])->first()->nom;
+                $voitureAfficher[$key]['prix'] = $voiture->prix_vente;
+            }
+
+            return view('commande.success', ['commande'=>$commande, 'voitures'=> $voitureAfficher]);
+
+        } else {
+            return redirect()->route('voiture.index');
+        }
     }
 
     /**
      * Télécharger la confirmation en pdf
      */
     public function pdfConfirmation(Commande $commande)
-    {        
+    {
         $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
 
         // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
