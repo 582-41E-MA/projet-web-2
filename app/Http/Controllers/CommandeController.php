@@ -165,8 +165,6 @@ class CommandeController extends Controller
      * Delete car from cart
      */
     public function deleteVoiturePanier(Request $request) {
-        $user = Auth::user();
-        $guest = $request->session()->get('id');
 
         // Récupérer voiture a supprimer
         $voiture_supprimer = $request->voiture;
@@ -248,6 +246,7 @@ class CommandeController extends Controller
      * Show user's cart and prepare commande
      */
     public function show($id) {
+        
         // Obtenir le cookie avec la liste des ID de voitures
         $cookieValue = Cookie::get('voiture_id_' . $id, '');
         
@@ -354,6 +353,8 @@ class CommandeController extends Controller
      * Redirect to payment page and update commandes' information
      */
     public function paiement(Request $request) {
+
+
         // Supprimer le cookie car la commande sera facturée
         Cookie::queue(Cookie::forget('voiture_id_' . $request->user_id));
 
@@ -414,6 +415,8 @@ class CommandeController extends Controller
      * Show user's reservation and prepare commande
      */
     public function reservation($id) {
+
+        
         // Obtenir le cookie avec la liste des ID de voitures
         $cookieValue = Cookie::get('voiture_id_' . $id, '');
         
@@ -583,7 +586,7 @@ class CommandeController extends Controller
      * Télécharger la confirmation en pdf
      */
     public function pdfConfirmation(Commande $commande)
-    {
+    {        
         $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
 
         // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
