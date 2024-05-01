@@ -16,7 +16,7 @@
     p,li{
         font-family: "Roboto";
         font-weight: 300;
-        line-height: 1.25rem;
+        line-height: 1.5rem;
     }
 
     li{
@@ -27,7 +27,12 @@
         font-weight: 500;
     }
 
-   .projet, .role, .equipe, .app{
+    i{
+        margin: 10px 0 0 10px ;
+        font-size: 25px;
+    }
+
+    .projet, .role, .equipe, .app{
         margin: 20px 0;
         padding: 50px;
         width: 800px;

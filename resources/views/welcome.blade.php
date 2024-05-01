@@ -45,7 +45,7 @@
             <li>Responsable Git : <b>Fernanda</b></li>
             <li>Responsable de la planification : <b>Mei</b></li>
             <li>Responsable du design : <b>Xuying</b></li>
-            <li>Responsable de CSS Architecture : <b>Mei</b></li>
+            <li>Responsable de la Architecture ITCSS: <b>Mei</b></li>
             <li>Responsable de la base de données : <b>Guillermo</b></li>
             <li>Responsable de l'intégration côté client : <b>Guillermo</b></li>
             <li>Responsable de l'intégration côté serveur : <b>Fernanda</b></li>
@@ -55,8 +55,19 @@
         <div class="app">
             <h3>Technologies Utilisées :</h3>
             <li>Backend : <b>Laravel, Php, MySql, PhpUnit</b> </li>
-            <li>Frontend : <b>React, Javascript, Jest (au besoin)</b> </li>
+            <li>Frontend : <b>React, JavaScript, Jest (au besoin)</b> </li>
             <li>Gestion de version : <b>Git, Github</b></li>
+            <p>
+                --------
+                <i class="fa-solid fa-database"></i>
+                <i class="fa-brands fa-laravel"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-git"></i>
+                <i class="fa-brands fa-github"></i>
+                --------
+            </p>
         </div>
     </div>
 </main>
