@@ -75,11 +75,6 @@ class CommandeController extends Controller
      */    
     public function panier(Request $request)
     {
-        $user = Auth::user();
-        $guest = $request->session()->get('id');
-
-        if($user || $user !== $id ) return redirect(route('login'));
-
         // Créer une variable dans la session qui indique s'il y a ou non un panier dans cette session (aider à gérer l'affichage de l'icône du panier)
         $panier = $request->session()->put('panier', true);
 
@@ -121,10 +116,6 @@ class CommandeController extends Controller
      */
     public function showPanier($id)
     {
-        $user = Auth::user();
-
-        if($user || $user !== $id ) return redirect(route('login'));
-
         // Obtenir le cookie avec la liste des ID de voitures
         $cookieValue = Cookie::get('voiture_id_' . $id, '');
     
@@ -174,11 +165,6 @@ class CommandeController extends Controller
      * Delete car from cart
      */
     public function deleteVoiturePanier(Request $request) {
-
-        $user = Auth::user();
-        $guest = $request->session()->get('id');
-
-        if($user || $user !== $id ) return redirect(route('login'));
 
         // Récupérer voiture a supprimer
         $voiture_supprimer = $request->voiture;
@@ -260,9 +246,6 @@ class CommandeController extends Controller
      * Show user's cart and prepare commande
      */
     public function show($id) {
-        $user = Auth::user();
-
-        if($user || $user !== $id ) return redirect(route('login'));
         
         // Obtenir le cookie avec la liste des ID de voitures
         $cookieValue = Cookie::get('voiture_id_' . $id, '');
@@ -370,10 +353,7 @@ class CommandeController extends Controller
      * Redirect to payment page and update commandes' information
      */
     public function paiement(Request $request) {
-        $user = Auth::user();
-        $guest = $request->session()->get('id');
 
-        if($user || $user !== $id ) return redirect(route('login'));
 
         // Supprimer le cookie car la commande sera facturée
         Cookie::queue(Cookie::forget('voiture_id_' . $request->user_id));
@@ -435,9 +415,7 @@ class CommandeController extends Controller
      * Show user's reservation and prepare commande
      */
     public function reservation($id) {
-        $user = Auth::user();
 
-        if($user || $user !== $id ) return redirect(route('login'));
         
         // Obtenir le cookie avec la liste des ID de voitures
         $cookieValue = Cookie::get('voiture_id_' . $id, '');
@@ -579,11 +557,6 @@ class CommandeController extends Controller
      */
     public function checkout(Commande $commande)
     {
-        $user = Auth::user();
-        $owner = $commande->id;
-
-        if($user || $user !== $owner ) return redirect(route('login'));
-
         return view('commande.checkout', ['commande' => $commande]);
     }
 
@@ -592,11 +565,6 @@ class CommandeController extends Controller
      */
     public function success(Commande $commande)
     {
-        $user = Auth::user();
-        $owner = $commande->id;
-
-        if($user || $user !== $owner ) return redirect(route('login'));
-
         $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
 
         // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
@@ -618,12 +586,7 @@ class CommandeController extends Controller
      * Télécharger la confirmation en pdf
      */
     public function pdfConfirmation(Commande $commande)
-    {
-        $user = Auth::user();
-        $owner = $commande->id;
-
-        if($user || $user !== $owner ) return redirect(route('login'));
-        
+    {        
         $voitures = Voiture::select()->where('commande_id', $commande->id)->get();
 
         // Initialiser un tableau vide pour voir parmi toutes les voitures, lesquelles ont le même ID que les voitures ajoutées comme cookies
