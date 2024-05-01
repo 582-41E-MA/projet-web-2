@@ -45,7 +45,7 @@
             <li>Responsable Git : <b>Fernanda</b></li>
             <li>Responsable de la planification : <b>Mei</b></li>
             <li>Responsable du design : <b>Xuying</b></li>
-            <li>Responsable deCSS Architecture : <b>Mei</b></li>
+            <li>Responsable de CSS Architecture : <b>Mei</b></li>
             <li>Responsable de la base de données : <b>Guillermo</b></li>
             <li>Responsable de l'intégration côté client : <b>Guillermo</b></li>
             <li>Responsable de l'intégration côté serveur : <b>Fernanda</b></li>
