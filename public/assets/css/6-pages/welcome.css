@@ -1,0 +1,157 @@
+.welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin: 0 100px;
+    font-family: "Palanquin";
+
+    h3{
+        color: var(--coul-primaire);
+        font-size: var(--texte-md);
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    p,li{
+        font-family: "Roboto";
+        font-weight: 300;
+        line-height: 1.25rem;
+    }
+
+    li{
+        list-style-type: disc; 
+    }
+
+    b{
+        font-weight: 500;
+    }
+
+   .projet, .role, .equipe, .app{
+        margin: 20px 0;
+        padding: 50px;
+        width: 800px;
+    }
+
+    .projet, .role{
+        box-shadow: 0 5px 5px 5px var(--coul-quatrieme);
+    }
+
+    .equipe{
+        width: 600px;
+
+
+        .m, .f, .g, .x{
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .m{
+            .div-p{
+                background-color: bisque;
+            }
+            img{
+                left: 150px; 
+            }
+        }
+
+        .f{
+            .div-p{
+                background-color: rgb(196, 255, 228);
+                flex-direction: row-reverse; 
+            }
+            img{
+                right: 150px; 
+            }
+        }
+
+        .g{
+            .div-p{
+                background-color: rgb(237, 194, 51);
+            }
+            img{
+                left: 150px; 
+            }
+        }
+
+        .x{
+            .div-p{
+                background-color: rgb(255, 254, 196);
+                flex-direction: row-reverse; 
+            }
+            img{
+                right: 150px; 
+            }
+        }
+        
+        .div-p{
+            padding: 0 30px;
+            height: 50px;
+            width: 50vw;
+            display: flex;
+            align-items: center;
+        }
+
+        img{
+            height: 100px;
+            position: absolute;
+            z-index: 1; 
+        }
+    }
+}
+
+@media screen and (max-width: 950px) {
+.welcome{
+    .projet, .role, .equipe, .app{
+        width: 600px;
+
+        .g, .m{
+            img{
+                left: 50px; 
+            }
+        }
+        .f, .x{
+            img{
+                right: 200px; 
+            }
+        }
+    }
+}}
+
+@media screen and (max-width: 600px) {
+.welcome{
+    .projet, .role, .equipe, .app{
+        width: 450px;
+        .div-p{
+            padding: 0 10px;
+        }
+        .f, .x{
+            img{
+                right: 150px; 
+            }
+        }
+        .g, .m{
+            img{
+                left: 100px; 
+            }
+        }
+    }
+}}
+
+@media screen and (max-width: 428px) {
+.welcome{
+    .projet, .role, .equipe, .app{
+        width: 90vw;
+        border: none;
+        box-shadow: none;
+
+        img{
+            display: none;
+        }
+        .div-p{
+            width: 80vw;
+        }
+    }
+}}

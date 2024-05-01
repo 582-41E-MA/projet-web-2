@@ -13,7 +13,7 @@
     }
 
     .text {
-        margin: 300px 100px 100px 100px; 
+        margin: 300px 100px 0 100px; 
 
         h3{
             color: var(--coul-primaire);

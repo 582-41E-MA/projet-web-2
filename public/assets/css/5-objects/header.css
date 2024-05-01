@@ -112,13 +112,13 @@
     .div-lang {
         align-items: center;
         display: flex;
-        gap: var(--espace-half);
+        gap: var(--espace-half) !important;
         height: 100%;
 
         button {
             align-items: center;
-            height: 25px;
-            width: 25px;
+            height: 25px !important;
+            width: 25px !important;
             padding: 0 0 0 1px;
             border-radius: 0.15rem;
             font-size: medium;
@@ -136,7 +136,8 @@
             display: flex;
             border: 1px var(--coul-primaire) solid;
             padding: var(--espace-quart) var(--espace-quart);
-            height: 50%;
+            /* height: 50%; */
+            height: 25px !important;
             background-color: var(--coul-fond-claire);
 
             a {
@@ -146,106 +147,104 @@
                 white-space: nowrap;
             }
         }
+
+        .user-email{
+            color: var(--coul-primaire);
+            font-family: "Roboto";
+            font-weight: 300;
+        }
     }
 }
 
 @media screen and (max-width: 834px) {
-    .div-header {
-        .line-2 {
-            background-color: var(--coul-primaire);
-            display: block;
-            height: 1px;
-            position: absolute;
-            top: 140px;
-            width: 100%;
-        }
+.div-header {
+    .line-2 {
+        background-color: var(--coul-primaire);
+        display: block;
+        height: 1px;
+        position: absolute;
+        top: 140px;
+        width: 100%;
+    }
 
+    .div-nav {
+        /* width: 100%; */
 
-        .div-nav {
-            /* width: 100%; */
+        .div-list-nav {
 
-            .div-list-nav {
-    
-                .list-nav {
-                    font-size: var(--texte-xs);
+            .list-nav {
+                font-size: var(--texte-xs);
 
-    
-                    li {
-                        padding: 0 var(--espace-1) 0 var(--espace-1);
-
-                    }
-
+                li {
+                    padding: 0 var(--espace-1) 0 var(--espace-1);
                 }
             }
         }
-    
-
     }
-}
+}}
 
 @media screen and (max-width: 428px) {
-    .div-header {
-        border: 1px var(--coul-primaire) solid;
+.div-header {
+    border: 1px var(--coul-primaire) solid;
+    flex-direction: column;
+    height: fit-content;
+    position: relative;
+    width: calc(100vw - var(--espace-1half));
+    
+    .line-1,
+    .line-2 {
+        display: none;
+    }
+
+    .div-nav {
         flex-direction: column;
-        height: fit-content;
-        position: relative;
-        width: calc(100vw - var(--espace-1half));
-        
-        .line-1,
-        .line-2 {
-            display: none;
+
+        img {
+            width: 100%;
         }
 
-        .div-nav {
-            flex-direction: column;
+        .div-list-nav {
+            .list-nav {
+                li {
+                    border-bottom: 1px var(--coul-primaire) solid;
+                    justify-content: center;
+                    width: calc(100vw - var(--espace-3));
+                    font-size: var(--texte-md);
 
-            img {
-                width: 100%;
-            }
+                }
 
-            .div-list-nav {
-                .list-nav {
-                    li {
-                        border-bottom: 1px var(--coul-primaire) solid;
-                        justify-content: center;
-                        width: calc(100vw - var(--espace-3));
-                        font-size: var(--texte-md);
+                .voiture-nav:hover {
+                    .sous-list-nav {
+                        background-color: white;
+                        left: 2rem;
+                        z-index: 10000;
 
-                    }
-
-                    .voiture-nav:hover {
-                        .sous-list-nav {
-                            background-color: white;
-                            left: 2rem;
-                            z-index: 10000;
-
-                            li {
-                                border: none;
-                            }
+                        li {
+                            border: none;
                         }
                     }
                 }
             }
         }
+    }
 
-        .div-lang {
-            height: 70px;
+    .div-lang {
+        height: 70px;
 
-            button {
-                height: 10%;
-                position: absolute;
-                right: 3px;
-                top: 5px;
-            }
+        button {
+            height: 10%;
+            position: absolute;
+            right: 3px;
+            top: 5px;
+        }
 
-            .div-connexion {
-                border: none;
+        .div-connexion {
+            border: none;
 
-                a {
-                    font-family: "Palanquin";
-                    font-size: var(--texte-md);
-                }
+            a {
+                font-family: "Palanquin";
+                font-size: var(--texte-md);
             }
         }
     }
-}
+}}

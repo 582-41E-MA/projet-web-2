@@ -17,6 +17,7 @@
 
 </head>
 <body>
+<div class="div-body">
     @php 
         $locale = session()->get('locale');
 
@@ -99,6 +100,25 @@
 
     @yield('content')
 
+    <script>
+        // const footer = document.querySelector('footer');
+
+        // function adjustFooterPosition() {
+        //     const windowHeight = window.innerHeight;
+        //     const bodyHeight = document.body.scrollHeight;
+
+        //     if (windowHeight == bodyHeight) {
+        //         footer.style.position = 'fixed';
+        //         console.log('fixed');
+        //     } else {
+        //         footer.style.position = 'absolute';
+        //         console.log('absolute');
+        //    }
+        // }
+        // window.onload = adjustFooterPosition;
+        // window.onresize = adjustFooterPosition;
+    </script>
+
     <footer>
         <div class="div-footer">
             <div class="footer-contenu">
@@ -147,6 +167,6 @@
             <div class="copyright">© 2024 Copyright - Vechicles d’Occasion</div>
         </div>
     </footer>
-
+</div>
 </body>
 </html>

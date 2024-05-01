@@ -6,3 +6,7 @@ mac的php版本可选7.4.33和8.2.0，
 composer create-project --prefer-dist laravel/laravel projet-web-2
 
 用户名AAA 邮箱a@a.com 密码Aa000000
+用户名administrateur 邮箱administrateur@a.com 密码Aa000000
+
+问题：
+1. 员工和客户下拉菜单第三行无底色

@@ -1,7 +1,6 @@
 .div-footer{
     display: flex;
     flex-direction: column;
-    position: relative;
     font-family: "Roboto";
     color: var(--coul-texte-default);
     line-height: 1.5em;

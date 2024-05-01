@@ -3,7 +3,7 @@
 @section('content')
    
 <main class="wrapper">
-    <div class="policy ">
+    <div class="policy">
         <img src="" alt="company4">
         <div class="text">
             <h3>@lang('policy-title-1')</h3>

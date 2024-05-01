@@ -214,7 +214,8 @@
                 @forelse($voitures as $voiture)
                     <div class="item-catalogue">
                         <div class="car-image">
-                            <img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}" >
+                            {{--<img src="{{asset('assets/img/voitures/').'/'.$voiture['photoPrincipale']}}" alt="{{ $voiture['marque']}} {{ $voiture['modele']}} {{ $voiture['annee']}}" >--}}
+                            <img src="{{ asset('assets/img/voitures/audi_a5.jpg') }}" alt="Audi A5">
                         </div>
                         <div class="car-info">
                             <div class="car-detail">

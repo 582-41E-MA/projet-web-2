@@ -7,6 +7,16 @@ header {
     position: relative;
 }
 
+@media screen and (max-width: 1180px) {
+header {
+    padding: var(--espace-2) var(--espace-2) var(--espace-5) var(--espace-2);
+}}
+
+@media screen and (max-width: 680px) {
+header {
+    padding: var(--espace-2) var(--espace-2) var(--espace-9) var(--espace-2);
+}}
+    
 @media screen and (max-width: 428px) {
     .btn, p {
         margin: var(--espace-quart) var(--espace-quart) 0 0 ;
