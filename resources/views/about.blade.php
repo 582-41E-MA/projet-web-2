@@ -4,7 +4,7 @@
    
 <main class="wrapper">
     <div class="about">
-        <img src="" alt="company5">
+        <img>
         <div class="text">
             <h2>@lang('about-title-1')</h2>
                 <p>@lang('about-p-2')</p>
