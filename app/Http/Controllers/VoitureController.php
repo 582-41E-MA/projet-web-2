@@ -511,4 +511,14 @@ class VoitureController extends Controller
        
         return view('voiture.parametres', compact('marques', 'modeles', 'annees', 'transmissions', 'tractions', 'carburants', 'carrosseries'));
     } 
+
+    public function about()
+    {
+        return view('voiture.about');
+    }
+    
+    public function policy()
+    {
+        return view('voiture.policy');
+    }
 }

@@ -108,3 +108,5 @@ Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang'
 
 
 Route::get('/journals', [JournalController::class, 'index'])->name('journal');
+Route::get('/about', [VoitureController::class, 'about'])->name('voiture.about');
+Route::get('/policy', [VoitureController::class, 'policy'])->name('voiture.policy');

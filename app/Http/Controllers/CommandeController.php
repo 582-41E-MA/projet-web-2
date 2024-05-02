@@ -44,7 +44,7 @@ class CommandeController extends Controller
             $idUserExist = true;
         } else {
             $idUserExist = false;
-            return redirect()->route('voiture.index');
+            
         }
         
         // Voiture qui sera ajoutée au panier d'achat

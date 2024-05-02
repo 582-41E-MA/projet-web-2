@@ -71,8 +71,8 @@
                     <nav>
                         <ul class="list-nav">
                             <li><a href="{{ route('voiture.index') }}" class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}">@lang('Cars list')</a></li>
-                            <li><a href="{{ route('about') }}">@lang('About us')</a></li>
-                            <li><a href="{{ route('policy') }}">@lang('Sales Policies')</a></li>
+                            <li><a href="{{ route('voiture.about') }}">@lang('About us')</a></li>
+                            <li><a href="{{ route('voiture.policy') }}">@lang('Sales Policies')</a></li>
                         </ul>
                     </nav>
                 </div> 
