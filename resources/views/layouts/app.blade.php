@@ -32,9 +32,12 @@
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="div-nav">
+            <a href="{{ route('voiture.index') }}">
+
                 <div class="logo">
                     <img src="{{asset('assets/img/svg/logo.svg')}}" alt="logo">
                 </div>
+            </a>
                 @if($privilege == 'employé' || $privilege == 'administrateur')
                     <div class="div-list-nav">
                         <nav>
@@ -130,9 +133,11 @@
     <div class="div-footer">
         <div class="footer-contenu">
             <div class="logo-contact">
-                <div class="logo">
-                    <img src="{{asset('assets/img/svg/logo-car.svg')}}" alt="logo">
-                </div>
+                <a href="{{ route('voiture.index') }}">
+                    <div class="logo">
+                        <img src="{{asset('assets/img/svg/logo-car.svg')}}" alt="logo">
+                    </div>
+                </a>
                 <div class="contact">
                     <div>
                         <label for="name">@lang('Name')</label>

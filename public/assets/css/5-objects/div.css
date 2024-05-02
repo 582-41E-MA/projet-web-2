@@ -2,7 +2,6 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    /*perguntar*/
     height: 70px;
     justify-content: space-between;
     position: relative;
@@ -10,10 +9,8 @@
 
     .line-1 {
         background-color: var(--coul-primaire);
-        /*perguntar*/
         height: 2px;
         position: absolute;
-        /*perguntar*/
         top: 70px;
         width: 100%;
     }
@@ -27,7 +24,6 @@
         height: 100%;
 
         img {
-            /*perguntar*/
             width: 236px;
         }
 
@@ -67,7 +63,7 @@
                         border: 2px var(--coul-primaire) solid;
                         display: flex;
                         flex-direction: column;
-                        height: 210px;
+                        height: auto;
                         left: 0;
                         position: absolute;
                         top: 70px;
@@ -205,11 +201,9 @@
         }
 
         .div-lang {
-            /*perguntar*/
             height: 70px;
 
             button {
-                /*perguntar*/
                 height: 10%;
                 position: absolute;
                 right: 3px;
