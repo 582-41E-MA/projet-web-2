@@ -34,7 +34,7 @@
             .list-nav {
                 display: flex;
                 flex-wrap: wrap;
-                height: 100%;
+                /* height: auto; */
 
                 li {
                     align-items: center;

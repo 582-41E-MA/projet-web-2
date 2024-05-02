@@ -39,14 +39,14 @@ Route::get('/checkout/{commande}', [CommandeController::class, 'checkout'])->nam
 Route::get('/success/{commande}', [CommandeController::class, 'success'])->name('commande.success');
 Route::get('/commande-pdf/{commande}', [CommandeController::class, 'pdfConfirmation'])->name('commande.pdf');
 
+Route::get('/create/client', [UserController::class, 'createClient'])->name('user.createClient');
+Route::post('/create/user', [UserController::class, 'store'])->name('user.store');
 
 Route::middleware(['privilege'])->group(function() 
 {
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::get('/clients', [UserController::class, 'indexClient'])->name('user.indexClient');
     Route::get('/create/user', [UserController::class, 'create'])->name('user.create');
-    Route::get('/create/client', [UserController::class, 'createClient'])->name('user.createClient');
-    Route::post('/create/user', [UserController::class, 'store'])->name('user.store');
     Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/edit/client/{user}', [UserController::class, 'editClient'])->name('user.editClient');
     Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');

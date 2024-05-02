@@ -28,7 +28,7 @@
                     <button class="btn btn-tertiaire">@lang('Delete')</button>
                 </form>
                 @if($photoPrincipale_id == $photo->id)
-                    <p>Main photo</p>
+                    <p>@lang('Main photo')</p>
 
                 @else
                 <form action="{{ route('photo.principal', $photo->id) }}" method="post">
