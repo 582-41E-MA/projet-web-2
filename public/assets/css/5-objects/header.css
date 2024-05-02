@@ -2,14 +2,15 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    height: 70px;
+    width: 100%;
+    height: 100%;
+    min-height: 70px;
     justify-content: space-between;
     position: relative;
-    width: 100%;
 
     .line-1 {
         background-color: var(--coul-primaire);
-        height: 2px;
+        height: 1px;
         position: absolute;
         top: 70px;
         width: 100%;
@@ -49,9 +50,10 @@
 
                     .active {
                         font-family: "Palanquin Dark";
-                        font-weight: 700;
+                        font-weight: 500;
                         font-style: normal;
                     }
+
                     span {
                         text-decoration: none;
                         color: var(--coul-primaire);
@@ -59,7 +61,6 @@
     
                     span:hover {
                         color: var(--coul-texte-claire);
-    
                     }
                 }
 
@@ -78,7 +79,7 @@
 
                 .voiture-nav:hover {
                     .sous-list-nav {
-                        border: 2px var(--coul-primaire) solid;
+                        border: 1px var(--coul-primaire) solid;
                         display: flex;
                         flex-direction: column;
                         height: auto;
@@ -111,13 +112,16 @@
     .div-lang {
         align-items: center;
         display: flex;
-        gap: var(--espace-1);
+        gap: var(--espace-half) !important;
         height: 100%;
 
         button {
             align-items: center;
-            display: flex;
-            height: 50%;
+            height: 25px !important;
+            width: 25px !important;
+            padding: 0 0 0 1px;
+            border-radius: 0.15rem;
+            font-size: medium;
 
             a {
                 color: var(--coul-texte-claire);
@@ -127,11 +131,14 @@
         }
 
         .div-connexion {
+            font-family: "Palanquin";
             align-items: center;
             display: flex;
             border: 1px var(--coul-primaire) solid;
-            padding: var(--espace-quart) var(--espace-3quarts);
-            height: 50%;
+            padding: var(--espace-quart) var(--espace-quart);
+            /* height: 50%; */
+            height: 25px !important;
+            background-color: var(--coul-fond-claire);
 
             a {
                 color: var(--coul-primaire);
@@ -140,106 +147,104 @@
                 white-space: nowrap;
             }
         }
+
+        .user-email{
+            color: var(--coul-primaire);
+            font-family: "Roboto";
+            font-weight: 300;
+        }
     }
 }
 
 @media screen and (max-width: 834px) {
-    .div-header {
-        .line-2 {
-            background-color: var(--coul-primaire);
-            display: block;
-            height: 2px;
-            position: absolute;
-            top: 140px;
-            width: 100%;
-        }
+.div-header {
+    .line-2 {
+        background-color: var(--coul-primaire);
+        display: block;
+        height: 1px;
+        position: absolute;
+        top: 140px;
+        width: 100%;
+    }
 
+    .div-nav {
+        /* width: 100%; */
 
-        .div-nav {
-            /* width: 100%; */
+        .div-list-nav {
 
-            .div-list-nav {
-    
-                .list-nav {
-                    font-size: var(--texte-xs);
+            .list-nav {
+                font-size: var(--texte-xs);
 
-    
-                    li {
-                        padding: 0 var(--espace-1) 0 var(--espace-1);
-
-                    }
-
+                li {
+                    padding: 0 var(--espace-1) 0 var(--espace-1);
                 }
             }
         }
-    
-
     }
-}
+}}
 
 @media screen and (max-width: 428px) {
-    .div-header {
-        border: 2px var(--coul-primaire) solid;
+.div-header {
+    border: 1px var(--coul-primaire) solid;
+    flex-direction: column;
+    height: fit-content;
+    position: relative;
+    width: calc(100vw - var(--espace-1half));
+    
+    .line-1,
+    .line-2 {
+        display: none;
+    }
+
+    .div-nav {
         flex-direction: column;
-        height: fit-content;
-        position: relative;
-        width: calc(100vw - var(--espace-1half));
-        
-        .line-1,
-        .line-2 {
-            display: none;
+
+        img {
+            width: 100%;
         }
 
-        .div-nav {
-            flex-direction: column;
+        .div-list-nav {
+            .list-nav {
+                li {
+                    border-bottom: 1px var(--coul-primaire) solid;
+                    justify-content: center;
+                    width: calc(100vw - var(--espace-3));
+                    font-size: var(--texte-md);
 
-            img {
-                width: 100%;
-            }
+                }
 
-            .div-list-nav {
-                .list-nav {
-                    li {
-                        border-bottom: 2px var(--coul-primaire) solid;
-                        justify-content: center;
-                        width: calc(100vw - var(--espace-3));
-                        font-size: var(--texte-md);
+                .voiture-nav:hover {
+                    .sous-list-nav {
+                        background-color: white;
+                        left: 2rem;
+                        z-index: 10000;
 
-                    }
-
-                    .voiture-nav:hover {
-                        .sous-list-nav {
-                            background-color: white;
-                            left: 2rem;
-                            z-index: 10000;
-
-                            li {
-                                border: none;
-                            }
+                        li {
+                            border: none;
                         }
                     }
                 }
             }
         }
+    }
 
-        .div-lang {
-            height: 70px;
+    .div-lang {
+        height: 70px;
 
-            button {
-                height: 10%;
-                position: absolute;
-                right: 3px;
-                top: 5px;
-            }
+        button {
+            height: 10%;
+            position: absolute;
+            right: 3px;
+            top: 5px;
+        }
 
-            .div-connexion {
-                border: none;
+        .div-connexion {
+            border: none;
 
-                a {
-                    font-family: "Palanquin";
-                    font-size: var(--texte-md);
-                }
+            a {
+                font-family: "Palanquin";
+                font-size: var(--texte-md);
             }
         }
     }
-}
+}}

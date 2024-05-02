@@ -10,12 +10,16 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}" media="screen">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Scripts -->
     <script type="module" src="{{asset('assets/js/main.js')}}" defer></script>
+    
+    
 
 </head>
 <body>
+
     @php 
         $locale = session()->get('locale');
 
@@ -57,6 +61,7 @@
                                         <li><a class="{{ request()->routeIs('voiture.parametres') ? 'active' : '' }}" href="{{ route('voiture.parametres') }}">@lang('Car parameters')</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="{{ route('journal') }}">@lang('Journal Log')</a></li>
                             </ul>
                         </nav>
                     </div>           
@@ -66,8 +71,8 @@
                     <nav>
                         <ul class="list-nav">
                             <li><a href="{{ route('voiture.index') }}" class="{{ request()->routeIs('voiture.index') ? 'active' : '' }}">@lang('Cars list')</a></li>
-                            <li><a href="">@lang('About us')</a></li>
-                            <li><a href="">@lang('Sales Policies')</a></li>
+                            <li><a href="{{ route('voiture.about') }}">@lang('About us')</a></li>
+                            <li><a href="{{ route('voiture.policy') }}">@lang('Sales Policies')</a></li>
                         </ul>
                     </nav>
                 </div> 
@@ -120,6 +125,55 @@
     </header>
 
     @yield('content')
+
+<footer>
+    <div class="div-footer">
+        <div class="footer-contenu">
+            <div class="logo-contact">
+                <div class="logo">
+                    <img src="{{asset('assets/img/svg/logo-car.svg')}}" alt="logo">
+                </div>
+                <div class="contact">
+                    <div>
+                        <label for="name">@lang('Name')</label>
+                        <input type="text" id="name">
+                    </div>
+                    <div>
+                        <label for="email">@lang('Email')</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div>
+                        <label for="message">@lang('Message')</label>
+                        <input type="text" id="message">
+                    </div> 
+                    <div class="div-button">
+                        <a href="#"><button>@lang('Contact us')</button></a>                  
+                    </div>
+                </div>                    
+            </div>
+            <div class="link-icon">
+                <div class="link">
+                    <a href="#"><p>@lang('Privacy Policy')</p></a>
+                    <a href="#"><p>@lang('Find a car')</p></a>
+                    <a href="#"><p>@lang('Get approved')</p></a>
+                    <a href="#"><p>@lang('Sell your car')</p></a>
+                    <a href="#"><p>@lang('Career')</p></a>
+                    <a href="#"><p>@lang('Humanity')</p></a>
+                    <a href="#"><p>@lang('Newsroom')</p></a>
+                    <a href="#"><p>@lang('Blog')</p></a>
+                </div>
+                <div class="icon">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2024 Copyright - Vechicles d’Occasion</div>
+    </div>
+</footer>
 
 </body>
 </html>

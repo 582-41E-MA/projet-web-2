@@ -6,21 +6,25 @@
 
 /* 4 - ELEMENTS */
 @import url(/assets/css/4-elements/typographies.css);
+@import url(/assets/css/4-elements/body.css);
 @import url(/assets/css/4-elements/header.css);
 @import url(/assets/css/4-elements/nav.css);
+@import url(/assets/css/4-elements/footer.css);
 
 /* 5 - OBJETCS */
+@import url(/assets/css/5-objects/body.css);
+@import url(/assets/css/5-objects/wrapper.css);
+@import url(/assets/css/5-objects/header.css);
+@import url(/assets/css/5-objects/footer.css);
 @import url(/assets/css/5-objects/button.css);
 @import url(/assets/css/5-objects/checkbox.css);
 @import url(/assets/css/5-objects/div.css);
 @import url(/assets/css/5-objects/form.css);
-@import url(/assets/css/5-objects/header.css);
 @import url(/assets/css/5-objects/input.css);
 @import url(/assets/css/5-objects/label.css);
 @import url(/assets/css/5-objects/message.css);
 @import url(/assets/css/5-objects/modal.css);
 @import url(/assets/css/5-objects/spacing.css);
-@import url(/assets/css/5-objects/wrapper.css);
 @import url(/assets/css/5-objects/table.css);
 @import url(/assets/css/5-objects/recherche.css);
 @import url(/assets/css/5-objects/liste.css);
@@ -32,3 +36,6 @@
 @import url(/assets/css/6-pages/crm.css);
 @import url(/assets/css/6-pages/photos.css);
 @import url(/assets/css/6-pages/panier.css);
+@import url(/assets/css/6-pages/page-about.css);
+@import url(/assets/css/6-pages/page-policy.css);
+@import url(/assets/css/6-pages/footer.css);

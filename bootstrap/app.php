@@ -13,7 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
-            SetLocale::class
+            SetLocale::class,
+            \App\Http\Middleware\JournalLog::class,
         ]);
         $middleware->alias([
             'auth' => \App\Http\Middleware\Authenticate::class,
@@ -26,3 +27,4 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+    

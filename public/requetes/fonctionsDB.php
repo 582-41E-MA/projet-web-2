@@ -84,17 +84,16 @@
 	 * Retourne la recherche d'une voiture
 	 */
     function rechercheVoitures($propriete) {
-		
-		return executeRequete("SELECT voitures.id,
-                                voitures.prix_vente,
-                                voitures.marque_id,
-                                marques.nom AS marque_nom,
-                                modeles.nom AS modele_nom,
-                                annees.annee AS annee_valor,
-                                carburants.nom AS carburant_nom,
-                                tractions.nom AS traction_nom,
-                                transmissions.nom AS transmission_nom,
-                                photos.nom AS photo_nom
+        return executeRequete("SELECT voitures.id,
+                                       voitures.prix_vente,
+                                       voitures.marque_id,
+                                       marques.nom AS marque_nom,
+                                       modeles.nom AS modele_nom,
+                                       annees.annee AS annee_valor,
+                                       carburants.nom AS carburant_nom,
+                                       tractions.nom AS traction_nom,
+                                       transmissions.nom AS transmission_nom,
+                                       photos.nom AS photo_nom
                                 FROM voitures 
                                 JOIN marques ON voitures.marque_id = marques.id
                                 JOIN modeles ON voitures.modele_id = modeles.id
@@ -102,46 +101,16 @@
                                 JOIN tractions ON voitures.traction_id = tractions.id
                                 JOIN carburants ON voitures.carburant_id = carburants.id
                                 JOIN transmissions ON voitures.transmission_id = transmissions.id
-                                LEFT JOIN photos ON voitures.id = photos.voiture_id
-                                WHERE (CONCAT(
-                                marques.nom, 
-                                ' ', 
-                                modeles.nom, 
-                                ' ', 
-                                annees.annee
-                            ) LIKE '%$propriete%') OR (CONCAT(
-                                marques.nom, 
-                                ' ', 
-                                annees.annee,
-                                ' ', 
-                                modeles.nom
-                            ) LIKE '%$propriete%') OR (CONCAT(
-                                modeles.nom, 
-                                ' ', 
-                                marques.nom, 
-                                ' ', 
-                                annees.annee
-                            ) LIKE '%$propriete%') OR (CONCAT(
-                                modeles.nom, 
-                                ' ', 
-                                annees.annee,
-                                ' ', 
-                                marques.nom
-                            ) LIKE '%$propriete%') OR (CONCAT(
-                                annees.annee,
-                                ' ', 
-                                modeles.nom, 
-                                ' ', 
-                                marques.nom
-                            ) LIKE '%$propriete%') OR (CONCAT(
-                                annees.annee,
-                                ' ', 
-                                marques.nom,
-                                ' ', 
-                                modeles.nom
-                            ) LIKE '%$propriete%')");
+                                LEFT JOIN photos ON voitures.id = photos.voiture_id 
+                                WHERE (CONCAT(marques.nom, ' ', modeles.nom, ' ', annees.annee) LIKE '%$propriete%') 
+                                       OR (CONCAT(marques.nom, ' ', annees.annee, ' ', modeles.nom) LIKE '%$propriete%') 
+                                       OR (CONCAT(modeles.nom, ' ', marques.nom, ' ', annees.annee) LIKE '%$propriete%') 
+                                       OR (CONCAT(modeles.nom, ' ', annees.annee, ' ', marques.nom) LIKE '%$propriete%') 
+                                       OR (CONCAT(annees.annee, ' ', modeles.nom, ' ', marques.nom) LIKE '%$propriete%') 
+                                       OR (CONCAT(annees.annee, ' ', marques.nom, ' ', modeles.nom) LIKE '%$propriete%') 
+                                ORDER BY photos.principal DESC;");
+    }
     
-	}
 
     function rechercheUtilisateurs($propriete) {
         return executeRequete("SELECT *

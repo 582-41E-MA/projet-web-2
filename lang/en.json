@@ -1,3 +1,24 @@
 {
+    "about-title-1" : "What we do",
+    "about-title-2" : "How we do it",
+    "about-title-3" : "Who we are",
+    "about-p-1" : "We’re building the world’s most trusted and transparent automotive marketplace. We make it easy to find great deals from top-rated dealers and provide the guidance consumers need to make a more informed purchase. We also help dealers quickly and easily market their vehicles and connect with ready-to-buy shoppers.ca, Q1 2020, CA.",
+    "about-p-2" : "Using proprietary technology, search algorithms, and innovative data analytics, we provides unbiased insights on car pricing, dealer reputation, and vehicle history. For used vehicles, we calculate a fair retail price based on a detailed analysis of comparable current and previous car listings in a given market. We call this estimate we Instant Market Value (IMV). Updated daily, ours IMV takes into account millions of data points including make, model, trim, year, mileage, options, location and vehicle history. To determine our Deal Ratings, we compare the asking price of a vehicle to us IMV, and factor in dealer reputation. From this calculation, we rate the quality of the deal: Great, Good, Fair, High or Overpriced. We always sort organic search results with the best deals on top (based on our algorithm, not how much a dealer pays).",
+    "about-p-3" : "Vehicles d'Occasion in 2006 by Langley Steinert (co-founder of TripAdvisor), Vehicles d'Occasion is now the largest online automotive marketplace in the Canada. Vehicles d'Occasion also operates sites in US and the UK. The company started trading on the Nasdaq in October, 2017 under the symbol AAAA.",
     
-}
+    "policy-title-1" : "Warranty from the Original Manufacturer or Dealer",
+    "policy-title-2" : "The Warranty of “Good Working Order”",
+    "policy-title-3" : "What is covered by the good working order warranty?",
+    "policy-title-4" : "What is not covered by the good working order warranty?",
+    "policy-ul1-li1" : "Even if a car is used, there still might be a warranty left from the original manufacturer or dealer (the warranty from when it was sold as a new car ).",
+    "policy-ul1-li2" : "This warranty is still valid if it was for a certain time period or a certain number of kilometres and this period or mileage isn’t finished over when the car is resold as a used vehicle.",
+    "policy-ul1-li3" : "The original manufacturer or dealer must then pay the cost of the repairs covered by the warranty.",
+    "policy-ul1-li4" : "If the manufacturer or dealer’s original warranty is still good and a repair must be done, the manufacturer or dealer must also assume the reasonable costs of towing or breakdown services",
+    "policy-p-2" : "When you buy a used car from a merchant, you benefit from a general warranty of good working order. This is a “legal” warranty. This means that it applies automatically without having to sign anything.",
+    "policy-p-3" : "The good working order warranty covers parts and labour. It is effective as soon as the used car is delivered to the buyer.",
+    "policy-p-4" : "These things are not included in the warranty :",
+    "policy-ul4-li1" : "Normal maintenance of the car",
+    "policy-ul4-li2" : "Interior upholstery or exterior decorative items",
+    "policy-ul4-li3" : "Damages caused by the buyer’s abusive use of the car or motorcycle after it has been delivered"
+  
+  }

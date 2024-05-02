@@ -13,6 +13,7 @@ use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\JournalController;
 
 
 Route::get('/', [VoitureController::class, 'index'])->name('voiture.index');
@@ -105,3 +106,7 @@ Route::middleware(['privilege'])->group(function()
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
+
+Route::get('/journals', [JournalController::class, 'index'])->name('journal');
+Route::get('/about', [VoitureController::class, 'about'])->name('voiture.about');
+Route::get('/policy', [VoitureController::class, 'policy'])->name('voiture.policy');
